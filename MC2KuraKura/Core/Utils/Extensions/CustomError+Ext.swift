@@ -5,8 +5,7 @@
 //  Created by Wahyu Alfandi on 29/05/23.
 //
 
-//file ini gunanya sebagai response error pada pemanggilan api atau db.
-
+// file ini gunanya sebagai response error pada pemanggilan api atau db.
 
 import Foundation
 

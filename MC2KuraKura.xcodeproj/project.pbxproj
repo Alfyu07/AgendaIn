@@ -16,6 +16,8 @@
 		A1B474122A242782005ABCB5 /* RemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B474112A242782005ABCB5 /* RemoteDataSource.swift */; };
 		A1B474152A242A4D005ABCB5 /* CustomError+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B474142A242A4D005ABCB5 /* CustomError+Ext.swift */; };
 		A1B474182A242AC8005ABCB5 /* Color+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B474172A242AC8005ABCB5 /* Color+Ext.swift */; };
+		A1B474252A2568F7005ABCB5 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B474242A2568F7005ABCB5 /* LoginView.swift */; };
+		A1B474272A256CBB005ABCB5 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = A1B474262A256CBB005ABCB5 /* .swiftlint.yml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		A1B474112A242782005ABCB5 /* RemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteDataSource.swift; sourceTree = "<group>"; };
 		A1B474142A242A4D005ABCB5 /* CustomError+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomError+Ext.swift"; sourceTree = "<group>"; };
 		A1B474172A242AC8005ABCB5 /* Color+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Ext.swift"; sourceTree = "<group>"; };
+		A1B474242A2568F7005ABCB5 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		A1B474262A256CBB005ABCB5 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +49,7 @@
 		A136BE0F2A241ECD00B2805F = {
 			isa = PBXGroup;
 			children = (
+				A1B474262A256CBB005ABCB5 /* .swiftlint.yml */,
 				A136BE1A2A241ECD00B2805F /* MC2KuraKura */,
 				A136BE192A241ECD00B2805F /* Products */,
 			);
@@ -255,6 +260,7 @@
 		A1B474212A242B59005ABCB5 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A1B474242A2568F7005ABCB5 /* LoginView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -338,6 +344,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1B474272A256CBB005ABCB5 /* .swiftlint.yml in Resources */,
 				A136BE232A241ECE00B2805F /* Preview Assets.xcassets in Resources */,
 				A136BE202A241ECE00B2805F /* Assets.xcassets in Resources */,
 			);
@@ -371,6 +378,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A1B474152A242A4D005ABCB5 /* CustomError+Ext.swift in Sources */,
+				A1B474252A2568F7005ABCB5 /* LoginView.swift in Sources */,
 				A1B474122A242782005ABCB5 /* RemoteDataSource.swift in Sources */,
 				A1B474082A24217D005ABCB5 /* Injection.swift in Sources */,
 				A136BE1E2A241ECD00B2805F /* ContentView.swift in Sources */,
