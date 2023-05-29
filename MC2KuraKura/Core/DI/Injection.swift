@@ -7,6 +7,5 @@
 
 import Foundation
 
-final class Injection : NSObject{
-    
+final class Injection: NSObject {
 }
