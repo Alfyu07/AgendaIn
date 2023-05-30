@@ -9,6 +9,8 @@ import SwiftUI
 
 @main
 struct MC2KuraKuraApp: App {
+    let loginPresenter = OnboardingPresenter()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
