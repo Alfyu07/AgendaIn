@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct OnboardingView: View {
-    //    @ObservedObject var presenter = LoginPresenter
-    @State var index = 1
+    @ObservedObject var presenter: OnboardingPresenter
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -32,31 +31,29 @@ struct OnboardingView: View {
                     .frame(width: 350, height: 284)
                     .scaledToFit()
                     .padding(.top, -6)
-                //                    .padding(.bottom, 120)
-                
-                // swiftlint:disable line_length
+                 
                 VStack(alignment: .center) {
-                    Text("Collaborative")
+                    Text(presenter.onboardingTexts[presenter.index].titleText)
                         .font(.system(size: 24, weight: .bold, design: .rounded))
                         .foregroundColor(Color("blue90"))
                         .frame(maxWidth: .infinity)
                         .multilineTextAlignment(.center)
-//                        .padding(.top, 30)
-                    Text("We will create the meeting agenda together,\nCollaboration and thoughts will merge \nIdeas will emerge, concepts will be formed,\nSo that this meeting is successful and focused.")
+
+                    Text(presenter.onboardingTexts[presenter.index].descriptionText)
                         .font(.system(size: 14, design: .rounded))
                         .foregroundColor(Color("blue90"))
-                        .frame(maxWidth: .infinity)
+                        .frame(maxWidth: .infinity, maxHeight: 80)
                         .multilineTextAlignment(.center)
                         .padding(.top, 2)
                     
                     HStack {
-                        ForEach(1..<4) { number in
+                        ForEach(0..<3) { number in
                             Circle().fill(
-                                index == number ? Color("blue40") :
+                                presenter.index == number ? Color("blue40") :
                                     Color("blue20")
                             )
                             .frame(width: 8.5, height: 8.5)
-                            .scaleEffect(index == number ? 1.5 : 1)
+                            .scaleEffect(presenter.index == number ? 1.5 : 1)
                             .animation(
                                 .spring()
                             )
@@ -65,17 +62,18 @@ struct OnboardingView: View {
                     .padding(.top, 10)
                 }.padding(.top, 200)
                 
-                // swiftlint:enable line_length
-                
                 Button {
-                    if index == 3 {
-                      // login function here
-                    } else {
-                        index += 1
+                    switch presenter.index {
+                    case 0, 1:
+                        presenter.index += 1
+                    default:
+                        print("login")
                     }
-                   
+                    
                 } label: {
-                    if index == 3 {
+                    
+                    switch presenter.index {
+                    case 2:
                         HStack {
                             Image(systemName: "apple.logo")
                                 .padding(.trailing, 8)
@@ -85,22 +83,21 @@ struct OnboardingView: View {
                         .frame(maxWidth: .infinity)
                         .padding(.horizontal, 24)
                         .padding(.vertical, 12)
-                    } else {
-                            Text("Continue")
-                                .font(.system(size: 16, weight: .bold, design: .rounded))
-                        .frame(maxWidth: .infinity)
-                        .padding(.horizontal, 24)
-                        .padding(.vertical, 12)
+                    default:
+                        Text("Continue")
+                            .font(.system(size: 16, weight: .bold, design: .rounded))
+                            .frame(maxWidth: .infinity)
+                            .padding(.horizontal, 24)
+                            .padding(.vertical, 12)
                     }
                     
                 }
                 .buttonStyle(.borderedProminent)
                 .foregroundColor(.white)
-                .accentColor(index == 3 ? .black : Color("blue50"))
+                .accentColor(presenter.index == 2 ? .black : Color("blue50"))
                 .cornerRadius(30)
                 .padding(.top, 16)
                 .padding(.horizontal, 24)
-//                .animation(.spring())
             }
         }
         .padding(.horizontal, 24)

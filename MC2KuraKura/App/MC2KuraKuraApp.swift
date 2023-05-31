@@ -9,11 +9,11 @@ import SwiftUI
 
 @main
 struct MC2KuraKuraApp: App {
-    let loginPresenter = OnboardingPresenter()
+    let onboardingPresenter = OnboardingPresenter(onBoardingUseCase: Injection.init().provideOnboarding())
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView().environmentObject(onboardingPresenter)
         }
     }
 }

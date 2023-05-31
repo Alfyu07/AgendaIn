@@ -25,6 +25,7 @@
 		A1B474352A26BD74005ABCB5 /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B474342A26BD74005ABCB5 /* AuthRepository.swift */; };
 		A1B474372A26C033005ABCB5 /* APICall.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B474362A26C033005ABCB5 /* APICall.swift */; };
 		A1B474392A26C20D005ABCB5 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B474382A26C20D005ABCB5 /* UserModel.swift */; };
+		A1B4743B2A26C6A5005ABCB5 /* OnboardingRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B4743A2A26C6A5005ABCB5 /* OnboardingRouter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		A1B474342A26BD74005ABCB5 /* AuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepository.swift; sourceTree = "<group>"; };
 		A1B474362A26C033005ABCB5 /* APICall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICall.swift; sourceTree = "<group>"; };
 		A1B474382A26C20D005ABCB5 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		A1B4743A2A26C6A5005ABCB5 /* OnboardingRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingRouter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -286,6 +288,7 @@
 		A1B474222A242B60005ABCB5 /* Router */ = {
 			isa = PBXGroup;
 			children = (
+				A1B4743A2A26C6A5005ABCB5 /* OnboardingRouter.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -424,6 +427,7 @@
 				A1B474312A26BB11005ABCB5 /* MeetingModel.swift in Sources */,
 				A136BE1E2A241ECD00B2805F /* ContentView.swift in Sources */,
 				A136BE1C2A241ECD00B2805F /* MC2KuraKuraApp.swift in Sources */,
+				A1B4743B2A26C6A5005ABCB5 /* OnboardingRouter.swift in Sources */,
 				A1B474352A26BD74005ABCB5 /* AuthRepository.swift in Sources */,
 				A1B474182A242AC8005ABCB5 /* Color+Ext.swift in Sources */,
 				A1B4742B2A257CE9005ABCB5 /* OnboardingPresenter.swift in Sources */,

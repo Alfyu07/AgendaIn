@@ -12,7 +12,7 @@ protocol OnboardingUseCase {
 }
 
 class OnboardingInteractor: OnboardingUseCase {
-    private let repository : AuthRepositoryProtocol
+    private let repository: AuthRepositoryProtocol
     
     init(repository: AuthRepositoryProtocol) {
         self.repository = repository

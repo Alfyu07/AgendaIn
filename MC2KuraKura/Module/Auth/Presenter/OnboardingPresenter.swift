@@ -8,6 +8,16 @@
 import Foundation
 
 class OnboardingPresenter: ObservableObject {
+       
+    private let router = OnboardingRouter()
+    private let onboardingUseCase: OnboardingUseCase
+    
+    init(onBoardingUseCase: OnboardingUseCase) {
+        self.onboardingUseCase = onBoardingUseCase
+    }
+    
+    @Published var index = 0
+    
     // swiftlint: disable line_length
     @Published var onboardingTexts: [OnboardingTextModel] = [
         OnboardingTextModel(
@@ -27,8 +37,4 @@ class OnboardingPresenter: ObservableObject {
         )
     ]
     // swiftlint: enable line_length
-    
-    init() {
-        
-    }
 }
