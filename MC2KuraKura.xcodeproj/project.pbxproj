@@ -17,6 +17,16 @@
 		A1B474152A242A4D005ABCB5 /* CustomError+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B474142A242A4D005ABCB5 /* CustomError+Ext.swift */; };
 		A1B474182A242AC8005ABCB5 /* Color+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B474172A242AC8005ABCB5 /* Color+Ext.swift */; };
 		A1B474272A256CBB005ABCB5 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = A1B474262A256CBB005ABCB5 /* .swiftlint.yml */; };
+		A1B474292A2572F8005ABCB5 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B474282A2572F8005ABCB5 /* OnboardingView.swift */; };
+		A1B4742B2A257CE9005ABCB5 /* OnboardingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B4742A2A257CE9005ABCB5 /* OnboardingPresenter.swift */; };
+		A1B4742F2A257FE3005ABCB5 /* OnboardingTextModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B4742E2A257FE3005ABCB5 /* OnboardingTextModel.swift */; };
+		A1B474312A26BB11005ABCB5 /* MeetingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B474302A26BB11005ABCB5 /* MeetingModel.swift */; };
+		A1B474332A26BC7F005ABCB5 /* OnboardingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B474322A26BC7F005ABCB5 /* OnboardingInteractor.swift */; };
+		A1B474352A26BD74005ABCB5 /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B474342A26BD74005ABCB5 /* AuthRepository.swift */; };
+		A1B474372A26C033005ABCB5 /* APICall.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B474362A26C033005ABCB5 /* APICall.swift */; };
+		A1B474392A26C20D005ABCB5 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B474382A26C20D005ABCB5 /* UserModel.swift */; };
+		A1B4743B2A26C6A5005ABCB5 /* OnboardingRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B4743A2A26C6A5005ABCB5 /* OnboardingRouter.swift */; };
+		A1B4743F2A26E30F005ABCB5 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B4743E2A26E30F005ABCB5 /* HomeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +40,16 @@
 		A1B474142A242A4D005ABCB5 /* CustomError+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomError+Ext.swift"; sourceTree = "<group>"; };
 		A1B474172A242AC8005ABCB5 /* Color+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Ext.swift"; sourceTree = "<group>"; };
 		A1B474262A256CBB005ABCB5 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		A1B474282A2572F8005ABCB5 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		A1B4742A2A257CE9005ABCB5 /* OnboardingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPresenter.swift; sourceTree = "<group>"; };
+		A1B4742E2A257FE3005ABCB5 /* OnboardingTextModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTextModel.swift; sourceTree = "<group>"; };
+		A1B474302A26BB11005ABCB5 /* MeetingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingModel.swift; sourceTree = "<group>"; };
+		A1B474322A26BC7F005ABCB5 /* OnboardingInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingInteractor.swift; sourceTree = "<group>"; };
+		A1B474342A26BD74005ABCB5 /* AuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepository.swift; sourceTree = "<group>"; };
+		A1B474362A26C033005ABCB5 /* APICall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICall.swift; sourceTree = "<group>"; };
+		A1B474382A26C20D005ABCB5 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		A1B4743A2A26C6A5005ABCB5 /* OnboardingRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingRouter.swift; sourceTree = "<group>"; };
+		A1B4743E2A26E30F005ABCB5 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				A1B474102A24276B005ABCB5 /* Remote */,
+				A1B474342A26BD74005ABCB5 /* AuthRepository.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -130,6 +151,8 @@
 		A1B474052A2420F4005ABCB5 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				A1B4742C2A257F97005ABCB5 /* Model */,
+				A1B4742D2A257F9F005ABCB5 /* Usecase */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -209,6 +232,7 @@
 		A1B4741A2A242AF2005ABCB5 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				A1B474362A26C033005ABCB5 /* APICall.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -230,6 +254,7 @@
 		A1B4741D2A242B31005ABCB5 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A1B4743E2A26E30F005ABCB5 /* HomeView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -258,6 +283,7 @@
 		A1B474212A242B59005ABCB5 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A1B474282A2572F8005ABCB5 /* OnboardingView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -265,6 +291,7 @@
 		A1B474222A242B60005ABCB5 /* Router */ = {
 			isa = PBXGroup;
 			children = (
+				A1B4743A2A26C6A5005ABCB5 /* OnboardingRouter.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -272,8 +299,27 @@
 		A1B474232A242B64005ABCB5 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				A1B4742A2A257CE9005ABCB5 /* OnboardingPresenter.swift */,
 			);
 			path = Presenter;
+			sourceTree = "<group>";
+		};
+		A1B4742C2A257F97005ABCB5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A1B4742E2A257FE3005ABCB5 /* OnboardingTextModel.swift */,
+				A1B474302A26BB11005ABCB5 /* MeetingModel.swift */,
+				A1B474382A26C20D005ABCB5 /* UserModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A1B4742D2A257F9F005ABCB5 /* Usecase */ = {
+			isa = PBXGroup;
+			children = (
+				A1B474322A26BC7F005ABCB5 /* OnboardingInteractor.swift */,
+			);
+			path = Usecase;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -375,11 +421,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				A1B474152A242A4D005ABCB5 /* CustomError+Ext.swift in Sources */,
+				A1B474332A26BC7F005ABCB5 /* OnboardingInteractor.swift in Sources */,
+				A1B4743F2A26E30F005ABCB5 /* HomeView.swift in Sources */,
+				A1B474292A2572F8005ABCB5 /* OnboardingView.swift in Sources */,
 				A1B474122A242782005ABCB5 /* RemoteDataSource.swift in Sources */,
 				A1B474082A24217D005ABCB5 /* Injection.swift in Sources */,
+				A1B4742F2A257FE3005ABCB5 /* OnboardingTextModel.swift in Sources */,
+				A1B474392A26C20D005ABCB5 /* UserModel.swift in Sources */,
+				A1B474312A26BB11005ABCB5 /* MeetingModel.swift in Sources */,
 				A136BE1E2A241ECD00B2805F /* ContentView.swift in Sources */,
 				A136BE1C2A241ECD00B2805F /* MC2KuraKuraApp.swift in Sources */,
+				A1B4743B2A26C6A5005ABCB5 /* OnboardingRouter.swift in Sources */,
+				A1B474352A26BD74005ABCB5 /* AuthRepository.swift in Sources */,
 				A1B474182A242AC8005ABCB5 /* Color+Ext.swift in Sources */,
+				A1B4742B2A257CE9005ABCB5 /* OnboardingPresenter.swift in Sources */,
+				A1B474372A26C033005ABCB5 /* APICall.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
