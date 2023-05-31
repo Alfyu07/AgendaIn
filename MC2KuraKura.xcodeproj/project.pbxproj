@@ -26,6 +26,7 @@
 		A1B474372A26C033005ABCB5 /* APICall.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B474362A26C033005ABCB5 /* APICall.swift */; };
 		A1B474392A26C20D005ABCB5 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B474382A26C20D005ABCB5 /* UserModel.swift */; };
 		A1B4743B2A26C6A5005ABCB5 /* OnboardingRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B4743A2A26C6A5005ABCB5 /* OnboardingRouter.swift */; };
+		A1B4743F2A26E30F005ABCB5 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B4743E2A26E30F005ABCB5 /* HomeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		A1B474362A26C033005ABCB5 /* APICall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICall.swift; sourceTree = "<group>"; };
 		A1B474382A26C20D005ABCB5 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		A1B4743A2A26C6A5005ABCB5 /* OnboardingRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingRouter.swift; sourceTree = "<group>"; };
+		A1B4743E2A26E30F005ABCB5 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -252,6 +254,7 @@
 		A1B4741D2A242B31005ABCB5 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A1B4743E2A26E30F005ABCB5 /* HomeView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -419,6 +422,7 @@
 			files = (
 				A1B474152A242A4D005ABCB5 /* CustomError+Ext.swift in Sources */,
 				A1B474332A26BC7F005ABCB5 /* OnboardingInteractor.swift in Sources */,
+				A1B4743F2A26E30F005ABCB5 /* HomeView.swift in Sources */,
 				A1B474292A2572F8005ABCB5 /* OnboardingView.swift in Sources */,
 				A1B474122A242782005ABCB5 /* RemoteDataSource.swift in Sources */,
 				A1B474082A24217D005ABCB5 /* Injection.swift in Sources */,

@@ -5,10 +5,10 @@
 //  Created by Wahyu Alfandi on 30/05/23.
 //
 
-import Foundation
+import SwiftUI
 
 class OnboardingPresenter: ObservableObject {
-       
+    
     private let router = OnboardingRouter()
     private let onboardingUseCase: OnboardingUseCase
     
@@ -17,7 +17,6 @@ class OnboardingPresenter: ObservableObject {
     }
     
     @Published var index = 0
-    
     // swiftlint: disable line_length
     @Published var onboardingTexts: [OnboardingTextModel] = [
         OnboardingTextModel(
@@ -36,5 +35,24 @@ class OnboardingPresenter: ObservableObject {
             descriptionText: "Consider efficient and realistic timing,\nSo that each topic can be discussed thoroughly,\nAllocate time for discussion and collaboration,\nAs well as for effective decision-making."
         )
     ]
+    
     // swiftlint: enable line_length
+    func linkBuilder<Content: View>(
+      @ViewBuilder content: () -> Content
+    ) -> some View {
+      NavigationLink(destination: router.makeHomeView()) { content() }
+    }
+    
+    func autoScroll() {
+        DispatchQueue.main.async {
+            Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { _ in
+                if self.index < 2 {
+                    self.index += 1
+                } else {
+                    self.index = 0
+                }
+            }
+        }
+        
+    }
 }
