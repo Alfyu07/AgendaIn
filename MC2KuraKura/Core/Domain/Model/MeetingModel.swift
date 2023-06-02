@@ -33,4 +33,15 @@ struct MeetingModel: Equatable, Identifiable {
         endTime: Date.now,
         participants: [.sharedExample, .sharedExample, .sharedExample, .sharedExample, .sharedExample], status: .open
     )
+    
+    static let sharedExample2 = MeetingModel(
+        id: UUID().uuidString,
+        title: "Menentukan HAHA",
+        description: "Rapat ini bertujuan untuk mengidentifikasi kebutuhan perusahaan, mengevaluasi solusi yang ditawarkan, dan mengkomunikasikan nilai tambah dari proposal penjualan.",
+        location: "Aula Bersama",
+        date: Date.now,
+        startTime: Date.now,
+        endTime: Date.now,
+        participants: [.sharedExample, .sharedExample, .sharedExample, .sharedExample, .sharedExample], status: .open
+    )
 }

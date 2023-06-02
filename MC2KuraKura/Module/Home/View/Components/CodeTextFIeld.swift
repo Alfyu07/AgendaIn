@@ -9,7 +9,6 @@ import SwiftUI
 
 struct CodeTextField: View {
     let numberOfFields: Int
-    // FIXME: codeValue binding auto refresh pada saat input ke textfield
     @Binding var codeValue: [String]
     @State var oldValue = ""
     @FocusState private var fieldFocus: Int?

@@ -12,15 +12,18 @@ class HomePresenter: ObservableObject {
     private let router = HomeRouter()
     private let homeUseCase: HomeUseCase
     
-    @Published var codeValue: [String] = Array(repeating: "", count: 4)
+    @Published var codeValue: [String]
+    
     let numberOfFields = 4
     
-    @Published var searchText: String = ""
+    @Published var searchText: String
     
-    @Published var meetings: [MeetingModel] = [.sharedExample, .sharedExample, .sharedExample]
+    @Published var meetings: [MeetingModel] = [.sharedExample, .sharedExample2]
     
     init(homeUseCase: HomeUseCase) {
         self.homeUseCase = homeUseCase
+        self.searchText = ""
+        self.codeValue = Array(repeating: "", count: 4)
     }
     
     func linkBuilder<Content: View>(

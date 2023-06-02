@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct HomeView: View {
-    @ObservedObject var presenter: HomePresenter
+    @StateObject var presenter: HomePresenter
+    
+//    @State var query: String = ""
     
     var body: some View {
         ScrollView {
@@ -108,6 +110,7 @@ extension HomeView {
                 HStack {
                     Image(systemName: "magnifyingglass")
                         .foregroundColor(Color("gray50"))
+                    
                     TextField("Search", text: $presenter.searchText)
                         .frame(width: 100)
                 }
