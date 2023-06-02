@@ -86,24 +86,49 @@ struct MeetingCard: View {
                     
                     // participant
                     
-                    HStack(spacing: 0) {
-                        ForEach(meeting.participants) { participant in
-                            AsyncImage(url: URL(string: participant.imgUrl)) { image in
-                                image
-                                    .resizable()
-                                    .frame(width: 24, height: 24)
-                                    .aspectRatio(contentMode: .fit)
-                                    .clipShape(Circle())
-                                    .padding(.leading, -4)
-                            } placeholder: {
-                                Color.gray
-                                    .frame(width: 24, height: 24)
-                                    .aspectRatio(contentMode: .fit)
-                                    .clipShape(Circle())
-                                    .padding(.leading, -4)
+                    if meeting.participants.count > 3 {
+                        HStack(spacing: 0) {
+                            ForEach(0..<3, id: \.self) { index in
+                                AsyncImage(url: URL(string: meeting.participants[index].imgUrl)) { image in
+                                    image
+                                        .resizable()
+                                        .frame(width: 24, height: 24)
+                                        .aspectRatio(contentMode: .fit)
+                                        .clipShape(Circle())
+                                        .padding(.leading, -8)
+                                } placeholder: {
+                                    Color.gray
+                                        .frame(width: 24, height: 24)
+                                        .aspectRatio(contentMode: .fit)
+                                        .clipShape(Circle())
+                                        .padding(.leading, -4)
+                                }
                             }
-                        }
-                    }.offset(CGSize(width: 0, height: -6))
+                            
+                            Text("+\(meeting.participants.count - 3)")
+                                .font(.system(size: 8))
+                                .foregroundColor(Color("gray50"))
+                        }.offset(CGSize(width: 0, height: -6))
+                    } else {
+                        HStack(spacing: 0) {
+                            ForEach(meeting.participants) { participant in
+                                AsyncImage(url: URL(string: participant.imgUrl)) { image in
+                                    image
+                                        .resizable()
+                                        .frame(width: 24, height: 24)
+                                        .aspectRatio(contentMode: .fit)
+                                        .clipShape(Circle())
+                                        .padding(.leading, -4)
+                                } placeholder: {
+                                    Color.gray
+                                        .frame(width: 24, height: 24)
+                                        .aspectRatio(contentMode: .fit)
+                                        .clipShape(Circle())
+                                        .padding(.leading, -4)
+                                }
+                            }
+                        }.offset(CGSize(width: 0, height: -6))
+                    }
                     
                 }.padding(.top, 4)
             }

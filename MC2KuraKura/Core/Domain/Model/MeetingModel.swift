@@ -31,6 +31,6 @@ struct MeetingModel: Equatable, Identifiable {
         date: Date.now,
         startTime: Date.now,
         endTime: Date.now,
-        participants: [.sharedExample, .sharedExample], status: .open
+        participants: [.sharedExample, .sharedExample, .sharedExample, .sharedExample, .sharedExample], status: .open
     )
 }
