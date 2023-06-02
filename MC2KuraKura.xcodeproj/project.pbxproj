@@ -27,6 +27,13 @@
 		A1B474392A26C20D005ABCB5 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B474382A26C20D005ABCB5 /* UserModel.swift */; };
 		A1B4743B2A26C6A5005ABCB5 /* OnboardingRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B4743A2A26C6A5005ABCB5 /* OnboardingRouter.swift */; };
 		A1B4743F2A26E30F005ABCB5 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B4743E2A26E30F005ABCB5 /* HomeView.swift */; };
+		A1B474472A28A5D5005ABCB5 /* Agenda.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B474462A28A5D5005ABCB5 /* Agenda.swift */; };
+		A1B4744A2A28B0A7005ABCB5 /* MeetingCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B474492A28B0A7005ABCB5 /* MeetingCard.swift */; };
+		A1B4744C2A298BF1005ABCB5 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B4744B2A298BF1005ABCB5 /* HomePresenter.swift */; };
+		A1B4744E2A298D05005ABCB5 /* HomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B4744D2A298D05005ABCB5 /* HomeInteractor.swift */; };
+		A1B474502A298DCA005ABCB5 /* HomeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B4744F2A298DCA005ABCB5 /* HomeRepository.swift */; };
+		A1B474522A299088005ABCB5 /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B474512A299088005ABCB5 /* HomeRouter.swift */; };
+		A1B474582A29DF42005ABCB5 /* CodeTextFIeld.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B474572A29DF42005ABCB5 /* CodeTextFIeld.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +57,13 @@
 		A1B474382A26C20D005ABCB5 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		A1B4743A2A26C6A5005ABCB5 /* OnboardingRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingRouter.swift; sourceTree = "<group>"; };
 		A1B4743E2A26E30F005ABCB5 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		A1B474462A28A5D5005ABCB5 /* Agenda.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Agenda.swift; sourceTree = "<group>"; };
+		A1B474492A28B0A7005ABCB5 /* MeetingCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingCard.swift; sourceTree = "<group>"; };
+		A1B4744B2A298BF1005ABCB5 /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
+		A1B4744D2A298D05005ABCB5 /* HomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInteractor.swift; sourceTree = "<group>"; };
+		A1B4744F2A298DCA005ABCB5 /* HomeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRepository.swift; sourceTree = "<group>"; };
+		A1B474512A299088005ABCB5 /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
+		A1B474572A29DF42005ABCB5 /* CodeTextFIeld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeTextFIeld.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				A1B474102A24276B005ABCB5 /* Remote */,
+				A1B4744F2A298DCA005ABCB5 /* HomeRepository.swift */,
 				A1B474342A26BD74005ABCB5 /* AuthRepository.swift */,
 			);
 			path = Data;
@@ -240,6 +255,7 @@
 		A1B4741B2A242B24005ABCB5 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				A1B4744B2A298BF1005ABCB5 /* HomePresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -247,6 +263,7 @@
 		A1B4741C2A242B2C005ABCB5 /* Router */ = {
 			isa = PBXGroup;
 			children = (
+				A1B474512A299088005ABCB5 /* HomeRouter.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -254,6 +271,7 @@
 		A1B4741D2A242B31005ABCB5 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A1B474482A28B08D005ABCB5 /* Components */,
 				A1B4743E2A26E30F005ABCB5 /* HomeView.swift */,
 			);
 			path = View;
@@ -310,6 +328,7 @@
 				A1B4742E2A257FE3005ABCB5 /* OnboardingTextModel.swift */,
 				A1B474302A26BB11005ABCB5 /* MeetingModel.swift */,
 				A1B474382A26C20D005ABCB5 /* UserModel.swift */,
+				A1B474462A28A5D5005ABCB5 /* Agenda.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -318,8 +337,18 @@
 			isa = PBXGroup;
 			children = (
 				A1B474322A26BC7F005ABCB5 /* OnboardingInteractor.swift */,
+				A1B4744D2A298D05005ABCB5 /* HomeInteractor.swift */,
 			);
 			path = Usecase;
+			sourceTree = "<group>";
+		};
+		A1B474482A28B08D005ABCB5 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				A1B474492A28B0A7005ABCB5 /* MeetingCard.swift */,
+				A1B474572A29DF42005ABCB5 /* CodeTextFIeld.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -420,8 +449,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1B474472A28A5D5005ABCB5 /* Agenda.swift in Sources */,
+				A1B474502A298DCA005ABCB5 /* HomeRepository.swift in Sources */,
 				A1B474152A242A4D005ABCB5 /* CustomError+Ext.swift in Sources */,
 				A1B474332A26BC7F005ABCB5 /* OnboardingInteractor.swift in Sources */,
+				A1B4744E2A298D05005ABCB5 /* HomeInteractor.swift in Sources */,
+				A1B4744A2A28B0A7005ABCB5 /* MeetingCard.swift in Sources */,
 				A1B4743F2A26E30F005ABCB5 /* HomeView.swift in Sources */,
 				A1B474292A2572F8005ABCB5 /* OnboardingView.swift in Sources */,
 				A1B474122A242782005ABCB5 /* RemoteDataSource.swift in Sources */,
@@ -432,10 +465,13 @@
 				A136BE1E2A241ECD00B2805F /* ContentView.swift in Sources */,
 				A136BE1C2A241ECD00B2805F /* MC2KuraKuraApp.swift in Sources */,
 				A1B4743B2A26C6A5005ABCB5 /* OnboardingRouter.swift in Sources */,
+				A1B4744C2A298BF1005ABCB5 /* HomePresenter.swift in Sources */,
+				A1B474582A29DF42005ABCB5 /* CodeTextFIeld.swift in Sources */,
 				A1B474352A26BD74005ABCB5 /* AuthRepository.swift in Sources */,
 				A1B474182A242AC8005ABCB5 /* Color+Ext.swift in Sources */,
 				A1B4742B2A257CE9005ABCB5 /* OnboardingPresenter.swift in Sources */,
 				A1B474372A26C033005ABCB5 /* APICall.swift in Sources */,
+				A1B474522A299088005ABCB5 /* HomeRouter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

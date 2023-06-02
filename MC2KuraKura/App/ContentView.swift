@@ -12,12 +12,7 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             OnboardingView(presenter: onboardingPresenter)
-        }
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+//            CodeTextField(numberOfFields: 4)
+        }.fontDesign(.rounded)
     }
 }

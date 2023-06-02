@@ -9,6 +9,8 @@ import SwiftUI
 
 class OnboardingRouter {
     func makeHomeView() -> some View {
-        return HomeView()
+        let homeUseCase = Injection.init().provideHome()
+        let presenter = HomePresenter(homeUseCase: homeUseCase)
+        return HomeView(presenter: presenter)
     }
 }
