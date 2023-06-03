@@ -32,7 +32,7 @@ struct MeetingCard: View {
                             .scaledToFit()
                             .padding(.trailing, 4)
                         
-                        Text(formatDate(meeting.date))
+                        Text(Date.formatToDate(meeting.date))
                             .font(.system(size: 12))
                     }.foregroundColor(Color("gray50"))
                     Spacer()
@@ -43,7 +43,7 @@ struct MeetingCard: View {
                             .scaledToFit()
                             .padding(.trailing, 4)
                         
-                        Text("\(formatTime(meeting.startTime)) - \(formatTime(meeting.endTime))")
+                        Text("\(Date.formatToTime(meeting.startTime)) - \(Date.formatToTime(meeting.endTime))")
                             .font(.system(size: 12))
                     }.foregroundColor(Color("gray50"))
                 }
@@ -112,24 +112,11 @@ struct MeetingCard: View {
                     } else {
                         HStack(spacing: 0) {
                             ForEach(meeting.participants) { participant in
-                                AsyncImage(url: URL(string: participant.imgUrl)) { image in
-                                    image
-                                        .resizable()
-                                        .frame(width: 24, height: 24)
-                                        .aspectRatio(contentMode: .fit)
-                                        .clipShape(Circle())
-                                        .padding(.leading, -4)
-                                } placeholder: {
-                                    Color.gray
-                                        .frame(width: 24, height: 24)
-                                        .aspectRatio(contentMode: .fit)
-                                        .clipShape(Circle())
-                                        .padding(.leading, -4)
-                                }
-                            }
-                        }.offset(CGSize(width: 0, height: -6))
+                                ProfileImage(imgUrlString: participant.imgUrl, size: 24.0)
+                                    .padding(.leading, -8)
+                            }.offset(CGSize(width: 0, height: -6))
+                        }
                     }
-                    
                 }.padding(.top, 4)
             }
         }
@@ -141,17 +128,6 @@ struct MeetingCard: View {
         
     }
     
-    private func formatTime(_ date: Date) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "HH.mm"
-        return dateFormatter.string(from: date)
-    }
-    
-    private func formatDate(_ date: Date) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd MMMM yyyy"
-        return dateFormatter.string(from: date)
-    }
 }
 
 // struct MeetingCard_Previews: PreviewProvider {

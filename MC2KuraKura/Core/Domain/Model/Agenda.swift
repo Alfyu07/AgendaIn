@@ -19,4 +19,18 @@ struct Agenda: Equatable, Identifiable {
     let title: String
     let description: String
     let proposer: UserModel
+    
+    static let sharedExample = Agenda(
+        id: UUID().uuidString,
+        title: "Menentukan Perusahaan",
+        description: "Mendiskusikan harga, persyaratan kontrak, waktu pengiriman, dan faktor-faktor lain yang berkaitan dengan kesepakatan penjualan",
+        proposer: .sharedExample2
+    )
+    static let sharedExample2 = Agenda(
+        id: UUID().uuidString,
+        title: "Menentukan Anggaran",
+        description: "Mendiskusikan harga, persyaratan kontrak, waktu pengiriman, dan faktor-faktor lain yang berkaitan dengan kesepakatan penjualan",
+        proposer: .sharedExample2
+    )
+    
 }

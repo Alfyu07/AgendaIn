@@ -13,7 +13,8 @@ struct MC2KuraKuraApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView().environmentObject(onboardingPresenter)
+            ContentView()
+                .environmentObject(onboardingPresenter)
         }
     }
 }

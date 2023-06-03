@@ -123,7 +123,7 @@ extension HomeView {
             }
             
             ForEach(presenter.meetings) { meeting in
-                presenter.linkBuilder {
+                presenter.linkBuilder(for: meeting) {
                     MeetingCard(meeting: meeting)
                         .padding(.top, 12)
                 }
@@ -133,7 +133,7 @@ extension HomeView {
     }
 }
 
-struct SwiftUIView_Previews: PreviewProvider {
+struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView(presenter: HomePresenter(homeUseCase: Injection.init().provideHome()))
     }

@@ -27,9 +27,10 @@ class HomePresenter: ObservableObject {
     }
     
     func linkBuilder<Content: View>(
-      @ViewBuilder content: () -> Content
+        for meeting: MeetingModel,
+        ViewBuilder content: () -> Content
     ) -> some View {
-      NavigationLink(destination: router.makeDetailView()) { content() }
+        NavigationLink(destination: router.makeDetailView(for: meeting)) { content() }
     }
     
 }
