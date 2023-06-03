@@ -12,6 +12,8 @@ struct DetailView: View {
     
     @StateObject var presenter: DetailPresenter
     
+    
+    //Mark : mungkin nanti dijadiin environtment object
     var user: UserModel = .sharedExample
     
     var body: some View {
@@ -37,31 +39,34 @@ struct DetailView: View {
             
             if user.role == .participant {
                 Spacer().frame(height: 32)
+                
                 if Date.now < presenter.meeting.votingStartTime {
+                    presenter.linkBuilder {
+                        Text("Suggest meeting item")
+                            .font(.system(size: 20, weight: .bold))
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 12)
+                            .background(Color("blue50"))
+                            .cornerRadius(30)
+                            .padding(.horizontal, 32)
+                    }
                     
-                    Text("Suggest meeting item")
-                        .font(.system(size: 20, weight: .bold))
-                        .foregroundColor(.white)
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, 12)
-                        .background(Color("blue50"))
-                        .cornerRadius(30)
-                        .padding(.horizontal, 32)
                 } else if Date.now > presenter.meeting.votingStartTime
                             && Date.now < presenter.meeting.votingEndTime {
-                    Text("Vote")
-                        .font(.system(size: 20, weight: .bold))
-                        .foregroundColor(.white)
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, 12)
-                        .background(Color("blue50"))
-                        .cornerRadius(30)
-                        .padding(.horizontal, 32)
+                    presenter.linkBuilder {
+                        Text("Vote")
+                            .font(.system(size: 20, weight: .bold))
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 12)
+                            .background(Color("blue50"))
+                            .cornerRadius(30)
+                            .padding(.horizontal, 32)
+                    }
                 }
                     
             }
-            
-            
         }.background(Color("gray5"))
         .navigationTitle(Text("Meeting Detail"))
         .toolbar {
@@ -129,7 +134,7 @@ extension DetailView {
                 }
             }
         }
-        .padding(.top, 32)
+        .padding(.top, 50)
         .padding(.horizontal, 32)
     }
     var meetingDetailSection: some View {

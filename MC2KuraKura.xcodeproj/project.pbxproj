@@ -158,6 +158,7 @@
 		A1B474022A2420C9005ABCB5 /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				A1B474742A2B2BAC005ABCB5 /* Vote */,
 				A1B4740E2A2426FF005ABCB5 /* Auth */,
 				A1B4740F2A242709005ABCB5 /* Detail */,
 				A1B4740D2A2426F9005ABCB5 /* Home */,
@@ -387,6 +388,37 @@
 				A1B474702A2ADD0A005ABCB5 /* ManageParticipantSection.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		A1B474742A2B2BAC005ABCB5 /* Vote */ = {
+			isa = PBXGroup;
+			children = (
+				A1B474772A2B2BD4005ABCB5 /* Presenter */,
+				A1B474762A2B2BD1005ABCB5 /* Router */,
+				A1B474752A2B2BCA005ABCB5 /* View */,
+			);
+			path = Vote;
+			sourceTree = "<group>";
+		};
+		A1B474752A2B2BCA005ABCB5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A1B474762A2B2BD1005ABCB5 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		A1B474772A2B2BD4005ABCB5 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -8,9 +8,9 @@
 import SwiftUI
 
 class DetailRouter {
-//    func makeDetailView(for meeting: MeetingModel) -> some View {
+    func makeVoteView(for meeting: MeetingModel) -> some View {
 //        let detailUseCase = Injection.init().provideDetail(for: meeting)
 //        let presenter = DetailPresenter(detailUseCase: detailUseCase)
-//        return DetailView(presenter: presenter)
-//    }
+        return Text("Sugggest and Vote")
+    }
 }

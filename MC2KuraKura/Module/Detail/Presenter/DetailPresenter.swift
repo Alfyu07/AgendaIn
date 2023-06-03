@@ -8,6 +8,7 @@
 import SwiftUI
 
 class DetailPresenter: ObservableObject {
+    private let router = DetailRouter()
     private let detailUseCase: DetailUseCase
     
     @Published var meeting: MeetingModel
@@ -37,10 +38,10 @@ class DetailPresenter: ObservableObject {
         return hasil
     }
     
-//    func linkBuilder<Content: View>(
-//      @ViewBuilder content: () -> Content
-//    ) -> some View {
-//      NavigationLink(destination: router.makeDetailView()) { content() }
-//    }
+    func linkBuilder<Content: View>(
+      @ViewBuilder content: () -> Content
+    ) -> some View {
+      NavigationLink(destination: router.makeVoteView(for: meeting)) { content() }
+    }
     
 }
