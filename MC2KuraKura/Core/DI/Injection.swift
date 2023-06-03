@@ -13,15 +13,15 @@ final class Injection: NSObject {
         return AuthRepository.sharedInstance(remote)
     }
     
+    func provideOnboarding() -> OnboardingUseCase {
+        let repository = provideAuthRepository()
+        return OnboardingInteractor(repository: repository)
+    }
+    
     private func provideHomeRepository() -> HomeRepositoryProtocol {
         let remote: RemoteDataSource = RemoteDataSource.sharedInstance
         
         return HomeRepository.sharedInstance(remote)
-    }
-    
-    func provideOnboarding() -> OnboardingUseCase {
-        let repository = provideAuthRepository()
-        return OnboardingInteractor(repository: repository)
     }
     
     func provideHome() -> HomeUseCase {
@@ -29,4 +29,14 @@ final class Injection: NSObject {
         return HomeInteractor(repository: repository)
     }
     
+    private func provideDetailRepository() -> DetailRepositoryProtocol {
+        let remote: RemoteDataSource = RemoteDataSource.sharedInstance
+        
+        return DetailRepository.sharedInstance(remote)
+    }
+    
+    func provideDetail(for meeting: MeetingModel) -> DetailUseCase {
+        let repository = provideDetailRepository()
+        return DetailInteractor(repository: repository, meeting: meeting)
+    }
 }

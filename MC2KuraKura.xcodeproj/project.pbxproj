@@ -34,6 +34,16 @@
 		A1B474502A298DCA005ABCB5 /* HomeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B4744F2A298DCA005ABCB5 /* HomeRepository.swift */; };
 		A1B474522A299088005ABCB5 /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B474512A299088005ABCB5 /* HomeRouter.swift */; };
 		A1B474582A29DF42005ABCB5 /* CodeTextFIeld.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B474572A29DF42005ABCB5 /* CodeTextFIeld.swift */; };
+		A1B4745C2A2AAE53005ABCB5 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B4745B2A2AAE53005ABCB5 /* DetailView.swift */; };
+		A1B4745E2A2AAE7C005ABCB5 /* DetailRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B4745D2A2AAE7C005ABCB5 /* DetailRepository.swift */; };
+		A1B474602A2AB04E005ABCB5 /* DetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B4745F2A2AB04E005ABCB5 /* DetailInteractor.swift */; };
+		A1B474622A2AB241005ABCB5 /* DetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B474612A2AB241005ABCB5 /* DetailPresenter.swift */; };
+		A1B474642A2ABE91005ABCB5 /* ProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B474632A2ABE91005ABCB5 /* ProfileImage.swift */; };
+		A1B474662A2AC869005ABCB5 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B474652A2AC869005ABCB5 /* Date+Ext.swift */; };
+		A1B4746B2A2AD2F0005ABCB5 /* AgendaList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B4746A2A2AD2F0005ABCB5 /* AgendaList.swift */; };
+		A1B4746F2A2AD369005ABCB5 /* AgendaItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B4746E2A2AD369005ABCB5 /* AgendaItem.swift */; };
+		A1B474712A2ADD0A005ABCB5 /* ManageParticipantSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B474702A2ADD0A005ABCB5 /* ManageParticipantSection.swift */; };
+		A1B474732A2B23B0005ABCB5 /* DetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B474722A2B23B0005ABCB5 /* DetailRouter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +74,16 @@
 		A1B4744F2A298DCA005ABCB5 /* HomeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRepository.swift; sourceTree = "<group>"; };
 		A1B474512A299088005ABCB5 /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
 		A1B474572A29DF42005ABCB5 /* CodeTextFIeld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeTextFIeld.swift; sourceTree = "<group>"; };
+		A1B4745B2A2AAE53005ABCB5 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		A1B4745D2A2AAE7C005ABCB5 /* DetailRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRepository.swift; sourceTree = "<group>"; };
+		A1B4745F2A2AB04E005ABCB5 /* DetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInteractor.swift; sourceTree = "<group>"; };
+		A1B474612A2AB241005ABCB5 /* DetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPresenter.swift; sourceTree = "<group>"; };
+		A1B474632A2ABE91005ABCB5 /* ProfileImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImage.swift; sourceTree = "<group>"; };
+		A1B474652A2AC869005ABCB5 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
+		A1B4746A2A2AD2F0005ABCB5 /* AgendaList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaList.swift; sourceTree = "<group>"; };
+		A1B4746E2A2AD369005ABCB5 /* AgendaItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaItem.swift; sourceTree = "<group>"; };
+		A1B474702A2ADD0A005ABCB5 /* ManageParticipantSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageParticipantSection.swift; sourceTree = "<group>"; };
+		A1B474722A2B23B0005ABCB5 /* DetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRouter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				A1B474102A24276B005ABCB5 /* Remote */,
+				A1B4745D2A2AAE7C005ABCB5 /* DetailRepository.swift */,
 				A1B4744F2A298DCA005ABCB5 /* HomeRepository.swift */,
 				A1B474342A26BD74005ABCB5 /* AuthRepository.swift */,
 			);
@@ -233,6 +254,7 @@
 			children = (
 				A1B474142A242A4D005ABCB5 /* CustomError+Ext.swift */,
 				A1B474172A242AC8005ABCB5 /* Color+Ext.swift */,
+				A1B474652A2AC869005ABCB5 /* Date+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -280,6 +302,7 @@
 		A1B4741E2A242B45005ABCB5 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				A1B474612A2AB241005ABCB5 /* DetailPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -287,6 +310,8 @@
 		A1B4741F2A242B4B005ABCB5 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A1B474672A2AD2B9005ABCB5 /* Components */,
+				A1B4745B2A2AAE53005ABCB5 /* DetailView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -294,6 +319,7 @@
 		A1B474202A242B4E005ABCB5 /* Router */ = {
 			isa = PBXGroup;
 			children = (
+				A1B474722A2B23B0005ABCB5 /* DetailRouter.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -338,6 +364,7 @@
 			children = (
 				A1B474322A26BC7F005ABCB5 /* OnboardingInteractor.swift */,
 				A1B4744D2A298D05005ABCB5 /* HomeInteractor.swift */,
+				A1B4745F2A2AB04E005ABCB5 /* DetailInteractor.swift */,
 			);
 			path = Usecase;
 			sourceTree = "<group>";
@@ -347,6 +374,17 @@
 			children = (
 				A1B474492A28B0A7005ABCB5 /* MeetingCard.swift */,
 				A1B474572A29DF42005ABCB5 /* CodeTextFIeld.swift */,
+				A1B474632A2ABE91005ABCB5 /* ProfileImage.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		A1B474672A2AD2B9005ABCB5 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				A1B4746A2A2AD2F0005ABCB5 /* AgendaList.swift */,
+				A1B4746E2A2AD369005ABCB5 /* AgendaItem.swift */,
+				A1B474702A2ADD0A005ABCB5 /* ManageParticipantSection.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -450,23 +488,33 @@
 			buildActionMask = 2147483647;
 			files = (
 				A1B474472A28A5D5005ABCB5 /* Agenda.swift in Sources */,
+				A1B4745C2A2AAE53005ABCB5 /* DetailView.swift in Sources */,
+				A1B474622A2AB241005ABCB5 /* DetailPresenter.swift in Sources */,
 				A1B474502A298DCA005ABCB5 /* HomeRepository.swift in Sources */,
 				A1B474152A242A4D005ABCB5 /* CustomError+Ext.swift in Sources */,
 				A1B474332A26BC7F005ABCB5 /* OnboardingInteractor.swift in Sources */,
+				A1B4746F2A2AD369005ABCB5 /* AgendaItem.swift in Sources */,
 				A1B4744E2A298D05005ABCB5 /* HomeInteractor.swift in Sources */,
 				A1B4744A2A28B0A7005ABCB5 /* MeetingCard.swift in Sources */,
 				A1B4743F2A26E30F005ABCB5 /* HomeView.swift in Sources */,
+				A1B4746B2A2AD2F0005ABCB5 /* AgendaList.swift in Sources */,
+				A1B474642A2ABE91005ABCB5 /* ProfileImage.swift in Sources */,
+				A1B474732A2B23B0005ABCB5 /* DetailRouter.swift in Sources */,
 				A1B474292A2572F8005ABCB5 /* OnboardingView.swift in Sources */,
 				A1B474122A242782005ABCB5 /* RemoteDataSource.swift in Sources */,
+				A1B474712A2ADD0A005ABCB5 /* ManageParticipantSection.swift in Sources */,
+				A1B474662A2AC869005ABCB5 /* Date+Ext.swift in Sources */,
 				A1B474082A24217D005ABCB5 /* Injection.swift in Sources */,
 				A1B4742F2A257FE3005ABCB5 /* OnboardingTextModel.swift in Sources */,
 				A1B474392A26C20D005ABCB5 /* UserModel.swift in Sources */,
 				A1B474312A26BB11005ABCB5 /* MeetingModel.swift in Sources */,
+				A1B474602A2AB04E005ABCB5 /* DetailInteractor.swift in Sources */,
 				A136BE1E2A241ECD00B2805F /* ContentView.swift in Sources */,
 				A136BE1C2A241ECD00B2805F /* MC2KuraKuraApp.swift in Sources */,
 				A1B4743B2A26C6A5005ABCB5 /* OnboardingRouter.swift in Sources */,
 				A1B4744C2A298BF1005ABCB5 /* HomePresenter.swift in Sources */,
 				A1B474582A29DF42005ABCB5 /* CodeTextFIeld.swift in Sources */,
+				A1B4745E2A2AAE7C005ABCB5 /* DetailRepository.swift in Sources */,
 				A1B474352A26BD74005ABCB5 /* AuthRepository.swift in Sources */,
 				A1B474182A242AC8005ABCB5 /* Color+Ext.swift in Sources */,
 				A1B4742B2A257CE9005ABCB5 /* OnboardingPresenter.swift in Sources */,
