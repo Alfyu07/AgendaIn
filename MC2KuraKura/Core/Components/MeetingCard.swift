@@ -129,9 +129,3 @@ struct MeetingCard: View {
     }
     
 }
-
-// struct MeetingCard_Previews: PreviewProvider {
-//    static var previews: some View {
-//        MeetingCard(meeting: MeetingModel.sharedExample)
-//    }
-// }

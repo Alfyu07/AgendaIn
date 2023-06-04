@@ -12,14 +12,11 @@ struct DetailView: View {
     
     @StateObject var presenter: DetailPresenter
     
-    
-    //Mark : mungkin nanti dijadiin environtment object
     var user: UserModel = .sharedExample
     
     var body: some View {
         ScrollView {
-            Spacer().frame(height: 50)
-            
+
             if user.role == .pic {
                 meetingCodeSection
             }
@@ -29,7 +26,7 @@ struct DetailView: View {
                    
             agendaSubTitle
             votingDateAndTimeSection
-            AgendaList(presenter: presenter)
+            AgendaList(proposedAgendas: presenter.meeting.proposedAgendas)
                 .padding(.horizontal, 32)
                 .padding(.top, 16)
             
@@ -117,7 +114,7 @@ extension DetailView {
                 .background(Color("gray30"))
                 .padding(.top, 30)
         }
-        .padding(.top, 50)
+        .padding(.top, 100)
     }
     var participantsInfo: some View {
         HStack(spacing: 0) {
@@ -134,7 +131,7 @@ extension DetailView {
                 }
             }
         }
-        .padding(.top, 50)
+        .padding(.top, user.role == .pic ? 20 : 100)
         .padding(.horizontal, 32)
     }
     var meetingDetailSection: some View {

@@ -36,6 +36,7 @@ struct AgendaItem: View {
                             .font(.system(size: 12))
                             .foregroundColor(Color("gray80"))
                             .padding(.top, 8)
+                            .frame(width: 250, alignment: .leading)
                         
                         HStack(spacing: 0) {
                             ProfileImage(imgUrlString: agenda.proposer.imgUrl, size: 24)

@@ -11,6 +11,9 @@
 		A136BE1E2A241ECD00B2805F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A136BE1D2A241ECD00B2805F /* ContentView.swift */; };
 		A136BE202A241ECE00B2805F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A136BE1F2A241ECE00B2805F /* Assets.xcassets */; };
 		A136BE232A241ECE00B2805F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A136BE222A241ECE00B2805F /* Preview Assets.xcassets */; };
+		A167DF912A2C18CD00D97A78 /* AgendaFormCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A167DF902A2C18CD00D97A78 /* AgendaFormCard.swift */; };
+		A17B6DB92A2B69450097400C /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17B6DB82A2B69450097400C /* CustomButton.swift */; };
+		A17B6DBB2A2C15FE0097400C /* AgendaForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17B6DBA2A2C15FE0097400C /* AgendaForm.swift */; };
 		A1B474082A24217D005ABCB5 /* Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B474072A24217D005ABCB5 /* Injection.swift */; };
 		A1B4740C2A2426F0005ABCB5 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = A1B4740B2A2426F0005ABCB5 /* Alamofire */; };
 		A1B474122A242782005ABCB5 /* RemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B474112A242782005ABCB5 /* RemoteDataSource.swift */; };
@@ -44,6 +47,13 @@
 		A1B4746F2A2AD369005ABCB5 /* AgendaItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B4746E2A2AD369005ABCB5 /* AgendaItem.swift */; };
 		A1B474712A2ADD0A005ABCB5 /* ManageParticipantSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B474702A2ADD0A005ABCB5 /* ManageParticipantSection.swift */; };
 		A1B474732A2B23B0005ABCB5 /* DetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B474722A2B23B0005ABCB5 /* DetailRouter.swift */; };
+		A1B4747A2A2B2CA5005ABCB5 /* VoteRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B474792A2B2CA5005ABCB5 /* VoteRepository.swift */; };
+		A1B4747C2A2B2D24005ABCB5 /* VoteInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B4747B2A2B2D24005ABCB5 /* VoteInteractor.swift */; };
+		A1B474852A2B3887005ABCB5 /* AddMeetingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B474842A2B3887005ABCB5 /* AddMeetingView.swift */; };
+		A1B474872A2B38DB005ABCB5 /* AddMeetingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B474862A2B38DB005ABCB5 /* AddMeetingPresenter.swift */; };
+		A1B474892A2B38EE005ABCB5 /* AddMeetingRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B474882A2B38EE005ABCB5 /* AddMeetingRouter.swift */; };
+		A1B4748E2A2B44BF005ABCB5 /* MeetingForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B4748D2A2B44BF005ABCB5 /* MeetingForm.swift */; };
+		A1F856E52A2C39980052760C /* NewMeetingDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F856E42A2C39980052760C /* NewMeetingDetail.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +62,9 @@
 		A136BE1D2A241ECD00B2805F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A136BE1F2A241ECE00B2805F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A136BE222A241ECE00B2805F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		A167DF902A2C18CD00D97A78 /* AgendaFormCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaFormCard.swift; sourceTree = "<group>"; };
+		A17B6DB82A2B69450097400C /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		A17B6DBA2A2C15FE0097400C /* AgendaForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaForm.swift; sourceTree = "<group>"; };
 		A1B474072A24217D005ABCB5 /* Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injection.swift; sourceTree = "<group>"; };
 		A1B474112A242782005ABCB5 /* RemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteDataSource.swift; sourceTree = "<group>"; };
 		A1B474142A242A4D005ABCB5 /* CustomError+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomError+Ext.swift"; sourceTree = "<group>"; };
@@ -84,6 +97,13 @@
 		A1B4746E2A2AD369005ABCB5 /* AgendaItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaItem.swift; sourceTree = "<group>"; };
 		A1B474702A2ADD0A005ABCB5 /* ManageParticipantSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageParticipantSection.swift; sourceTree = "<group>"; };
 		A1B474722A2B23B0005ABCB5 /* DetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRouter.swift; sourceTree = "<group>"; };
+		A1B474792A2B2CA5005ABCB5 /* VoteRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteRepository.swift; sourceTree = "<group>"; };
+		A1B4747B2A2B2D24005ABCB5 /* VoteInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteInteractor.swift; sourceTree = "<group>"; };
+		A1B474842A2B3887005ABCB5 /* AddMeetingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMeetingView.swift; sourceTree = "<group>"; };
+		A1B474862A2B38DB005ABCB5 /* AddMeetingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMeetingPresenter.swift; sourceTree = "<group>"; };
+		A1B474882A2B38EE005ABCB5 /* AddMeetingRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMeetingRouter.swift; sourceTree = "<group>"; };
+		A1B4748D2A2B44BF005ABCB5 /* MeetingForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingForm.swift; sourceTree = "<group>"; };
+		A1F856E42A2C39980052760C /* NewMeetingDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMeetingDetail.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +155,17 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		A167DF8F2A2C18AD00D97A78 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				A1B4748D2A2B44BF005ABCB5 /* MeetingForm.swift */,
+				A167DF902A2C18CD00D97A78 /* AgendaFormCard.swift */,
+				A17B6DBA2A2C15FE0097400C /* AgendaForm.swift */,
+				A1F856E42A2C39980052760C /* NewMeetingDetail.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		A1B474002A2420BC005ABCB5 /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -147,6 +178,7 @@
 		A1B474012A2420C3005ABCB5 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				A1B4747E2A2B376E005ABCB5 /* Components */,
 				A1B474032A2420E6005ABCB5 /* Data */,
 				A1B474052A2420F4005ABCB5 /* Domain */,
 				A1B474042A2420EE005ABCB5 /* DI */,
@@ -159,6 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				A1B474742A2B2BAC005ABCB5 /* Vote */,
+				A1B4747D2A2B368F005ABCB5 /* Meeting */,
 				A1B4740E2A2426FF005ABCB5 /* Auth */,
 				A1B4740F2A242709005ABCB5 /* Detail */,
 				A1B4740D2A2426F9005ABCB5 /* Home */,
@@ -364,6 +397,7 @@
 				A1B474322A26BC7F005ABCB5 /* OnboardingInteractor.swift */,
 				A1B4744D2A298D05005ABCB5 /* HomeInteractor.swift */,
 				A1B4745F2A2AB04E005ABCB5 /* DetailInteractor.swift */,
+				A1B4747B2A2B2D24005ABCB5 /* VoteInteractor.swift */,
 			);
 			path = Usecase;
 			sourceTree = "<group>";
@@ -371,7 +405,6 @@
 		A1B474482A28B08D005ABCB5 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				A1B474492A28B0A7005ABCB5 /* MeetingCard.swift */,
 				A1B474572A29DF42005ABCB5 /* CodeTextFIeld.swift */,
 				A1B474632A2ABE91005ABCB5 /* ProfileImage.swift */,
 			);
@@ -425,8 +458,53 @@
 				A1B4745D2A2AAE7C005ABCB5 /* DetailRepository.swift */,
 				A1B4744F2A298DCA005ABCB5 /* HomeRepository.swift */,
 				A1B474342A26BD74005ABCB5 /* AuthRepository.swift */,
+				A1B474792A2B2CA5005ABCB5 /* VoteRepository.swift */,
 			);
 			path = Repository;
+			sourceTree = "<group>";
+		};
+		A1B4747D2A2B368F005ABCB5 /* Meeting */ = {
+			isa = PBXGroup;
+			children = (
+				A1B474832A2B386C005ABCB5 /* Presenter */,
+				A1B474822A2B3865005ABCB5 /* Router */,
+				A1B474812A2B385E005ABCB5 /* View */,
+			);
+			path = Meeting;
+			sourceTree = "<group>";
+		};
+		A1B4747E2A2B376E005ABCB5 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				A1B474492A28B0A7005ABCB5 /* MeetingCard.swift */,
+				A17B6DB82A2B69450097400C /* CustomButton.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		A1B474812A2B385E005ABCB5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A167DF8F2A2C18AD00D97A78 /* Components */,
+				A1B474842A2B3887005ABCB5 /* AddMeetingView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A1B474822A2B3865005ABCB5 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				A1B474882A2B38EE005ABCB5 /* AddMeetingRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		A1B474832A2B386C005ABCB5 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				A1B474862A2B38DB005ABCB5 /* AddMeetingPresenter.swift */,
+			);
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -528,8 +606,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				A1B474472A28A5D5005ABCB5 /* Agenda.swift in Sources */,
+				A1B4747C2A2B2D24005ABCB5 /* VoteInteractor.swift in Sources */,
 				A1B4745C2A2AAE53005ABCB5 /* DetailView.swift in Sources */,
+				A1F856E52A2C39980052760C /* NewMeetingDetail.swift in Sources */,
 				A1B474622A2AB241005ABCB5 /* DetailPresenter.swift in Sources */,
+				A17B6DB92A2B69450097400C /* CustomButton.swift in Sources */,
 				A1B474502A298DCA005ABCB5 /* HomeRepository.swift in Sources */,
 				A1B474152A242A4D005ABCB5 /* CustomError+Ext.swift in Sources */,
 				A1B474332A26BC7F005ABCB5 /* OnboardingInteractor.swift in Sources */,
@@ -538,19 +619,25 @@
 				A1B4744A2A28B0A7005ABCB5 /* MeetingCard.swift in Sources */,
 				A1B4743F2A26E30F005ABCB5 /* HomeView.swift in Sources */,
 				A1B4746B2A2AD2F0005ABCB5 /* AgendaList.swift in Sources */,
+				A1B474872A2B38DB005ABCB5 /* AddMeetingPresenter.swift in Sources */,
 				A1B474642A2ABE91005ABCB5 /* ProfileImage.swift in Sources */,
 				A1B474732A2B23B0005ABCB5 /* DetailRouter.swift in Sources */,
+				A1B474892A2B38EE005ABCB5 /* AddMeetingRouter.swift in Sources */,
 				A1B474292A2572F8005ABCB5 /* OnboardingView.swift in Sources */,
 				A1B474122A242782005ABCB5 /* RemoteDataSource.swift in Sources */,
+				A17B6DBB2A2C15FE0097400C /* AgendaForm.swift in Sources */,
+				A1B474852A2B3887005ABCB5 /* AddMeetingView.swift in Sources */,
 				A1B474712A2ADD0A005ABCB5 /* ManageParticipantSection.swift in Sources */,
 				A1B474662A2AC869005ABCB5 /* Date+Ext.swift in Sources */,
 				A1B474082A24217D005ABCB5 /* Injection.swift in Sources */,
 				A1B4742F2A257FE3005ABCB5 /* OnboardingTextModel.swift in Sources */,
 				A1B474392A26C20D005ABCB5 /* UserModel.swift in Sources */,
 				A1B474312A26BB11005ABCB5 /* MeetingModel.swift in Sources */,
+				A167DF912A2C18CD00D97A78 /* AgendaFormCard.swift in Sources */,
 				A1B474602A2AB04E005ABCB5 /* DetailInteractor.swift in Sources */,
 				A136BE1E2A241ECD00B2805F /* ContentView.swift in Sources */,
 				A136BE1C2A241ECD00B2805F /* MC2KuraKuraApp.swift in Sources */,
+				A1B4748E2A2B44BF005ABCB5 /* MeetingForm.swift in Sources */,
 				A1B4743B2A26C6A5005ABCB5 /* OnboardingRouter.swift in Sources */,
 				A1B4744C2A298BF1005ABCB5 /* HomePresenter.swift in Sources */,
 				A1B474582A29DF42005ABCB5 /* CodeTextFIeld.swift in Sources */,
@@ -558,6 +645,7 @@
 				A1B474352A26BD74005ABCB5 /* AuthRepository.swift in Sources */,
 				A1B474182A242AC8005ABCB5 /* Color+Ext.swift in Sources */,
 				A1B4742B2A257CE9005ABCB5 /* OnboardingPresenter.swift in Sources */,
+				A1B4747A2A2B2CA5005ABCB5 /* VoteRepository.swift in Sources */,
 				A1B474372A26C033005ABCB5 /* APICall.swift in Sources */,
 				A1B474522A299088005ABCB5 /* HomeRouter.swift in Sources */,
 			);

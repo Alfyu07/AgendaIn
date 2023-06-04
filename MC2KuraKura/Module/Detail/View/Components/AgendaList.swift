@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct AgendaList: View {
-    @ObservedObject var presenter: DetailPresenter
+    let proposedAgendas: [Agenda]
+
     var body: some View {
         VStack(spacing: 0) {
-            ForEach(presenter.meeting.proposedAgendas) { agenda in
+            ForEach(proposedAgendas) { agenda in
                     AgendaItem(agenda: agenda)
                     .padding(.bottom, 12)
             }
@@ -21,6 +22,6 @@ struct AgendaList: View {
 
 struct AgendaList_Previews: PreviewProvider {
     static var previews: some View {
-        AgendaList(presenter: DetailPresenter(detailUseCase: Injection.init().provideDetail(for: .sharedExample2)))
+        AgendaList(proposedAgendas: [.sharedExample, .sharedExample2])
     }
 }
