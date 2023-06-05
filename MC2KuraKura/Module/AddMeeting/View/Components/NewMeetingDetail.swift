@@ -48,10 +48,10 @@ extension NewDetailMeeting {
                 HStack {
                     ForEach(meeting.participants) { participant in
                         if participant != meeting.participants.last {
-                            Text("\(participant.name), ")
+                            Text("\(participant.firstName), ")
                                 .font(.system(size: 16, weight: .semibold))
                         } else {
-                            Text("and \(participant.name)")
+                            Text("and \(participant.firstName)")
                                 .font(.system(size: 16, weight: .semibold))
                         }
                         
