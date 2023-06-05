@@ -75,11 +75,11 @@ struct ManageParticipantSection: View {
                             imgUrlString: participant.imgUrl,
                             size: 32
                         )
-                        Text(participant.name)
+                        Text(participant.firstName)
                             .font(.system(size: 10))
                             .foregroundColor(Color("gray80"))
                         Spacer()
-                        Text(participant.name )
+                        Text(participant.firstName )
                             .font(.system(size: 10))
                             .foregroundColor(Color("gray80"))
                     }.padding(.top, 8)
