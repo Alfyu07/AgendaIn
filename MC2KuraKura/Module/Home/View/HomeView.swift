@@ -10,8 +10,6 @@ import SwiftUI
 struct HomeView: View {
     @StateObject var presenter: HomePresenter
     
-//    @State var query: String = ""
-    
     var body: some View {
         ScrollView {
             header

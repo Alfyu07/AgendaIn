@@ -40,7 +40,7 @@ class OnboardingPresenter: ObservableObject {
     func linkBuilder<Content: View>(
       @ViewBuilder content: () -> Content
     ) -> some View {
-      NavigationLink(destination: router.makeHomeView()) { content() }
+      NavigationLink(destination: router.makeMainView()) { content() }
     }
     
     func autoScroll() {

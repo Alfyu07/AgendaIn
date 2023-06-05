@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MeetingForm: View {
-    @Binding var stepIndex: Int
+    @ObservedObject var presenter: AddMeetingPresenter
     
     @State var meetingName: String = ""
     @State var meetingDescription: String = ""
@@ -181,13 +181,13 @@ extension MeetingForm {
     
     var formButton: some View {
         CustomButton(label: "Next") {
-            stepIndex += 1
+            presenter.stepIndex += 1
         }.padding(.vertical, 32)
     }
 }
 
 struct MeetingForm_Previews: PreviewProvider {
     static var previews: some View {
-        MeetingForm(stepIndex: .constant(1))
+        MeetingForm(presenter: AddMeetingPresenter(meetingUseCase: Injection.init().provideMeeting()))
     }
 }

@@ -31,7 +31,7 @@ struct AgendaFormCard: View {
                     .frame(height: 80)
                     .font(.system(size: 14))
                     .toolbar {
-                        if !agendaName.isEmpty && !agendaDescription.isEmpty{
+                        if !agendaName.isEmpty && !agendaDescription.isEmpty {
                             ToolbarItemGroup(placement: .keyboard) {
                                 Spacer()
                                 Button("Done") {
@@ -48,9 +48,6 @@ struct AgendaFormCard: View {
                                     
                                     hideKeyboard()
                                 }
-                                
-                                
-                                
                             }
                             
                         }

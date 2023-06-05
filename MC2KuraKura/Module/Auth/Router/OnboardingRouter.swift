@@ -13,4 +13,14 @@ class OnboardingRouter {
         let presenter = HomePresenter(homeUseCase: homeUseCase)
         return HomeView(presenter: presenter)
     }
+    
+    func makeMainView() -> some View {
+        let homeUseCase = Injection.init().provideHome()
+        let homePresenter = HomePresenter(homeUseCase: homeUseCase)
+        
+        let meetingUseCase = Injection.init().provideMeeting()
+        let meetingPresenter = MeetingPresenter(meetingUseCase: meetingUseCase)
+        
+        return MainView(homePresenter: homePresenter, meetingPresenter: meetingPresenter)
+    }
 }

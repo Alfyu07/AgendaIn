@@ -23,6 +23,7 @@ struct MeetingCard: View {
                 Text(meeting.title)
                     .font(.system(size: 18, weight: .medium))
                     .foregroundColor(Color("blue90"))
+                    .multilineTextAlignment(.leading)
                 
                 HStack(spacing: 0) {
                     HStack(spacing: 0) {

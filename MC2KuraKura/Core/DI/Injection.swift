@@ -39,4 +39,17 @@ final class Injection: NSObject {
         let repository = provideDetailRepository()
         return DetailInteractor(repository: repository, meeting: meeting)
     }
+    
+    // meeting injection
+    private func provideMeetingRepository() -> MeetingRepositoryProtocol {
+        let remote: RemoteDataSource = RemoteDataSource.sharedInstance
+        
+        return MeetingRepository.sharedInstance(remote)
+    }
+    
+    func provideMeeting() -> MeetingUseCase {
+        let repository = provideMeetingRepository()
+        return MeetingInteractor(repository: repository)
+    }
+    
 }
