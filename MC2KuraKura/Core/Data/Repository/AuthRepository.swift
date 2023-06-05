@@ -8,7 +8,8 @@
 import Foundation
 
 protocol AuthRepositoryProtocol {
-    func login(result: @escaping (Result<UserModel, URLError>) -> Void)
+    func signUp(request: AuthRequest,
+        result: @escaping (Result<AuthCredential, URLError>) -> Void)
 }
 
 final class AuthRepository: NSObject {
@@ -27,7 +28,19 @@ final class AuthRepository: NSObject {
 }
 
 extension AuthRepository: AuthRepositoryProtocol {
-    func login(result: @escaping (Result<UserModel, URLError>) -> Void) {
+    func signUp(request: AuthRequest,
+        result: @escaping (Result<AuthCredential, URLError>) -> Void) {
+        self.remote.signUp(request: request) { remoteResponses in
+          switch remoteResponses {
+          case .success(let tokenResponse):
+            let token = TokenMapper.mapTokenResponseToDomains(input: tokenResponse)
+            result(.success(token))
+          case .failure(let error):
+            result(.failure(error))
+          }
+        }
+        
+        
         
     }
 }

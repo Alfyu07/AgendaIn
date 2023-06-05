@@ -24,15 +24,15 @@ class DetailPresenter: ObservableObject {
             
         }
         if meeting.participants.count == 1 {
-            return meeting.participants.first!.name
+            return meeting.participants.first!.firstName
             
         }   
         var hasil: String = ""
         for participant in meeting.participants {
             if participant == meeting.participants.last {
-                hasil = hasil + "and " + participant.name
+                hasil = hasil + "and " + participant.firstName
             } else {
-                hasil = hasil + participant.name + ", "
+                hasil = hasil + participant.firstName + ", "
             }
         }
         return hasil
