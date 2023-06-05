@@ -57,6 +57,8 @@
 		A1CF00A32A2D8595003C82CD /* MeetingRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CF00A22A2D8595003C82CD /* MeetingRepository.swift */; };
 		A1CF00A52A2D8945003C82CD /* MeetingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CF00A42A2D8945003C82CD /* MeetingPresenter.swift */; };
 		A1CF00A72A2D89A8003C82CD /* MeetingRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CF00A62A2D89A8003C82CD /* MeetingRouter.swift */; };
+		A1CF00AA2A2DA81F003C82CD /* AuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CF00A92A2DA81F003C82CD /* AuthResponse.swift */; };
+		A1CF00AD2A2DA99F003C82CD /* AuthRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CF00AC2A2DA99F003C82CD /* AuthRequest.swift */; };
 		A1DFF5AB2A2C9D1300117D9F /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DFF5AA2A2C9D1300117D9F /* MainView.swift */; };
 		A1DFF5AD2A2CA71400117D9F /* MeetingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DFF5AC2A2CA71400117D9F /* MeetingView.swift */; };
 		A1DFF5B72A2CA7B600117D9F /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DFF5B62A2CA7B600117D9F /* ProfileView.swift */; };
@@ -114,6 +116,8 @@
 		A1CF00A22A2D8595003C82CD /* MeetingRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingRepository.swift; sourceTree = "<group>"; };
 		A1CF00A42A2D8945003C82CD /* MeetingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingPresenter.swift; sourceTree = "<group>"; };
 		A1CF00A62A2D89A8003C82CD /* MeetingRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingRouter.swift; sourceTree = "<group>"; };
+		A1CF00A92A2DA81F003C82CD /* AuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponse.swift; sourceTree = "<group>"; };
+		A1CF00AC2A2DA99F003C82CD /* AuthRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRequest.swift; sourceTree = "<group>"; };
 		A1DFF5AA2A2C9D1300117D9F /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		A1DFF5AC2A2CA71400117D9F /* MeetingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingView.swift; sourceTree = "<group>"; };
 		A1DFF5B62A2CA7B600117D9F /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
@@ -293,6 +297,8 @@
 		A1B474102A24276B005ABCB5 /* DataSource */ = {
 			isa = PBXGroup;
 			children = (
+				A1CF00AB2A2DA989003C82CD /* Requests */,
+				A1CF00A82A2DA80C003C82CD /* Responses */,
 				A1B474112A242782005ABCB5 /* RemoteDataSource.swift */,
 			);
 			path = DataSource;
@@ -526,6 +532,22 @@
 			path = Presenter;
 			sourceTree = "<group>";
 		};
+		A1CF00A82A2DA80C003C82CD /* Responses */ = {
+			isa = PBXGroup;
+			children = (
+				A1CF00A92A2DA81F003C82CD /* AuthResponse.swift */,
+			);
+			path = Responses;
+			sourceTree = "<group>";
+		};
+		A1CF00AB2A2DA989003C82CD /* Requests */ = {
+			isa = PBXGroup;
+			children = (
+				A1CF00AC2A2DA99F003C82CD /* AuthRequest.swift */,
+			);
+			path = Requests;
+			sourceTree = "<group>";
+		};
 		A1DFF5AE2A2CA72900117D9F /* Meeting */ = {
 			isa = PBXGroup;
 			children = (
@@ -706,12 +728,14 @@
 				A1CF00A52A2D8945003C82CD /* MeetingPresenter.swift in Sources */,
 				A1B4744E2A298D05005ABCB5 /* HomeInteractor.swift in Sources */,
 				A1B4744A2A28B0A7005ABCB5 /* MeetingCard.swift in Sources */,
+				A1CF00AA2A2DA81F003C82CD /* AuthResponse.swift in Sources */,
 				A1B4743F2A26E30F005ABCB5 /* HomeView.swift in Sources */,
 				A1B4746B2A2AD2F0005ABCB5 /* AgendaList.swift in Sources */,
 				A1B474872A2B38DB005ABCB5 /* AddMeetingPresenter.swift in Sources */,
 				A1B474642A2ABE91005ABCB5 /* ProfileImage.swift in Sources */,
 				A1B474732A2B23B0005ABCB5 /* DetailRouter.swift in Sources */,
 				A1DFF5AD2A2CA71400117D9F /* MeetingView.swift in Sources */,
+				A1CF00AD2A2DA99F003C82CD /* AuthRequest.swift in Sources */,
 				A1B474892A2B38EE005ABCB5 /* AddMeetingRouter.swift in Sources */,
 				A1B474292A2572F8005ABCB5 /* OnboardingView.swift in Sources */,
 				A1B474122A242782005ABCB5 /* RemoteDataSource.swift in Sources */,
