@@ -17,8 +17,7 @@ class AddMeetingPresenter: ObservableObject {
     let steps: [String]
     
     // meeting form state
-    
-    
+
     
     // user state
     var user: UserModel = .sharedExample

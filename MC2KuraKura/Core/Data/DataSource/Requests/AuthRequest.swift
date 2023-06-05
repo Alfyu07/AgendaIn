@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct AuthRequest : Codable{
+struct AuthRequest: Codable {
     private enum CodingKeys: String, CodingKey {
         case validateCode =  "validateCode"
         case firstName = "firstName"

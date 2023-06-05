@@ -10,11 +10,18 @@ import SwiftUI
 @main
 struct MC2KuraKuraApp: App {
     let onboardingPresenter = OnboardingPresenter(onBoardingUseCase: Injection.init().provideOnboarding())
+    let homePresenter = HomePresenter(homeUseCase: Injection.init().provideHome())
+    
+    let meetingPresenter = MeetingPresenter(meetingUseCase: Injection.init().provideMeeting())
+    
+    // insert profilePresenter here
     
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environmentObject(onboardingPresenter)
+                .environmentObject(homePresenter)
+                .environmentObject(meetingPresenter)
         }
     }
 }

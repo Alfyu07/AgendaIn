@@ -23,10 +23,11 @@ final class RemoteDataSource: NSObject {
 extension RemoteDataSource: RemoteDataSourceProtocol {
     
     func getAllMeetings(result: (Result<[MeetingModel], URLError>) -> Void) {
-
+        
     }
-    func signUp(request: AuthRequest,
-                 result: @escaping (Result<AuthResponse, URLError>) -> Void
+    func signUp(
+        request: AuthRequest,
+        result: @escaping (Result<AuthResponse, URLError>) -> Void
     ) {
         
         guard let authData = try? JSONEncoder()
@@ -56,20 +57,20 @@ extension RemoteDataSource: RemoteDataSourceProtocol {
         task.resume()
         
         
-//        let task = URLSession.shared.uploadTask(with: url, from: authData) { maybeData, maybeResponse, maybeError in
-//          if maybeError != nil {
-//            result(.failure(.addressUnreachable(url)))
-//          } else if let data = maybeData, let response = maybeResponse as? HTTPURLResponse, response.statusCode == 200 {
-//            let decoder = JSONDecoder()
-//            do {
-//              let categories = try decoder.decode(CategoriesResponse.self, from: data).categories
-//                
-//              result(.success(categories))
-//            } catch {
-//              result(.failure(.invalidResponse))
-//            }
-//          }
-//        }
-//        task.resume()
+        //        let task = URLSession.shared.uploadTask(with: url, from: authData) { maybeData, maybeResponse, maybeError in
+        //          if maybeError != nil {
+        //            result(.failure(.addressUnreachable(url)))
+        //          } else if let data = maybeData, let response = maybeResponse as? HTTPURLResponse, response.statusCode == 200 {
+        //            let decoder = JSONDecoder()
+        //            do {
+        //              let categories = try decoder.decode(CategoriesResponse.self, from: data).categories
+        //
+        //              result(.success(categories))
+        //            } catch {
+        //              result(.failure(.invalidResponse))
+        //            }
+        //          }
+        //        }
+        //        task.resume()
     }
 }

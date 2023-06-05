@@ -9,5 +9,5 @@ import Foundation
 
 struct AuthCredential {
     var accessToken: String
-    var requestToken: String
+    var refreshToken: String
 }

@@ -9,7 +9,9 @@ import SwiftUI
 import AuthenticationServices
 
 struct OnboardingView: View {
+    @Environment(\.colorScheme) var colorScheme
     @ObservedObject var presenter: OnboardingPresenter
+    
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -62,21 +64,33 @@ struct OnboardingView: View {
                 }
                 .padding(.top, 200)
                 
-//                presenter.linkBuilder {
-//                    HStack {
-//                        Image(systemName: "apple.logo")
-//                            .padding(.trailing, 8)
-//                        Text("Login With Apple ID")
-//                            .font(.system(size: 16, weight: .bold))
-//                    }
-//                    .frame(maxWidth: 240, maxHeight: 45)
-//                    .padding(.horizontal, 24)
-//                    .foregroundColor(.white)
-//                    .background(.black)
-//                    .cornerRadius(30)
-//                }.padding(.top, 16)
+                SignInWithAppleButton(
+                    .continue,
+                    onRequest: presenter.handle(request:),
+                    onCompletion: presenter.handle(completion:)
+                )
+                .signInWithAppleButtonStyle(
+                    colorScheme == .dark ? .white : .black
+                )
+                .frame(height: 50)
+                .padding()
+                .cornerRadius(8)
+                .cornerRadius(30)
+                  
+                //                presenter.linkBuilder {
+                //                    HStack {
+                //                        Image(systemName: "apple.logo")
+                //                            .padding(.trailing, 8)
+                //                        Text("Login With Apple ID")
+                //                            .font(.system(size: 16, weight: .bold))
+                //                    }
+                //                    .frame(maxWidth: 240, maxHeight: 45)
+                //                    .padding(.horizontal, 24)
+                //                    .foregroundColor(.white)
+                //                    .background(.black)
+                //                    .cornerRadius(30)
+                //                }.padding(.top, 16)
                 
-               
             }
         }
         .padding(.horizontal, 24)
