@@ -9,12 +9,26 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var onboardingPresenter: OnboardingPresenter
+    @EnvironmentObject var homePresenter: HomePresenter
+    @EnvironmentObject var meetingPresenter: MeetingPresenter
+    
+    @AppStorage("accessToken") var accessToken: String = ""
+    @AppStorage("refreshToken") var refreshToken: String = ""
     
     var body: some View {
         NavigationStack {
-            OnboardingView(presenter: onboardingPresenter)
+            if !accessToken.isEmpty && !refreshToken.isEmpty {
+                MainView(homePresenter: homePresenter, meetingPresenter: meetingPresenter)
+            } else {
+                OnboardingView(presenter: onboardingPresenter)
+            }
+            
 //            CodeTextField(numberOfFields: 4)
 //           MainView()
         }.fontDesign(.rounded)
+            .onAppear{
+                print(accessToken)
+                print(refreshToken)
+            }
     }
 }

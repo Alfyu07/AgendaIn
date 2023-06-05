@@ -12,7 +12,7 @@ final class TokenMapper {
         
         return AuthCredential(
             accessToken: authResponse.accessToken ?? "",
-            requestToken: authResponse.refreshToken ?? ""
+            refreshToken: authResponse.refreshToken ?? ""
         )
     }
 }

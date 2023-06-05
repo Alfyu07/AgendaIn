@@ -8,47 +8,13 @@
 import SwiftUI
 import AuthenticationServices
 
-struct ContentView1: View {
-    @Environment(\.colorScheme) var colorScheme
-    
-    @AppStorage("accessToken") var accessToken: String = ""
-    @AppStorage("refreshToken") var refreshToken: String = ""
-    
-    private var isSigned: Bool {
-        !refreshToken.isEmpty
-    }
-    
-    var body: some View {
-        NavigationStack {
-            VStack {
-                if isSigned {
-                    Text("Access Token : \(accessToken)")
-                    Text("Refresh Token : \(refreshToken)")
-                    
-                    Button {
-                        accessToken.self = ""
-                        refreshToken.self = ""
-                    } label: {
-                        Text("Logout")
-                    }
-                    .buttonStyle(.borderedProminent)
-                    .frame(width: 70)
-                } else {
-                    AppleLoginButton()
-                }
-            }
-            .navigationTitle(isSigned ? "Welcome Back" : "Sign In")
-        }
-    }
-}
 
 struct AppleLoginButton: View {
     @Environment(\.colorScheme) var colorScheme
     @StateObject private var loginViewModel = LoginViewModel()
     
-    
-    
     var body: some View {
+        
         SignInWithAppleButton(.continue,
                               onRequest: loginViewModel.handle(request:),
                               onCompletion: loginViewModel.handle(completion:))
@@ -62,7 +28,7 @@ struct AppleLoginButton: View {
 }
 
 class HomeViewModel: ObservableObject {
-    @Published var id : String = ""
+    @Published var id: String = ""
     
 //    func fetch(accessToken: String) {
 //        guard let url = URL(string: "")
@@ -146,10 +112,4 @@ final class LoginViewModel: ObservableObject {
 struct SignupResponse: Codable {
     let accessToken: String
     let refreshToken: String
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView1()
-    }
 }
