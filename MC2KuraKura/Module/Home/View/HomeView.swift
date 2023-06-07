@@ -8,12 +8,15 @@
 import SwiftUI
 
 struct HomeView: View {
-    @StateObject var presenter: HomePresenter
+    @ObservedObject var presenter: HomePresenter
     
     var body: some View {
         ScrollView {
             header
                 .padding(.horizontal, 32)
+                .onAppear {
+                    presenter.getProfile()
+                }
             
             joinWithCodeSection
                 .padding(.horizontal, 32)
@@ -24,6 +27,7 @@ struct HomeView: View {
         }
             .ignoresSafeArea()
             .navigationBarBackButtonHidden(true)
+            
     }
     
 }
@@ -35,7 +39,7 @@ extension HomeView {
                 Text("Welcome,")
                     .font(.system(size: 24, weight: .bold))
                     .foregroundColor(Color("gray50"))
-                Text("Christina👋").font(.system(size: 32, weight: .bold))
+                Text(presenter.firstName).font(.system(size: 32, weight: .bold))
                     .foregroundColor(Color("blue50"))
             }
             Spacer()
