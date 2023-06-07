@@ -25,3 +25,4 @@ struct MC2KuraKuraApp: App {
         }
     }
 }
+

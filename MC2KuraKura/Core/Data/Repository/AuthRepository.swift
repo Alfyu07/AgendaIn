@@ -12,7 +12,7 @@ protocol AuthRepositoryProtocol {
         result: @escaping (Result<AuthCredential, URLError>) -> Void)
 }
 
-final class AuthRepository: NSObject {
+final class AuthRepository: NSObject{
     
     typealias AuthInstance = (RemoteDataSource) -> AuthRepository
     
@@ -39,8 +39,5 @@ extension AuthRepository: AuthRepositoryProtocol {
             result(.failure(error))
           }
         }
-        
-        
-        
     }
 }

@@ -8,6 +8,8 @@
 import Foundation
 
 struct API {
+    // https://3.1.211.225/api/v1/
+    
     static let baseUrl = "https://3.1.211.225/api/v1/"
 }
 

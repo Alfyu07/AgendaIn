@@ -98,7 +98,8 @@ class OnboardingPresenter: ObservableObject {
             let firstName = credential.fullName?.givenName
             let lastName = credential.fullName?.familyName
             
-            let authRequest = AuthRequest(validateCode: token, firstName: firstName, lastName: lastName)
+            let authRequest = AuthRequest(validateCode: token, firstName: firstName ?? "Zulfadhli", lastName: lastName ?? "Irsyad")
+            print(authRequest)
             
             onboardingUseCase.signUp(request: authRequest) { result in
                 switch result {
@@ -111,12 +112,14 @@ class OnboardingPresenter: ObservableObject {
                     DispatchQueue.main.async {
                       self.loadingState = false
                       self.errorMessage = error.localizedDescription
+                        print(error.localizedDescription)
                     }
                 }
                 
             }
             
-            send(token: token, firstName: firstName ?? "Zulfadhli", lastName: lastName ?? "")
+            // Fix this
+//            send(token: token, firstName: firstName ?? "Zulfadhli", lastName: lastName ?? "")
         case .failure(let error):
             print(error)
         }
@@ -151,6 +154,4 @@ class OnboardingPresenter: ObservableObject {
         
         task.resume()
     }
-    
-    
 }
