@@ -18,15 +18,15 @@ final class Injection: NSObject {
         return OnboardingInteractor(repository: repository)
     }
     
-    private func provideHomeRepository() -> HomeRepositoryProtocol {
+    private func provideHomeRepository() -> UserRepositoryProtocol {
         let remote: RemoteDataSource = RemoteDataSource.sharedInstance
         
-        return HomeRepository.sharedInstance(remote)
+        return UserRepository.sharedInstance(remote)
     }
     
     func provideHome() -> HomeUseCase {
         let repository = provideHomeRepository()
-        return HomeInteractor(repository: repository)
+        return HomeInteractor(userRepository: repository)
     }
     
     private func provideDetailRepository() -> DetailRepositoryProtocol {

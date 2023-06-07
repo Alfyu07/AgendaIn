@@ -7,24 +7,60 @@
 // Data source atau sumber data biasanya berisi logic pemanggilan data entah dari api atau dari db
 
 import Foundation
+import SwiftUI
 
 protocol RemoteDataSourceProtocol: AnyObject {
     func getAllMeetings(result: @escaping (Result<[MeetingModel], URLError>) -> Void)
     func signUp(request: AuthRequest, result: @escaping (Result<AuthResponse, URLError>) -> Void)
     func shareMeeting(result: @escaping (Result<AuthResponse, URLError>) -> Void)
+    func getProfile(result: @escaping (Result<GetUserResponse, URLError>) -> Void)
 }
 
 final class RemoteDataSource: NSObject, URLSessionDelegate {
+    @AppStorage("accessToken") var accessToken: String = ""
+    @AppStorage("refreshToken") var refreshToken: String = ""
+    
     private override init() {}
+    
     
     static let sharedInstance: RemoteDataSource = RemoteDataSource()
 }
 
 extension RemoteDataSource: RemoteDataSourceProtocol {
+    func getProfile(result: @escaping (Result<GetUserResponse, URLError>) -> Void) {
+        guard let url = URL(string: Endpoints.Gets.user.url) else { return }
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = "GET"
+        urlRequest.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let session = URLSession(configuration: URLSessionConfiguration.default, delegate: self, delegateQueue: OperationQueue.main)
+        
+        let task = session.dataTask(with: urlRequest) { maybeData, maybeResponse, error in
+            
+            if(error != nil) {
+                result(.failure(.addressUnreachable(url)))
+            } else if let data = maybeData, let response = maybeResponse as? HTTPURLResponse, response.statusCode == 200 {
+                let decoder = JSONDecoder()
+                do {
+                    let user = try decoder.decode(GetUserResponse.self, from: data)
+                    result(.success(user))
+                } catch {
+                    result(.failure(.invalidResponse))
+                }
+            }
+        }
+        task.resume()
+    }
+    
+    
+    
+    
     
     func getAllMeetings(result: (Result<[MeetingModel], URLError>) -> Void) {
         
     }
+    
     func signUp(
         request: AuthRequest,
         result: @escaping (Result<AuthResponse, URLError>) -> Void
@@ -58,7 +94,7 @@ extension RemoteDataSource: RemoteDataSourceProtocol {
         }
         task.resume()
         
-        
+
         //        let task = URLSession.shared.uploadTask(with: url, from: authData) { maybeData, maybeResponse, maybeError in
         //          if maybeError != nil {
         //            result(.failure(.addressUnreachable(url)))
@@ -78,32 +114,36 @@ extension RemoteDataSource: RemoteDataSourceProtocol {
     
     func shareMeeting(result: @escaping (Result<AuthResponse, URLError>) -> Void) {
         
-        guard let url = URL(string: Endpoints.Gets.share.url) else {return}
-        var urlRequest = URLRequest(url: url)
-        
-        urlRequest.httpMethod = "POST"
-        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        let task = URLSession.shared.dataTask(with: urlRequest){ maybeData, maybeResponse, error in
-            if error != nil {
-                result(.failure(.addressUnreachable(url)))
-            } else if let data = maybeData, let response =  maybeResponse as? HTTPURLResponse, response.statusCode == 200 {
-                let decoder = JSONDecoder()
-                
-                do {
-                    // MARK : Just template
-                    let token = try decoder.decode(AuthResponse.self, from: data)
-                    result(.success(token))
-                    
-                } catch {
-                    result(.failure(.invalidResponse))
-                }
-            }
-        }
-        task.resume()
-        func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
-            completionHandler(.useCredential, URLCredential(trust: challenge.protectionSpace.serverTrust!))
-        }
+        //        guard let url = URL(string: Endpoints.Gets.share.url) else {return}
+        //        var urlRequest = URLRequest(url: url)
+        //
+        //        urlRequest.httpMethod = "POST"
+        //        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        //
+        //        let task = URLSession.shared.dataTask(with: urlRequest){ maybeData, maybeResponse, error in
+        //            if error != nil {
+        //                result(.failure(.addressUnreachable(url)))
+        //            } else if let data = maybeData, let response =  maybeResponse as? HTTPURLResponse, response.statusCode == 200 {
+        //                let decoder = JSONDecoder()
+        //
+        //                do {
+        //                    // MARK : Just template
+        //                    let token = try decoder.decode(AuthResponse.self, from: data)
+        //                    result(.success(token))
+        //                } catch {
+        //                    result(.failure(.invalidResponse))
+        //                }
+        //            }
+        //            task.resume()
+    }
+    
+    
+    
+    
+    func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
+        completionHandler(.useCredential, URLCredential(trust: challenge.protectionSpace.serverTrust!))
     }
     
 }
+
+
