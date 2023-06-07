@@ -135,6 +135,7 @@
 		A1F856E42A2C39980052760C /* NewMeetingDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMeetingDetail.swift; sourceTree = "<group>"; };
 		CB3083C52A2E1682009D775A /* MC2KuraKura.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MC2KuraKura.entitlements; sourceTree = "<group>"; };
 		CB3083C72A2E1756009D775A /* AuthComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthComponent.swift; sourceTree = "<group>"; };
+		CBE755462A2FC56F0077026C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +170,7 @@
 		A136BE1A2A241ECD00B2805F /* MC2KuraKura */ = {
 			isa = PBXGroup;
 			children = (
+				CBE755462A2FC56F0077026C /* Info.plist */,
 				CB3083C52A2E1682009D775A /* MC2KuraKura.entitlements */,
 				A1B474002A2420BC005ABCB5 /* App */,
 				A1B474012A2420C3005ABCB5 /* Core */,
@@ -959,9 +961,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MC2KuraKura/Preview Content\"";
-				DEVELOPMENT_TEAM = TRT66C4U5G;
+				DEVELOPMENT_TEAM = BS6K64RQ23;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MC2KuraKura/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -989,9 +992,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MC2KuraKura/Preview Content\"";
-				DEVELOPMENT_TEAM = TRT66C4U5G;
+				DEVELOPMENT_TEAM = BS6K64RQ23;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MC2KuraKura/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

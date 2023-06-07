@@ -73,9 +73,9 @@ struct OnboardingView: View {
                     colorScheme == .dark ? .white : .black
                 )
                 .frame(height: 50)
-                .padding()
-                .cornerRadius(8)
                 .cornerRadius(30)
+                .padding()
+                
                   
                 //                presenter.linkBuilder {
                 //                    HStack {
