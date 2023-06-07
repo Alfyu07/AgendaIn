@@ -8,17 +8,19 @@
 import Foundation
 
 protocol HomeUseCase {
-    func joinMeeting(code: String)
+    func getProfile(completion: @escaping (Result<UserModel, URLError>) -> Void)
 }
 
 class HomeInteractor: HomeUseCase {
-    private let repository: HomeRepositoryProtocol
-    
-    init(repository: HomeRepositoryProtocol) {
-        self.repository = repository
+    private let userRepository: UserRepositoryProtocol
+     
+    init(userRepository: UserRepositoryProtocol) {
+        self.userRepository = userRepository
     }
     
-    func joinMeeting(code: String) {
-        
+    func getProfile(completion:  @escaping (Result<UserModel, URLError>) -> Void) {
+        userRepository.getProfile { result in
+            completion(result)
+        }
     }
 }

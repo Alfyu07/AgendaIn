@@ -65,6 +65,9 @@
 		A1DFF5AD2A2CA71400117D9F /* MeetingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DFF5AC2A2CA71400117D9F /* MeetingView.swift */; };
 		A1DFF5B72A2CA7B600117D9F /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DFF5B62A2CA7B600117D9F /* ProfileView.swift */; };
 		A1F856E52A2C39980052760C /* NewMeetingDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F856E42A2C39980052760C /* NewMeetingDetail.swift */; };
+		CB14787F2A30C5AB002AC54A /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB14787E2A30C5AB002AC54A /* UserRepository.swift */; };
+		CB1478812A30CA7D002AC54A /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1478802A30CA7D002AC54A /* UserResponse.swift */; };
+		CB1478832A30CE75002AC54A /* UserMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1478822A30CE75002AC54A /* UserMapper.swift */; };
 		CB3083C82A2E1756009D775A /* AuthComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3083C72A2E1756009D775A /* AuthComponent.swift */; };
 /* End PBXBuildFile section */
 
@@ -127,6 +130,9 @@
 		A1DFF5AC2A2CA71400117D9F /* MeetingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingView.swift; sourceTree = "<group>"; };
 		A1DFF5B62A2CA7B600117D9F /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		A1F856E42A2C39980052760C /* NewMeetingDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMeetingDetail.swift; sourceTree = "<group>"; };
+		CB14787E2A30C5AB002AC54A /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
+		CB1478802A30CA7D002AC54A /* UserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
+		CB1478822A30CE75002AC54A /* UserMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMapper.swift; sourceTree = "<group>"; };
 		CB3083C52A2E1682009D775A /* MC2KuraKura.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MC2KuraKura.entitlements; sourceTree = "<group>"; };
 		CB3083C72A2E1756009D775A /* AuthComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthComponent.swift; sourceTree = "<group>"; };
 		CBE755462A2FC56F0077026C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -328,6 +334,7 @@
 			isa = PBXGroup;
 			children = (
 				A1CF00AE2A2E0A6C003C82CD /* TokenMapper.swift */,
+				CB1478822A30CE75002AC54A /* UserMapper.swift */,
 			);
 			path = Mapper;
 			sourceTree = "<group>";
@@ -497,6 +504,7 @@
 				A1B474342A26BD74005ABCB5 /* AuthRepository.swift */,
 				A1B474792A2B2CA5005ABCB5 /* VoteRepository.swift */,
 				A1CF00A22A2D8595003C82CD /* MeetingRepository.swift */,
+				CB14787E2A30C5AB002AC54A /* UserRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -549,6 +557,7 @@
 			isa = PBXGroup;
 			children = (
 				A1CF00A92A2DA81F003C82CD /* AuthResponse.swift */,
+				CB1478802A30CA7D002AC54A /* UserResponse.swift */,
 			);
 			path = Responses;
 			sourceTree = "<group>";
@@ -750,6 +759,7 @@
 				A1B4744E2A298D05005ABCB5 /* HomeInteractor.swift in Sources */,
 				A1B4744A2A28B0A7005ABCB5 /* MeetingCard.swift in Sources */,
 				A1CF00AA2A2DA81F003C82CD /* AuthResponse.swift in Sources */,
+				CB1478832A30CE75002AC54A /* UserMapper.swift in Sources */,
 				A1B4743F2A26E30F005ABCB5 /* HomeView.swift in Sources */,
 				A1B4746B2A2AD2F0005ABCB5 /* AgendaList.swift in Sources */,
 				A1B474872A2B38DB005ABCB5 /* AddMeetingPresenter.swift in Sources */,
@@ -765,12 +775,14 @@
 				A1B474852A2B3887005ABCB5 /* AddMeetingView.swift in Sources */,
 				A1B474712A2ADD0A005ABCB5 /* ManageParticipantSection.swift in Sources */,
 				A1B474662A2AC869005ABCB5 /* Date+Ext.swift in Sources */,
+				CB1478812A30CA7D002AC54A /* UserResponse.swift in Sources */,
 				A1B474082A24217D005ABCB5 /* Injection.swift in Sources */,
 				CB3083C82A2E1756009D775A /* AuthComponent.swift in Sources */,
 				A1B4742F2A257FE3005ABCB5 /* OnboardingTextModel.swift in Sources */,
 				A1B474392A26C20D005ABCB5 /* UserModel.swift in Sources */,
 				A1B474312A26BB11005ABCB5 /* MeetingModel.swift in Sources */,
 				A167DF912A2C18CD00D97A78 /* AgendaFormCard.swift in Sources */,
+				CB14787F2A30C5AB002AC54A /* UserRepository.swift in Sources */,
 				A1DFF5AB2A2C9D1300117D9F /* MainView.swift in Sources */,
 				A1B474602A2AB04E005ABCB5 /* DetailInteractor.swift in Sources */,
 				A136BE1E2A241ECD00B2805F /* ContentView.swift in Sources */,
