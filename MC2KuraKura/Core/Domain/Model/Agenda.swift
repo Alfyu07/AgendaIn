@@ -7,30 +7,26 @@
 
 import Foundation
 
-struct Agenda: Equatable, Identifiable {
-    
-    static func == (lhs: Agenda, rhs: Agenda) -> Bool {
-       return lhs.id == rhs.id && lhs.title == rhs.title
-        && lhs.description == rhs.description
-        && lhs.proposer == rhs.proposer
-    }
-    
+struct Agenda: Codable, Equatable, Identifiable {
     let id: String
+    let proposerID: String
+    let firstName: String
     let title: String
     let description: String
-    let proposer: UserModel
     
     static let sharedExample = Agenda(
         id: UUID().uuidString,
+        proposerID: UserModel.sharedExample.id,
+        firstName: UserModel.sharedExample.firstName,
         title: "Menentukan Perusahaan",
-        description: "Mendiskusikan harga, persyaratan kontrak, waktu pengiriman, dan faktor-faktor lain yang berkaitan dengan kesepakatan penjualan",
-        proposer: .sharedExample2
+        description: "Mendiskusikan harga, persyaratan kontrak, waktu pengiriman, dan faktor-faktor lain yang berkaitan dengan kesepakatan penjualan"
     )
     static let sharedExample2 = Agenda(
         id: UUID().uuidString,
+        proposerID: UserModel.sharedExample.id,
+        firstName: UserModel.sharedExample.firstName,
         title: "Menentukan Anggaran",
-        description: "Mendiskusikan harga, persyaratan kontrak, waktu pengiriman, dan faktor-faktor lain yang berkaitan dengan kesepakatan penjualan",
-        proposer: .sharedExample2
+        description: "Mendiskusikan harga, persyaratan kontrak, waktu pengiriman, dan faktor-faktor lain yang berkaitan dengan kesepakatan penjualan"
     )
     
 }

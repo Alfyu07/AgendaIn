@@ -41,7 +41,6 @@
 		A1B4745E2A2AAE7C005ABCB5 /* DetailRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B4745D2A2AAE7C005ABCB5 /* DetailRepository.swift */; };
 		A1B474602A2AB04E005ABCB5 /* DetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B4745F2A2AB04E005ABCB5 /* DetailInteractor.swift */; };
 		A1B474622A2AB241005ABCB5 /* DetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B474612A2AB241005ABCB5 /* DetailPresenter.swift */; };
-		A1B474642A2ABE91005ABCB5 /* ProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B474632A2ABE91005ABCB5 /* ProfileImage.swift */; };
 		A1B474662A2AC869005ABCB5 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B474652A2AC869005ABCB5 /* Date+Ext.swift */; };
 		A1B4746B2A2AD2F0005ABCB5 /* AgendaList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B4746A2A2AD2F0005ABCB5 /* AgendaList.swift */; };
 		A1B4746F2A2AD369005ABCB5 /* AgendaItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B4746E2A2AD369005ABCB5 /* AgendaItem.swift */; };
@@ -64,6 +63,9 @@
 		A1CF00B72A2FF1A5003C82CD /* ReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CF00B62A2FF1A5003C82CD /* ReviewView.swift */; };
 		A1CF00B92A2FF382003C82CD /* ReviewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CF00B82A2FF382003C82CD /* ReviewPresenter.swift */; };
 		A1CF00BD2A2FFB74003C82CD /* ReviesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CF00BC2A2FFB74003C82CD /* ReviesInteractor.swift */; };
+		A1CF00BF2A30CA18003C82CD /* MeetingTIme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CF00BE2A30CA18003C82CD /* MeetingTIme.swift */; };
+		A1CF00C32A30CFD7003C82CD /* MeetingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CF00C22A30CFD7003C82CD /* MeetingRequest.swift */; };
+		A1CF00C52A30D9FE003C82CD /* ProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CF00C42A30D9FE003C82CD /* ProfileImage.swift */; };
 		A1DFF5AB2A2C9D1300117D9F /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DFF5AA2A2C9D1300117D9F /* MainView.swift */; };
 		A1DFF5AD2A2CA71400117D9F /* MeetingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DFF5AC2A2CA71400117D9F /* MeetingView.swift */; };
 		A1DFF5B72A2CA7B600117D9F /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DFF5B62A2CA7B600117D9F /* ProfileView.swift */; };
@@ -106,7 +108,6 @@
 		A1B4745D2A2AAE7C005ABCB5 /* DetailRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRepository.swift; sourceTree = "<group>"; };
 		A1B4745F2A2AB04E005ABCB5 /* DetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInteractor.swift; sourceTree = "<group>"; };
 		A1B474612A2AB241005ABCB5 /* DetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPresenter.swift; sourceTree = "<group>"; };
-		A1B474632A2ABE91005ABCB5 /* ProfileImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImage.swift; sourceTree = "<group>"; };
 		A1B474652A2AC869005ABCB5 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 		A1B4746A2A2AD2F0005ABCB5 /* AgendaList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaList.swift; sourceTree = "<group>"; };
 		A1B4746E2A2AD369005ABCB5 /* AgendaItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaItem.swift; sourceTree = "<group>"; };
@@ -129,6 +130,9 @@
 		A1CF00B62A2FF1A5003C82CD /* ReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewView.swift; sourceTree = "<group>"; };
 		A1CF00B82A2FF382003C82CD /* ReviewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPresenter.swift; sourceTree = "<group>"; };
 		A1CF00BC2A2FFB74003C82CD /* ReviesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviesInteractor.swift; sourceTree = "<group>"; };
+		A1CF00BE2A30CA18003C82CD /* MeetingTIme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingTIme.swift; sourceTree = "<group>"; };
+		A1CF00C22A30CFD7003C82CD /* MeetingRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingRequest.swift; sourceTree = "<group>"; };
+		A1CF00C42A30D9FE003C82CD /* ProfileImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImage.swift; sourceTree = "<group>"; };
 		A1DFF5AA2A2C9D1300117D9F /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		A1DFF5AC2A2CA71400117D9F /* MeetingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingView.swift; sourceTree = "<group>"; };
 		A1DFF5B62A2CA7B600117D9F /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
@@ -430,6 +434,7 @@
 				A1B474382A26C20D005ABCB5 /* UserModel.swift */,
 				A1B474462A28A5D5005ABCB5 /* Agenda.swift */,
 				A1CF00B02A2E0AD4003C82CD /* AuthCredential.swift */,
+				A1CF00BE2A30CA18003C82CD /* MeetingTIme.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -451,7 +456,6 @@
 			isa = PBXGroup;
 			children = (
 				A1B474572A29DF42005ABCB5 /* CodeTextFIeld.swift */,
-				A1B474632A2ABE91005ABCB5 /* ProfileImage.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -524,6 +528,7 @@
 			children = (
 				A1B474492A28B0A7005ABCB5 /* MeetingCard.swift */,
 				A17B6DB82A2B69450097400C /* CustomButton.swift */,
+				A1CF00C42A30D9FE003C82CD /* ProfileImage.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -565,6 +570,7 @@
 			isa = PBXGroup;
 			children = (
 				A1CF00AC2A2DA99F003C82CD /* AuthRequest.swift */,
+				A1CF00C22A30CFD7003C82CD /* MeetingRequest.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -776,6 +782,7 @@
 			files = (
 				A1B474472A28A5D5005ABCB5 /* Agenda.swift in Sources */,
 				A1B4747C2A2B2D24005ABCB5 /* VoteInteractor.swift in Sources */,
+				A1CF00BF2A30CA18003C82CD /* MeetingTIme.swift in Sources */,
 				A1B4745C2A2AAE53005ABCB5 /* DetailView.swift in Sources */,
 				A1CF00B92A2FF382003C82CD /* ReviewPresenter.swift in Sources */,
 				A1F856E52A2C39980052760C /* NewMeetingDetail.swift in Sources */,
@@ -783,6 +790,7 @@
 				A1CF00A12A2D8545003C82CD /* MeetingInteractor.swift in Sources */,
 				A1B474622A2AB241005ABCB5 /* DetailPresenter.swift in Sources */,
 				A17B6DB92A2B69450097400C /* CustomButton.swift in Sources */,
+				A1CF00C52A30D9FE003C82CD /* ProfileImage.swift in Sources */,
 				A1B474502A298DCA005ABCB5 /* HomeRepository.swift in Sources */,
 				A1B474152A242A4D005ABCB5 /* CustomError+Ext.swift in Sources */,
 				A1B474332A26BC7F005ABCB5 /* OnboardingInteractor.swift in Sources */,
@@ -794,9 +802,9 @@
 				A1CF00AA2A2DA81F003C82CD /* AuthResponse.swift in Sources */,
 				A1B4743F2A26E30F005ABCB5 /* HomeView.swift in Sources */,
 				A1B4746B2A2AD2F0005ABCB5 /* AgendaList.swift in Sources */,
+				A1CF00C32A30CFD7003C82CD /* MeetingRequest.swift in Sources */,
 				A1CF00BD2A2FFB74003C82CD /* ReviesInteractor.swift in Sources */,
 				A1B474872A2B38DB005ABCB5 /* AddMeetingPresenter.swift in Sources */,
-				A1B474642A2ABE91005ABCB5 /* ProfileImage.swift in Sources */,
 				A1B474732A2B23B0005ABCB5 /* DetailRouter.swift in Sources */,
 				A1DFF5AD2A2CA71400117D9F /* MeetingView.swift in Sources */,
 				A1CF00AD2A2DA99F003C82CD /* AuthRequest.swift in Sources */,

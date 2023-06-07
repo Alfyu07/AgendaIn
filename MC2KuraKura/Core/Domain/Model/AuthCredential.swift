@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct AuthCredential {
+struct AuthCredential:Codable {
     var accessToken: String
     var refreshToken: String
 }

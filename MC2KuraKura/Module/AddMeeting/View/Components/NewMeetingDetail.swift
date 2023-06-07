@@ -39,7 +39,7 @@ extension NewDetailMeeting {
     var participantsInfo: some View {
         HStack(spacing: 0) {
             ForEach(0...1, id: \.self) { index in
-                ProfileImage(imgUrlString: meeting.participants[index].imgUrl, size: 70)
+                ProfileImage(firstName: meeting.participants[index].firstName, size: 70)
                     .padding(.leading, -30)
             }.padding(.trailing, 10)
             VStack(alignment: .leading, spacing: 0) {
@@ -81,7 +81,7 @@ extension NewDetailMeeting {
                         .scaledToFit()
                         .padding(.trailing, 4)
                     
-                    Text(Date.formatToDate(meeting.date))
+                    Text(Date.formatToDate(meeting.schedule.date))
                         .font(.system(size: 12))
                 }.foregroundColor(Color("gray50"))
                 Spacer()
@@ -91,7 +91,7 @@ extension NewDetailMeeting {
                         .frame(width: 12, height: 12)
                         .scaledToFit()
                         .padding(.trailing, 4)
-                    Text("\(Date.formatToTime(meeting.startTime)) - \(Date.formatToTime(meeting.endTime))")
+                    Text("\(Date.formatToTime(meeting.schedule.startTime)) - \(Date.formatToTime(meeting.schedule.endTime))")
                         .font(.system(size: 12))
                 }.foregroundColor(Color("gray50"))
                 Spacer()
@@ -133,7 +133,7 @@ extension NewDetailMeeting {
                     .scaledToFit()
                     .padding(.trailing, 4)
                 
-                Text("Voting Date : \(Date.formatToDate(meeting.date))")
+                Text("Voting Date : \(Date.formatToDate(meeting.schedule.date))")
                     .font(.system(size: 12))
                 Spacer()
             }.foregroundColor(Color("gray50"))
@@ -144,7 +144,7 @@ extension NewDetailMeeting {
                     .frame(width: 12, height: 12)
                     .scaledToFit()
                     .padding(.trailing, 4)
-                Text("Voting time: \(Date.formatToTime(meeting.startTime)) - \(Date.formatToTime(meeting.endTime))")
+                Text("Voting time: \(Date.formatToTime(meeting.schedule.startTime)) - \(Date.formatToTime(meeting.schedule.endTime))")
                     .font(.system(size: 12))
             }.foregroundColor(Color("gray50"))
         }.padding(.horizontal, 32)

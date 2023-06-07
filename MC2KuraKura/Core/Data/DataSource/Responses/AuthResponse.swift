@@ -6,9 +6,7 @@
 //
 
 import Foundation
-
-
-struct AuthResponse : Decodable{
+struct AuthResponse: Decodable {
     private enum CodingKeys: String, CodingKey {
         case accessToken =  "accessToken"
         case refreshToken = "refreshToken"

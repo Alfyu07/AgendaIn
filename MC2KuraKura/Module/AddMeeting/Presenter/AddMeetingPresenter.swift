@@ -17,7 +17,7 @@ class AddMeetingPresenter: ObservableObject {
     let steps: [String]
     
     // meeting form state
-
+    @Published var meeting: MeetingModel?
     
     // user state
     var user: UserModel = .sharedExample
@@ -28,4 +28,9 @@ class AddMeetingPresenter: ObservableObject {
         self.stepNumber = 3
         self.steps = ["Meeting\nDetail", "Meeting\nItem", "Confirm"]
     }
+    
+    func updateMeeting(meeting: MeetingModel) {
+       
+    }
+    
 }

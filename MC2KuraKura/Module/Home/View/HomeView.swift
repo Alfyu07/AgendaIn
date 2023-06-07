@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
-    @StateObject var presenter: HomePresenter
+    @ObservedObject var presenter: HomePresenter
     
     var body: some View {
         ScrollView {

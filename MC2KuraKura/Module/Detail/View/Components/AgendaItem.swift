@@ -39,8 +39,8 @@ struct AgendaItem: View {
                             .frame(width: 250, alignment: .leading)
                         
                         HStack(spacing: 0) {
-                            ProfileImage(imgUrlString: agenda.proposer.imgUrl, size: 24)
-                            Text(agenda.proposer.firstName)
+                            ProfileImage(firstName: agenda.firstName, size: 24)
+                            Text(agenda.firstName)
                                 .font(.system(size: 10))
                                 .foregroundColor(Color("gray50"))
                                 .padding(.leading, 2)

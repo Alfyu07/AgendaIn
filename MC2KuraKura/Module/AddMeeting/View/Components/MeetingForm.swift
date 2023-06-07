@@ -9,7 +9,6 @@ import SwiftUI
 
 struct MeetingForm: View {
     @ObservedObject var presenter: AddMeetingPresenter
-    
     @State var meetingName: String = ""
     @State var meetingDescription: String = ""
     @State var meetingLocation: String = ""
@@ -181,6 +180,9 @@ extension MeetingForm {
     
     var formButton: some View {
         CustomButton(label: "Next") {
+            
+            
+            
             presenter.stepIndex += 1
         }.padding(.vertical, 32)
     }

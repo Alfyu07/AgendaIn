@@ -39,9 +39,10 @@ struct AgendaFormCard: View {
                                     agendas.append(
                                         Agenda(
                                             id: UUID().uuidString,
+                                            proposerID: UserModel.sharedExample.id,
+                                            firstName: UserModel.sharedExample.firstName,
                                             title: agendaName,
-                                            description: agendaDescription,
-                                            proposer: .sharedExample
+                                            description: agendaDescription
                                         )
                                     )
                                     isAddingAgenda = false

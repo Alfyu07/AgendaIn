@@ -47,11 +47,12 @@ struct ReviewView: View {
     
 }
 
-extension ReviewView{
+extension ReviewView {
     var participantsInfo: some View {
         HStack(spacing: 0) {
             ForEach(0...1, id: \.self) { index in
-                ProfileImage(imgUrlString: presenter.meeting.participants[index].imgUrl, size: 70)
+                ProfileImage(firstName: presenter.meeting.participants[index]
+                             .firstName, size: 80)
                     .padding(.leading, -30)
             }.padding(.trailing, 10)
             VStack(alignment: .leading, spacing: 0) {
@@ -86,7 +87,7 @@ extension ReviewView{
                         .scaledToFit()
                         .padding(.trailing, 4)
                     
-                    Text(Date.formatToDate(presenter.meeting.date))
+                    Text(Date.formatToDate(presenter.meeting.schedule.date))
                         .font(.system(size: 12))
                 }.foregroundColor(Color("gray50"))
                 Spacer()
@@ -96,7 +97,7 @@ extension ReviewView{
                         .frame(width: 12, height: 12)
                         .scaledToFit()
                         .padding(.trailing, 4)
-                    Text("\(Date.formatToTime(presenter.meeting.startTime)) - \(Date.formatToTime(presenter.meeting.endTime))")
+                    Text("\(Date.formatToTime(presenter.meeting.schedule.startTime)) - \(Date.formatToTime(presenter.meeting.schedule.endTime))")
                         .font(.system(size: 12))
                 }.foregroundColor(Color("gray50"))
                 Spacer()

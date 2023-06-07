@@ -37,7 +37,7 @@ struct DetailView: View {
             if user.role == .participant {
                 Spacer().frame(height: 32)
                 
-                if Date.now < presenter.meeting.votingStartTime {
+                if Date.now < presenter.meeting.voteTime.startTime {
                     presenter.linkBuilder {
                         Text("Suggest meeting item")
                             .font(.system(size: 20, weight: .bold))
@@ -49,8 +49,8 @@ struct DetailView: View {
                             .padding(.horizontal, 32)
                     }
                     
-                } else if Date.now > presenter.meeting.votingStartTime
-                            && Date.now < presenter.meeting.votingEndTime {
+                } else if Date.now > presenter.meeting.voteTime.startTime
+                            && Date.now < presenter.meeting.voteTime.endTime {
                     presenter.linkBuilder {
                         Text("Vote")
                             .font(.system(size: 20, weight: .bold))
@@ -119,7 +119,7 @@ extension DetailView {
     var participantsInfo: some View {
         HStack(spacing: 0) {
             ForEach(0...1, id: \.self) { index in
-                ProfileImage(imgUrlString: presenter.meeting.participants[index].imgUrl, size: 70)
+                ProfileImage(firstName: presenter.meeting.participants[index].firstName, size: 70)
                     .padding(.leading, -30)
             }.padding(.trailing, 10)
             VStack(alignment: .leading, spacing: 0) {
@@ -153,7 +153,7 @@ extension DetailView {
                         .scaledToFit()
                         .padding(.trailing, 4)
                     
-                    Text(Date.formatToDate(presenter.meeting.date))
+                    Text(Date.formatToDate(presenter.meeting.schedule.date))
                         .font(.system(size: 12))
                 }.foregroundColor(Color("gray50"))
                 Spacer()
@@ -163,7 +163,7 @@ extension DetailView {
                         .frame(width: 12, height: 12)
                         .scaledToFit()
                         .padding(.trailing, 4)
-                    Text("\(Date.formatToTime(presenter.meeting.startTime)) - \(Date.formatToTime(presenter.meeting.endTime))")
+                    Text("\(Date.formatToTime(presenter.meeting.schedule.startTime)) - \(Date.formatToTime(presenter.meeting.schedule.endTime))")
                         .font(.system(size: 12))
                 }.foregroundColor(Color("gray50"))
                 Spacer()
@@ -205,7 +205,7 @@ extension DetailView {
                     .scaledToFit()
                     .padding(.trailing, 4)
                 
-                Text("Voting Date : \(Date.formatToDate(presenter.meeting.date))")
+                Text("Voting Date : \(Date.formatToDate(presenter.meeting.schedule.date))")
                     .font(.system(size: 12))
                 Spacer()
             }.foregroundColor(Color("gray50"))
@@ -216,7 +216,7 @@ extension DetailView {
                     .frame(width: 12, height: 12)
                     .scaledToFit()
                     .padding(.trailing, 4)
-                Text("Voting time: \(Date.formatToTime(presenter.meeting.startTime)) - \(Date.formatToTime(presenter.meeting.endTime))")
+                Text("Voting time: \(Date.formatToTime(presenter.meeting.schedule.startTime)) - \(Date.formatToTime(presenter.meeting.schedule.endTime))")
                     .font(.system(size: 12))
             }.foregroundColor(Color("gray50"))
         }.padding(.horizontal, 32)
