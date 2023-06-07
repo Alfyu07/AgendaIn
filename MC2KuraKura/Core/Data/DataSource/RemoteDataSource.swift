@@ -14,7 +14,7 @@ protocol RemoteDataSourceProtocol: AnyObject {
     func signUp(request: AuthRequest, result: @escaping (Result<AuthResponse, URLError>) -> Void)
 }
 
-final class RemoteDataSource: NSObject {
+final class RemoteDataSource: NSObject, URLSessionDelegate {
     private override init() {}
     
     static let sharedInstance: RemoteDataSource = RemoteDataSource()
@@ -39,7 +39,9 @@ extension RemoteDataSource: RemoteDataSourceProtocol {
         urlRequest.httpMethod = "POST"
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        let task = URLSession.shared.uploadTask(with: urlRequest, from: authData) { maybeData, maybeResponse, error in
+        let session = URLSession(configuration: URLSessionConfiguration.default, delegate: self, delegateQueue: OperationQueue.main)
+        
+        let task = session.uploadTask(with: urlRequest, from: authData) { maybeData, maybeResponse, error in
             
             if(error != nil) {
                 result(.failure(.addressUnreachable(url)))
@@ -73,4 +75,9 @@ extension RemoteDataSource: RemoteDataSourceProtocol {
         //        }
         //        task.resume()
     }
+    
+    func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
+        completionHandler(.useCredential, URLCredential(trust: challenge.protectionSpace.serverTrust!))
+    }
 }
+
