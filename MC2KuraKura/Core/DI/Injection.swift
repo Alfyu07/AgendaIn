@@ -52,4 +52,9 @@ final class Injection: NSObject {
         return MeetingInteractor(repository: repository)
     }
     
+    //review injection
+    func provideReview(for meeting: MeetingModel) -> ReviewUsecase {
+        let repository = provideMeetingRepository()
+        return ReviewInteractor(repository: repository, meeting: meeting)
+    }
 }

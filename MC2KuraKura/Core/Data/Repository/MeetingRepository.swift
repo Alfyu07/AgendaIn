@@ -9,6 +9,7 @@ import Foundation
 
 protocol MeetingRepositoryProtocol {
     func addMeeting()
+    func shareMeeting( result: @escaping (Result<MeetingModel, URLError>) -> Void)
 }
 
 class MeetingRepository: NSObject {
@@ -29,5 +30,16 @@ extension MeetingRepository: MeetingRepositoryProtocol {
     
     func addMeeting() {
         
+    }
+    func shareMeeting(result: @escaping (Result<MeetingModel, URLError>) -> Void) {
+        self.remote.shareMeeting { remoteResponse in
+            switch remoteResponse {
+            case .success(let response):
+                //map something here
+                print(response)
+            case .failure(let error):
+                result(.failure(error))
+            }
+        }
     }
 }

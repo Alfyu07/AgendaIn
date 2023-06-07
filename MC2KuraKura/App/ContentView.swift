@@ -26,7 +26,7 @@ struct ContentView: View {
 //            CodeTextField(numberOfFields: 4)
 //           MainView()
         }.fontDesign(.rounded)
-            .onAppear{
+            .onAppear {
                 print(accessToken)
                 print(refreshToken)
             }

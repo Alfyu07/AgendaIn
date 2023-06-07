@@ -10,6 +10,7 @@ import Foundation
 protocol MeetingUseCase {
     func addMeeting()
     func getAllMeetings()
+    
 }
 
 class MeetingInteractor: MeetingUseCase {
