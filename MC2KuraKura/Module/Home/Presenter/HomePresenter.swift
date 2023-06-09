@@ -30,8 +30,6 @@ class HomePresenter: ObservableObject {
         self.firstName = ""
     }
     
-    
-    
     func linkBuilder<Content: View>(
         for meeting: MeetingModel,
         ViewBuilder content: () -> Content
@@ -40,7 +38,7 @@ class HomePresenter: ObservableObject {
     }
     
     func getProfile() {
-        homeUseCase.getProfile() { result in
+        homeUseCase.getProfile { result in
             switch result {
             case .success(let user):
                 DispatchQueue.main.async {

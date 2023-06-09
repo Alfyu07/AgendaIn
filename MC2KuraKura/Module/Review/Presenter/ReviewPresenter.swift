@@ -1,21 +1,21 @@
 //
-//  DetailPresenter.swift
+//  ReviewPresenter.swift
 //  MC2KuraKura
 //
-//  Created by Wahyu Alfandi on 03/06/23.
+//  Created by Wahyu Alfandi on 07/06/23.
 //
 
 import SwiftUI
 
-class DetailPresenter: ObservableObject {
-    private let router = DetailRouter()
-    private let detailUseCase: DetailUseCase
+class ReviewPresenter: ObservableObject {
+    private let router = OnboardingRouter()
+    private let useCase: ReviewUsecase
     
     @Published var meeting: MeetingModel
     
-    init(detailUseCase: DetailUseCase) {
-        self.detailUseCase = detailUseCase
-        self.meeting = self.detailUseCase.getMeeting()
+    init(useCase: ReviewUsecase){
+        self.useCase = useCase
+        self.meeting = self.useCase.getMeeting()
     }
     
     func getParticipantsName() -> String {
@@ -37,12 +37,6 @@ class DetailPresenter: ObservableObject {
             }
         }
         return hasil
-    }
-    
-    func linkBuilder<Content: View>(
-      @ViewBuilder content: () -> Content
-    ) -> some View {
-      NavigationLink(destination: router.makeVoteView(for: meeting)) { content() }
     }
     
 }
