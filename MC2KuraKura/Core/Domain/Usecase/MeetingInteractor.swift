@@ -8,23 +8,34 @@
 import Foundation
 
 protocol MeetingUseCase {
-    func addMeeting()
+    func addMeeting(request: AddMeetingRequest, completion: @escaping (Result<MeetingModel, URLError>) -> Void)
     func getAllMeetings()
+    func getProfile(completion: @escaping (Result<UserModel, URLError>) -> Void)
     
 }
 
 class MeetingInteractor: MeetingUseCase {
-    private let repository: MeetingRepositoryProtocol
-    
-    init(repository: MeetingRepositoryProtocol) {
-        self.repository = repository
+    private let meetingRepository: MeetingRepositoryProtocol
+    private let userRepository: UserRepositoryProtocol
+    init(meetingRepository: MeetingRepositoryProtocol, userRepository: UserRepositoryProtocol) {
+        self.meetingRepository = meetingRepository
+        self.userRepository = userRepository
     }
     
-    func addMeeting() {
-        
+    
+    func addMeeting(request: AddMeetingRequest, completion: @escaping (Result<MeetingModel, URLError>) -> Void) {
+        meetingRepository.addMeeting(request: request) { result in
+            completion(result)
+        }
     }
+   
     
     func getAllMeetings() {
         
+    }
+    func getProfile(completion: @escaping (Result<UserModel, URLError>) -> Void) {
+        userRepository.getProfile { result in
+            completion(result)
+        }
     }
 }

@@ -12,7 +12,11 @@ enum VoteStatus: String {
     case closed = "Closed"
 }
 
-struct PICID: Equatable {
+struct PICID: Codable, Equatable {
+    private enum CodingKeys: String, CodingKey {
+        case userID = "userID"
+        case firstName = "firstName"
+    }
     let userID: String
     let firstName: String
     
@@ -30,7 +34,7 @@ struct MeetingModel: Equatable, Identifiable {
     let schedule: MeetingTime
     let voteTime: MeetingTime
     let participants: [UserModel]
-    let proposedAgendas: [Agenda]
+    let proposedAgendas: [AgendaModel]
     let status: VoteStatus
     
     static let sharedExample = MeetingModel(

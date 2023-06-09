@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AgendaItem: View {
-    let agenda: Agenda
+    let agenda: AgendaModel
     @State var isExpanding: Bool = true
     var body: some View {
         VStack(spacing: 0) {
@@ -37,6 +37,7 @@ struct AgendaItem: View {
                             .foregroundColor(Color("gray80"))
                             .padding(.top, 8)
                             .frame(width: 250, alignment: .leading)
+                            .fixedSize(horizontal: false, vertical: true)
                         
                         HStack(spacing: 0) {
                             ProfileImage(firstName: agenda.firstName, size: 24)
@@ -44,8 +45,8 @@ struct AgendaItem: View {
                                 .font(.system(size: 10))
                                 .foregroundColor(Color("gray50"))
                                 .padding(.leading, 2)
-                        }.offset(CGSize(width: -10, height: 20))
-                    }
+                        }.offset(CGSize(width: 0, height: 10))
+                    }.frame(minHeight: 40)
                 }
             }
         }

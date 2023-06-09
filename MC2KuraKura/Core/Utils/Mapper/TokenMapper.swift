@@ -8,7 +8,7 @@
 import Foundation
 
 final class TokenMapper {
-    static func mapTokenResponseToDomains(input authResponse: AuthResponse) ->  AuthCredential {
+    static func mapTokenResponseToDomains(input authResponse: AuthResponse) -> AuthCredential {
         
         return AuthCredential(
             accessToken: authResponse.accessToken ?? "",

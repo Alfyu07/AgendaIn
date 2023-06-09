@@ -17,20 +17,32 @@ struct AddMeetingRequest: Codable {
         case agenda = "agenda"
     }
     
-    let title: String?
-    let description: String?
-    let location: String?
-    let schedule: MeetingTime?
-    let voteTime: MeetingTime?
-    let agenda: [Agenda]
-    
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(title, forKey: .title)
-        try container.encode(description, forKey: .description)
-        try container.encode(location, forKey: .location)
-        try container.encode(schedule, forKey: .schedule)
-        try container.encode(voteTime, forKey: .voteTime)
-        try container.encode(agenda, forKey: .agenda)
+    var title: String?
+    var description: String?
+    var location: String?
+    var schedule: MeetingTimeRequest?
+    var voteTime: MeetingTimeRequest?
+    var agenda: [AddAgendaRequest]
+}
+
+struct MeetingTimeRequest: Codable{
+    private enum CodingKeys: String, CodingKey {
+        case date =  "date"
+        case startTime = "startTime"
+        case endTime = "endTime"
     }
+    
+    var date: String
+    var startTime: String
+    var endTime: String
+}
+
+struct AddAgendaRequest: Codable {
+    private enum CodingKeys: String, CodingKey{
+        case title =  "title"
+        case description = "description"
+    }
+    
+    var title: String?
+    var description: String?
 }

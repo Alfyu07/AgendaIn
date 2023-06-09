@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct AgendaForm: View {
-    @Binding var stepIndex: Int
+    @ObservedObject var presenter: AddMeetingPresenter
     
-    @State var agendas: [Agenda] = []
+    @State var agendas: [AgendaModel] = []
     @State var isAddingAgenda = false
     @State var isEditignAgenda = false
     
@@ -18,7 +18,9 @@ struct AgendaForm: View {
         VStack(alignment: .center, spacing: 0) {
             if agendas.isEmpty {
                 if isAddingAgenda {
-                    AgendaFormCard(agendas: $agendas, isAddingAgenda: $isAddingAgenda)
+                    AgendaFormCard(
+                        presenter: presenter,
+                        agendas: $agendas, isAddingAgenda: $isAddingAgenda)
                 } else {
                     VStack(spacing: 0) {
                         Text("You dont have meeting item")
@@ -39,7 +41,8 @@ struct AgendaForm: View {
                 }
                 
                 if isAddingAgenda {
-                    AgendaFormCard(agendas: $agendas, isAddingAgenda: $isAddingAgenda)
+                    AgendaFormCard( presenter: presenter,
+                        agendas: $agendas, isAddingAgenda: $isAddingAgenda)
                         .padding(.top, 12)
                 }
             }
@@ -61,7 +64,12 @@ struct AgendaForm: View {
             }.padding(.top, 12)
 
             CustomButton(label: "Next") {
-                stepIndex += 1
+                presenter.agendas = agendas
+                let agendaRequests = agendas.map { agenda in
+                    AddAgendaRequest(title: agenda.title, description: agenda.description)
+                }
+                presenter.meeting?.agenda = agendaRequests
+                presenter.stepIndex += 1
             }.padding(.top, 80)
                 .padding(.bottom, 32)
             
@@ -75,6 +83,6 @@ struct AgendaForm: View {
 
 struct AgendaForm_Previews: PreviewProvider {
     static var previews: some View {
-        AgendaForm(stepIndex: .constant(1))
+        AgendaForm(presenter: AddMeetingPresenter(meetingUseCase: Injection.init().provideMeeting()))
     }
 }

@@ -33,7 +33,7 @@ struct MeetingCard: View {
                             .scaledToFit()
                             .padding(.trailing, 4)
                         
-                        Text(Date.formatToDate(meeting.schedule.date))
+                        Text(Date.formatToDateString(from: meeting.schedule.date))
                             .font(.system(size: 12))
                     }.foregroundColor(Color("gray50"))
                     Spacer()
@@ -44,7 +44,7 @@ struct MeetingCard: View {
                             .scaledToFit()
                             .padding(.trailing, 4)
                         
-                        Text("\(Date.formatToTime(meeting.schedule.startTime)) - \(Date.formatToTime(meeting.schedule.endTime))")
+                        Text("\(Date.formatToTimeString(from: meeting.schedule.startTime)) - \(Date.formatToTimeString(from: meeting.schedule.endTime))")
                             .font(.system(size: 12))
                     }.foregroundColor(Color("gray50"))
                 }

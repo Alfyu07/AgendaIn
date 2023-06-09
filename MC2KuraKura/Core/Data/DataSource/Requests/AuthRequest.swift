@@ -18,5 +18,3 @@ struct AuthRequest: Codable {
     let firstName: String?
     let lastName: String?
 }
-
-

@@ -22,6 +22,7 @@ struct MC2KuraKuraApp: App {
                 .environmentObject(onboardingPresenter)
                 .environmentObject(homePresenter)
                 .environmentObject(meetingPresenter)
+                
         }
     }
 }

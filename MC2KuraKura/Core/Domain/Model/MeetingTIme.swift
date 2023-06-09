@@ -8,6 +8,11 @@
 import Foundation
 
 struct MeetingTime: Codable, Equatable {
+    private enum CodingKeys: String, CodingKey {
+        case date =  "date"
+        case startTime = "startTime"
+        case endTime = "endTime"
+    }
     var date: Date
     var startTime: Date
     var endTime: Date

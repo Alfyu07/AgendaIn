@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct AgendaFormCard: View {
+    @ObservedObject var presenter: AddMeetingPresenter
+    
     @State var agendaName: String = ""
     @State var agendaDescription: String = ""
-    @Binding var agendas: [Agenda]
+    @Binding var agendas: [AgendaModel]
     @Binding var isAddingAgenda: Bool
     
     var body: some View {
@@ -37,10 +39,10 @@ struct AgendaFormCard: View {
                                 Button("Done") {
                                     
                                     agendas.append(
-                                        Agenda(
+                                        AgendaModel(
                                             id: UUID().uuidString,
-                                            proposerID: UserModel.sharedExample.id,
-                                            firstName: UserModel.sharedExample.firstName,
+                                            proposerID: presenter.user.id,
+                                            firstName: presenter.user.firstName,
                                             title: agendaName,
                                             description: agendaDescription
                                         )
@@ -49,6 +51,8 @@ struct AgendaFormCard: View {
                                     
                                     hideKeyboard()
                                 }
+                                
+                                
                             }
                             
                         }
@@ -77,6 +81,8 @@ struct AgendaFormCard: View {
 
 struct AgendaFormCard_Previews: PreviewProvider {
     static var previews: some View {
-        AgendaFormCard(agendas: .constant([]), isAddingAgenda: .constant(false))
+        AgendaFormCard(presenter: AddMeetingPresenter(meetingUseCase: Injection.init().provideMeeting()),
+                       agendas: .constant([]), isAddingAgenda: .constant(false)
+        )
     }
 }

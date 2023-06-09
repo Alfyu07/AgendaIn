@@ -87,7 +87,7 @@ extension ReviewView {
                         .scaledToFit()
                         .padding(.trailing, 4)
                     
-                    Text(Date.formatToDate(presenter.meeting.schedule.date))
+                    Text(Date.formatToDateString(from: presenter.meeting.schedule.date))
                         .font(.system(size: 12))
                 }.foregroundColor(Color("gray50"))
                 Spacer()
@@ -97,7 +97,7 @@ extension ReviewView {
                         .frame(width: 12, height: 12)
                         .scaledToFit()
                         .padding(.trailing, 4)
-                    Text("\(Date.formatToTime(presenter.meeting.schedule.startTime)) - \(Date.formatToTime(presenter.meeting.schedule.endTime))")
+                    Text("\(Date.formatToTimeString(from: presenter.meeting.schedule.startTime)) - \(Date.formatToTimeString(from: presenter.meeting.schedule.endTime))")
                         .font(.system(size: 12))
                 }.foregroundColor(Color("gray50"))
                 Spacer()

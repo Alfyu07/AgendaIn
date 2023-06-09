@@ -14,6 +14,7 @@ protocol RemoteDataSourceProtocol: AnyObject {
     func signUp(request: AuthRequest, result: @escaping (Result<AuthResponse, URLError>) -> Void)
     func shareMeeting(result: @escaping (Result<AuthResponse, URLError>) -> Void)
     func getProfile(result: @escaping (Result<GetUserResponse, URLError>) -> Void)
+    func addMeeting(request: AddMeetingRequest, result: @escaping (Result<AddMeetingResponse, URLError>) -> Void)
 }
 
 final class RemoteDataSource: NSObject, URLSessionDelegate {
@@ -27,6 +28,7 @@ final class RemoteDataSource: NSObject, URLSessionDelegate {
 }
 
 extension RemoteDataSource: RemoteDataSourceProtocol {
+    
     func getProfile(result: @escaping (Result<GetUserResponse, URLError>) -> Void) {
         guard let url = URL(string: Endpoints.Gets.user.url) else { return }
         var urlRequest = URLRequest(url: url)
@@ -53,12 +55,40 @@ extension RemoteDataSource: RemoteDataSourceProtocol {
         task.resume()
     }
     
-    
-    
-    
-    
     func getAllMeetings(result: (Result<[MeetingModel], URLError>) -> Void) {
         
+    }
+    
+    func addMeeting(request: AddMeetingRequest, result: @escaping (Result<AddMeetingResponse, URLError>) -> Void) {
+        print(request)
+        guard let meetingData = try? JSONEncoder().encode(request) else {return}
+        print(String(data: meetingData, encoding: .utf8))
+        
+        guard let url = URL(string: Endpoints.Gets.meeting.url) else {return}
+        var urlRequest = URLRequest(url: url)
+        
+        urlRequest.httpMethod = "POST"
+        urlRequest.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let session = URLSession(configuration: URLSessionConfiguration.default, delegate: self, delegateQueue: OperationQueue.main)
+        
+        let task = session.uploadTask(with: urlRequest, from: meetingData) { maybeData, maybeResponse, error in
+            
+            if error != nil {
+                result(.failure(.addressUnreachable(url)))
+            } else if let data = maybeData, let response = maybeResponse as? HTTPURLResponse, response.statusCode == 200 {
+                let decoder = JSONDecoder()
+                
+                do {
+                    let data = try decoder.decode(AddMeetingResponse.self, from: data)
+                    result(.success(data))
+                } catch {
+                    result(.failure(.invalidResponse))
+                }
+            }
+        }
+        task.resume() 
     }
     
     func signUp(
@@ -94,7 +124,7 @@ extension RemoteDataSource: RemoteDataSourceProtocol {
         }
         task.resume()
         
-
+        
         //        let task = URLSession.shared.uploadTask(with: url, from: authData) { maybeData, maybeResponse, maybeError in
         //          if maybeError != nil {
         //            result(.failure(.addressUnreachable(url)))
