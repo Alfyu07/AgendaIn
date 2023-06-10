@@ -13,7 +13,7 @@ class ReviewPresenter: ObservableObject {
     
     @Published var meeting: MeetingModel
     
-    init(useCase: ReviewUsecase){
+    init(useCase: ReviewUsecase) {
         self.useCase = useCase
         self.meeting = self.useCase.getMeeting()
     }

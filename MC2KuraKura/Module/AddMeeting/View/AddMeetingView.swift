@@ -13,49 +13,47 @@ struct AddMeetingView: View {
     @StateObject var presenter: AddMeetingPresenter
     
     var body: some View {
-        if presenter.shouldRedirectToDetailView {
-            DetailView(presenter: DetailPresenter(detailUseCase: Injection.init().provideDetail(for: presenter.addMeetingResponse!)))
-        } else {
-            ScrollView {
-                stepper
-                switch presenter.stepIndex {
-                case 0:
-                    MeetingForm(presenter: presenter)
-                case 1:
-                    AgendaForm(presenter: presenter)
-                case 2:
-                    NewDetailMeeting(presenter: presenter)
-                default:
-                    MeetingForm(presenter: presenter)
-                }
-            }.fontDesign(.rounded)
-                .background(Color("gray5"))
-                .navigationTitle(Text("Meeting Detail"))
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarLeading) {
-                        Button {
-                            if presenter.stepIndex == 0 {
-                                presentationMode.wrappedValue.dismiss()
-                                presenter.meeting = nil
-                            } else {
-                                presenter.stepIndex -= 1
-                            }
-                            
-                        } label: {
-                            Image(systemName: "chevron.backward")
-                                .foregroundColor(Color("blue50"))
+        
+        ScrollView {
+            stepper
+            switch presenter.stepIndex {
+            case 0:
+                MeetingForm(presenter: presenter)
+            case 1:
+                AgendaForm(presenter: presenter)
+            case 2:
+                NewDetailMeeting(presenter: presenter)
+            default:
+                MeetingForm(presenter: presenter)
+            }
+        }.fontDesign(.rounded)
+            .background(Color("gray5"))
+            .navigationTitle(Text("Meeting Detail"))
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                        if presenter.stepIndex == 0 {
+                            presentationMode.wrappedValue.dismiss()
+                            presenter.meeting = nil
+                        } else {
+                            presenter.stepIndex -= 1
                         }
+                        
+                    } label: {
+                        Image(systemName: "chevron.backward")
+                            .foregroundColor(Color("blue50"))
                     }
                 }
-                .navigationTitle("Add New Meeting")
-                .navigationBarBackButtonHidden(false)
-                .navigationBarTitleDisplayMode(.inline)
-                .ignoresSafeArea()
-                .navigationBarBackButtonHidden(true)
-                .onAppear {
-                    presenter.getProfile()
-                }
-        }
+            }
+            .navigationTitle("Add New Meeting")
+            .navigationBarBackButtonHidden(false)
+            .navigationBarTitleDisplayMode(.inline)
+            .ignoresSafeArea()
+            .navigationBarBackButtonHidden(true)
+            .onAppear {
+                presenter.getProfile()
+            }
+        
     }
 }
 // 16 + 32

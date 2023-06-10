@@ -19,6 +19,7 @@ struct ContentView: View {
         NavigationStack {
             if !accessToken.isEmpty && !refreshToken.isEmpty {
                 MainView(homePresenter: homePresenter, meetingPresenter: meetingPresenter)
+                
             } else {
                 OnboardingView(presenter: onboardingPresenter)
             }

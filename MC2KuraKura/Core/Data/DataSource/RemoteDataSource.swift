@@ -14,7 +14,8 @@ protocol RemoteDataSourceProtocol: AnyObject {
     func signUp(request: AuthRequest, result: @escaping (Result<AuthResponse, URLError>) -> Void)
     func shareMeeting(result: @escaping (Result<AuthResponse, URLError>) -> Void)
     func getProfile(result: @escaping (Result<GetUserResponse, URLError>) -> Void)
-    func addMeeting(request: AddMeetingRequest, result: @escaping (Result<AddMeetingResponse, URLError>) -> Void)
+    func addMeeting(request: AddMeetingRequest, result: @escaping (Result<MeetingResponse, URLError>) -> Void)
+    func getMeetingById(id: String, result: @escaping (Result<MeetingResponse, URLError>) -> Void)
 }
 
 final class RemoteDataSource: NSObject, URLSessionDelegate {
@@ -23,11 +24,14 @@ final class RemoteDataSource: NSObject, URLSessionDelegate {
     
     private override init() {}
     
-    
     static let sharedInstance: RemoteDataSource = RemoteDataSource()
 }
 
 extension RemoteDataSource: RemoteDataSourceProtocol {
+    func getMeetingById(id: String, result: @escaping (Result<MeetingResponse, URLError>) -> Void) {
+        
+    }
+    
     
     func getProfile(result: @escaping (Result<GetUserResponse, URLError>) -> Void) {
         guard let url = URL(string: Endpoints.Gets.user.url) else { return }
@@ -40,7 +44,7 @@ extension RemoteDataSource: RemoteDataSourceProtocol {
         
         let task = session.dataTask(with: urlRequest) { maybeData, maybeResponse, error in
             
-            if(error != nil) {
+            if error != nil {
                 result(.failure(.addressUnreachable(url)))
             } else if let data = maybeData, let response = maybeResponse as? HTTPURLResponse, response.statusCode == 200 {
                 let decoder = JSONDecoder()
@@ -59,10 +63,10 @@ extension RemoteDataSource: RemoteDataSourceProtocol {
         
     }
     
-    func addMeeting(request: AddMeetingRequest, result: @escaping (Result<AddMeetingResponse, URLError>) -> Void) {
+    func addMeeting(request: AddMeetingRequest, result: @escaping (Result<MeetingResponse, URLError>) -> Void) {
         print(request)
         guard let meetingData = try? JSONEncoder().encode(request) else {return}
-        print(String(data: meetingData, encoding: .utf8))
+//        print(String(data: meetingData, encoding: .utf8))
         
         guard let url = URL(string: Endpoints.Gets.meeting.url) else {return}
         var urlRequest = URLRequest(url: url)
@@ -81,7 +85,7 @@ extension RemoteDataSource: RemoteDataSourceProtocol {
                 let decoder = JSONDecoder()
                 
                 do {
-                    let data = try decoder.decode(AddMeetingResponse.self, from: data)
+                    let data = try decoder.decode(MeetingResponse.self, from: data)
                     result(.success(data))
                 } catch {
                     result(.failure(.invalidResponse))

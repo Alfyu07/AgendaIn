@@ -34,7 +34,7 @@ struct MeetingModel: Equatable, Identifiable {
     let schedule: MeetingTime
     let voteTime: MeetingTime
     let participants: [UserModel]
-    let proposedAgendas: [AgendaModel]
+    var proposedAgendas: [AgendaModel]
     let status: VoteStatus
     
     static let sharedExample = MeetingModel(
@@ -47,7 +47,7 @@ struct MeetingModel: Equatable, Identifiable {
         schedule: .scheduleExample,
         voteTime: .voteTimeExample,
         participants: [.sharedExample, .sharedExample2],
-        proposedAgendas: [.sharedExample, .sharedExample2],
+        proposedAgendas: [.sharedExample, .sharedExample2, .sharedExample3],
         status: .open
     )
     static let sharedExample2 = MeetingModel(
@@ -60,7 +60,8 @@ struct MeetingModel: Equatable, Identifiable {
         schedule: .scheduleExample,
         voteTime: .voteTimeExample,
         participants: [.sharedExample, .sharedExample2],
-        proposedAgendas: [.sharedExample, .sharedExample2],
+        proposedAgendas: [.sharedExample, .sharedExample2, .sharedExample3],
         status: .open
     )
+    
 }

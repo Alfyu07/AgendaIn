@@ -76,7 +76,7 @@ class AddMeetingPresenter: ObservableObject {
             
             case .failure(let error):
                 DispatchQueue.main.async {
-                    print(error)
+                    print("add meeting error : \(error)")
                     self.errorMessage = error.localizedDescription
                     self.loadingState = false
                 }
@@ -84,10 +84,8 @@ class AddMeetingPresenter: ObservableObject {
         }
     }
     
-    func linkBuilder<Content: View>(
-        for meeting: MeetingModel,
-        ViewBuilder content: () -> Content
-    ) -> some View {
-        NavigationLink(destination: router.makeDetailView(for: meeting)) { content() }
+    func detailView(meeting: MeetingModel) -> some View {
+        router.makeDetailView(for: meeting)
     }
+    
 }

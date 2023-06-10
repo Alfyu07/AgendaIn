@@ -33,9 +33,8 @@ extension MeetingRepository: MeetingRepositoryProtocol {
         self.remote.addMeeting(request: request) { remoteResponse in
             switch remoteResponse {
             case .success(let response):
-                
-                let meeting = MeetingModel(id: response.id ?? "" , picID: response.PICID ?? PICID(userID: "", firstName: ""), title: response.title ?? "", description: response.description ?? "", code: response.code ?? "", location: response.location ?? "", schedule: response.schedule ?? MeetingTime(date: Date.now, startTime: Date.now, endTime: Date.now), voteTime: response.voteTime ?? MeetingTime(date: Date.now, startTime: Date.now, endTime: Date.now), participants: [], proposedAgendas: response.agenda, status: .open)
-                
+                let meeting = MeetingMapper.mapAddMeetingResponseToDomain(input: response)
+
                 result(.success(meeting))
                 
             case .failure(let error):
