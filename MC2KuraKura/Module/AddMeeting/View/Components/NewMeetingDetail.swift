@@ -9,6 +9,7 @@ import SwiftUI
 
 struct NewDetailMeeting: View {
     @ObservedObject var presenter: AddMeetingPresenter
+    @EnvironmentObject var envMeeting: MeetingModel
     
     var body: some View {
         if presenter.loadingState {
@@ -40,7 +41,7 @@ extension NewDetailMeeting {
     
     var navigationToDetail: some View {
         
-        NavigationLink(destination: presenter.detailView(meeting: presenter.addMeetingResponse ?? .sharedExample), isActive: $presenter.shouldRedirectToDetailView) {
+        NavigationLink(destination: presenter.detailView(meeting: presenter.envMeeting ?? MeetingModel()), isActive: $presenter.shouldRedirectToDetailView) {
         }
     }
     
@@ -145,7 +146,7 @@ extension NewDetailMeeting {
 struct NewDetailMeeting_Previews: PreviewProvider {
     static var previews: some View {
         NewDetailMeeting(
-            presenter: AddMeetingPresenter(meetingUseCase: Injection.init().provideMeeting())
+            presenter: AddMeetingPresenter(meetingUseCase: Injection.init().provideMeeting(), envMeeting: .sharedExample)
         )
     }
 }

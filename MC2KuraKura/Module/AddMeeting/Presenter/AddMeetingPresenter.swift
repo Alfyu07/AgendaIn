@@ -25,18 +25,19 @@ class AddMeetingPresenter: ObservableObject {
     
     // meeting form state
     @Published var meeting: AddMeetingRequest?
-    @Published var addMeetingResponse: MeetingModel?
+    var envMeeting: MeetingModel
     @Published var agendas: [AgendaModel] = []
     
     // user state
     @Published var firstName: String = ""
     @Published var user: UserModel = UserModel(id: "", firstName: "", lastName: "", email: "'", role: .participant, imgUrl: "")
     
-    init(meetingUseCase: MeetingUseCase) {
+    init(meetingUseCase: MeetingUseCase, envMeeting: MeetingModel) {
         self.meetingUseCase = meetingUseCase
         self.stepIndex = 0
         self.stepNumber = 3
         self.steps = ["Meeting\nDetail", "Meeting\nItem", "Confirm"]
+        self.envMeeting = envMeeting
     }
     
     func updateMeeting(meeting: AddMeetingRequest) {
@@ -69,7 +70,8 @@ class AddMeetingPresenter: ObservableObject {
             switch result {
             case .success(let meeting):
                 DispatchQueue.main.async {
-                    self.addMeetingResponse = meeting
+                    self.envMeeting = meeting
+                    print(meeting)
                     self.shouldRedirectToDetailView = true
                     self.loadingState = false
                 }

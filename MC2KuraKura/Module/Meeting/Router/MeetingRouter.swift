@@ -9,7 +9,7 @@ import SwiftUI
 class MeetingRouter {
     func makeAddMeetingView() -> some View {
         let meetingUseCase = Injection.init().provideMeeting()
-        let addMeetingPresenter = AddMeetingPresenter(meetingUseCase: meetingUseCase)
+        let addMeetingPresenter = AddMeetingPresenter(meetingUseCase: meetingUseCase, envMeeting: <#T##MeetingModel#>)
         return AddMeetingView(presenter: addMeetingPresenter)
     }
 }

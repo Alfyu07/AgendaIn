@@ -64,9 +64,7 @@ extension RemoteDataSource: RemoteDataSourceProtocol {
     }
     
     func addMeeting(request: AddMeetingRequest, result: @escaping (Result<MeetingResponse, URLError>) -> Void) {
-        print(request)
         guard let meetingData = try? JSONEncoder().encode(request) else {return}
-//        print(String(data: meetingData, encoding: .utf8))
         
         guard let url = URL(string: Endpoints.Gets.meeting.url) else {return}
         var urlRequest = URLRequest(url: url)

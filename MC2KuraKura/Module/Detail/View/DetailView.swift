@@ -117,19 +117,24 @@ extension DetailView {
         .padding(.top, 100)
     }
     var participantsInfo: some View {
-        HStack(spacing: 0) {
-            ForEach(0...1, id: \.self) { index in
-                ProfileImage(firstName: presenter.meeting.participants[index].firstName, size: 70)
-                    .padding(.leading, -30)
-            }.padding(.trailing, 10)
-            VStack(alignment: .leading, spacing: 0) {
-                Text("\(presenter.meeting.participants.count) Participant")
-                    .foregroundColor(Color("blue90"))
-                HStack {
-                    Text(presenter.getParticipantsName())
-                        .font(.system(size: 16, weight: .semibold))
+        HStack(spacing: 0) {            
+            if presenter.meeting.participants.isEmpty {
+                Text("No participants")
+            } else {
+                ForEach(0...1, id: \.self) { index in
+                    ProfileImage(firstName: presenter.meeting.participants[index].firstName, size: 70)
+                        .padding(.leading, -30)
+                }.padding(.trailing, 10)
+                VStack(alignment: .leading, spacing: 0) {
+                    Text("\(presenter.meeting.participants.count) Participant")
+                        .foregroundColor(Color("blue90"))
+                    HStack {
+                        Text(presenter.getParticipantsName())
+                            .font(.system(size: 16, weight: .semibold))
+                    }
                 }
             }
+            
         }
         .padding(.top, user.role == .pic ? 20 : 100)
         .padding(.horizontal, 32)

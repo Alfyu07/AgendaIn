@@ -90,8 +90,8 @@ extension AddMeetingView {
     }
 }
 
-struct AddMeetingView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddMeetingView(presenter: AddMeetingPresenter(meetingUseCase: Injection.init().provideMeeting()))
-    }
-}
+//struct AddMeetingView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AddMeetingView(presenter: AddMeetingPresenter(meetingUseCase: Injection.init().provideMeeting()))
+//    }
+//}

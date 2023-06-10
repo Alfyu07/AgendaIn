@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Voter: Codable , Equatable{
+struct Voter: Codable, Equatable{
     private enum CodingKeys: String, CodingKey {
         case userId = "userId"
         case firstName = "firstName"
