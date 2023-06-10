@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		165893822A3177A200F6C689 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165893812A3177A200F6C689 /* NotificationView.swift */; };
+		165893842A3187BB00F6C689 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165893832A3187BB00F6C689 /* Notification.swift */; };
+		165893862A31891300F6C689 /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165893852A31891300F6C689 /* NotificationModel.swift */; };
 		A136BE1C2A241ECD00B2805F /* MC2KuraKuraApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A136BE1B2A241ECD00B2805F /* MC2KuraKuraApp.swift */; };
 		A136BE1E2A241ECD00B2805F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A136BE1D2A241ECD00B2805F /* ContentView.swift */; };
 		A136BE202A241ECE00B2805F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A136BE1F2A241ECE00B2805F /* Assets.xcassets */; };
@@ -72,6 +75,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		165893812A3177A200F6C689 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
+		165893832A3187BB00F6C689 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		165893852A31891300F6C689 /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
 		A136BE182A241ECD00B2805F /* MC2KuraKura.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MC2KuraKura.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A136BE1B2A241ECD00B2805F /* MC2KuraKuraApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MC2KuraKuraApp.swift; sourceTree = "<group>"; };
 		A136BE1D2A241ECD00B2805F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -135,7 +141,6 @@
 		CB1478822A30CE75002AC54A /* UserMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMapper.swift; sourceTree = "<group>"; };
 		CB3083C52A2E1682009D775A /* MC2KuraKura.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MC2KuraKura.entitlements; sourceTree = "<group>"; };
 		CB3083C72A2E1756009D775A /* AuthComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthComponent.swift; sourceTree = "<group>"; };
-		CBE755462A2FC56F0077026C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +155,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1658937D2A31776500F6C689 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				165893802A31778700F6C689 /* Presenter */,
+				1658937F2A31777800F6C689 /* Router */,
+				1658937E2A31777000F6C689 /* View */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
+		1658937E2A31777000F6C689 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				165893812A3177A200F6C689 /* NotificationView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1658937F2A31777800F6C689 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		165893802A31778700F6C689 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				165893832A3187BB00F6C689 /* Notification.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
 		A136BE0F2A241ECD00B2805F = {
 			isa = PBXGroup;
 			children = (
@@ -170,7 +208,6 @@
 		A136BE1A2A241ECD00B2805F /* MC2KuraKura */ = {
 			isa = PBXGroup;
 			children = (
-				CBE755462A2FC56F0077026C /* Info.plist */,
 				CB3083C52A2E1682009D775A /* MC2KuraKura.entitlements */,
 				A1B474002A2420BC005ABCB5 /* App */,
 				A1B474012A2420C3005ABCB5 /* Core */,
@@ -225,6 +262,7 @@
 		A1B474022A2420C9005ABCB5 /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				1658937D2A31776500F6C689 /* Notification */,
 				A1B4740E2A2426FF005ABCB5 /* Auth */,
 				A1DFF5B22A2CA79400117D9F /* Profile */,
 				A1DFF5AE2A2CA72900117D9F /* Meeting */,
@@ -430,6 +468,7 @@
 				A1B474382A26C20D005ABCB5 /* UserModel.swift */,
 				A1B474462A28A5D5005ABCB5 /* Agenda.swift */,
 				A1CF00B02A2E0AD4003C82CD /* AuthCredential.swift */,
+				165893852A31891300F6C689 /* NotificationModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -766,6 +805,7 @@
 				A1B474642A2ABE91005ABCB5 /* ProfileImage.swift in Sources */,
 				A1B474732A2B23B0005ABCB5 /* DetailRouter.swift in Sources */,
 				A1DFF5AD2A2CA71400117D9F /* MeetingView.swift in Sources */,
+				165893822A3177A200F6C689 /* NotificationView.swift in Sources */,
 				A1CF00AD2A2DA99F003C82CD /* AuthRequest.swift in Sources */,
 				A1CF00AF2A2E0A6C003C82CD /* TokenMapper.swift in Sources */,
 				A1B474892A2B38EE005ABCB5 /* AddMeetingRouter.swift in Sources */,
@@ -797,6 +837,8 @@
 				A1DFF5B72A2CA7B600117D9F /* ProfileView.swift in Sources */,
 				A1B474182A242AC8005ABCB5 /* Color+Ext.swift in Sources */,
 				A1B4742B2A257CE9005ABCB5 /* OnboardingPresenter.swift in Sources */,
+				165893862A31891300F6C689 /* NotificationModel.swift in Sources */,
+				165893842A3187BB00F6C689 /* Notification.swift in Sources */,
 				A1B4747A2A2B2CA5005ABCB5 /* VoteRepository.swift in Sources */,
 				A1B474372A26C033005ABCB5 /* APICall.swift in Sources */,
 				A1B474522A299088005ABCB5 /* HomeRouter.swift in Sources */,
