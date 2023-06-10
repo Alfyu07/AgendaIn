@@ -8,7 +8,6 @@
 import SwiftUI
 import AuthenticationServices
 
-
 struct AppleLoginButton: View {
     @Environment(\.colorScheme) var colorScheme
     @StateObject private var loginViewModel = LoginViewModel()
@@ -26,8 +25,6 @@ struct AppleLoginButton: View {
         .cornerRadius(8)
     }
 }
-
-
 
 class HomeViewModel: ObservableObject {
     @Published var id: String = ""

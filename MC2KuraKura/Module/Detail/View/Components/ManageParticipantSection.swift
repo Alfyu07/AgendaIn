@@ -72,7 +72,7 @@ struct ManageParticipantSection: View {
                 ForEach(presenter.meeting.participants) { participant in
                     HStack {
                         ProfileImage(
-                            imgUrlString: participant.imgUrl,
+                            firstName: participant.firstName,
                             size: 32
                         )
                         Text(participant.firstName)

@@ -9,7 +9,6 @@ import SwiftUI
 
 struct MeetingForm: View {
     @ObservedObject var presenter: AddMeetingPresenter
-    
     @State var meetingName: String = ""
     @State var meetingDescription: String = ""
     @State var meetingLocation: String = ""
@@ -28,6 +27,19 @@ struct MeetingForm: View {
             meetingTimeInputGroup
             votingTimeInputGroup
             formButton
+        }
+        .onAppear {
+//            if presenter.meeting != nil {
+//                self.meetingName = presenter.meeting?.title ?? ""
+//                self.meetingDescription = presenter.meeting?.description ?? ""
+//                self.meetingLocation = presenter.meeting?.location ?? ""
+//                self.meetingDate = presenter.meeting?.schedule?.date ?? Date.now
+//                self.meetingStarts = presenter.meeting?.schedule?.startTime ?? Date.now
+//                self.meetingEnds = presenter.meeting?.schedule?.endTime ?? Date.now
+//                self.votingDate = presenter.meeting?.voteTime?.date ?? Date.now
+//                self.votingStarts = presenter.meeting?.voteTime?.startTime ?? Date.now
+//                self.votingEnds = presenter.meeting?.voteTime?.endTime ?? Date.now
+//            }
         }
         .background(Color("gray5"))
         .padding(.horizontal, 32)
@@ -56,7 +68,7 @@ extension MeetingForm {
             Text("Meeting Description")
                 .font(.system(size: 20, weight: .medium))
                 .foregroundColor(Color("gray80"))
-                
+            
             ZStack(alignment: .topLeading) {
                 TextEditor(text: $meetingDescription)
                     .padding(.vertical, 12)
@@ -181,6 +193,16 @@ extension MeetingForm {
     
     var formButton: some View {
         CustomButton(label: "Next") {
+            let newMeeting = AddMeetingRequest(
+                title: meetingName,
+                description: meetingDescription,
+                location: meetingLocation,
+                schedule: MeetingTimeRequest(date: Date.formatToISOString(meetingDate),
+                startTime: Date.formatToISOString(meetingStarts), endTime: Date.formatToISOString(meetingEnds)),
+                voteTime: MeetingTimeRequest(date: Date.formatToISOString(votingDate), startTime: Date.formatToISOString(votingStarts), endTime: Date.formatToISOString(votingEnds)),
+                agenda: []
+            )
+            presenter.updateMeeting(meeting: newMeeting)
             presenter.stepIndex += 1
         }.padding(.vertical, 32)
     }

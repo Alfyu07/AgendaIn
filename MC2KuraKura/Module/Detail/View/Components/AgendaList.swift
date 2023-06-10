@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AgendaList: View {
-    let proposedAgendas: [Agenda]
+    let proposedAgendas: [AgendaModel]
 
     var body: some View {
         VStack(spacing: 0) {

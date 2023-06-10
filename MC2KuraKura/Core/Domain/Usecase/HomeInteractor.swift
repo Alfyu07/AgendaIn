@@ -18,7 +18,7 @@ class HomeInteractor: HomeUseCase {
         self.userRepository = userRepository
     }
     
-    func getProfile(completion:  @escaping (Result<UserModel, URLError>) -> Void) {
+    func getProfile(completion: @escaping (Result<UserModel, URLError>) -> Void) {
         userRepository.getProfile { result in
             completion(result)
         }

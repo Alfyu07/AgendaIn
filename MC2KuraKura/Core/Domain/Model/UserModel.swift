@@ -7,12 +7,12 @@
 
 import Foundation
 
-enum UserRole {
+enum UserRole: Codable {
     case pic
     case participant
 }
 
-struct UserModel: Identifiable, Equatable {
+struct UserModel: Codable, Identifiable, Equatable {
     let id: String
     let firstName: String
     let lastName: String
@@ -22,7 +22,6 @@ struct UserModel: Identifiable, Equatable {
     let role: UserRole
     let imgUrl: String
     
-     
     static let sharedExample = UserModel(
         id: UUID().uuidString,
         firstName: "Wahyu",
