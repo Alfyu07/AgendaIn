@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ProfileView: View {
     var body: some View {
-        VStack{
         if presenter.loadingState {
             ProgressView()
                 .onAppear {
