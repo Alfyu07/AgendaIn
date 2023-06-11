@@ -11,6 +11,9 @@ struct DetailView: View {
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
     
     @StateObject var presenter: DetailPresenter
+    @EnvironmentObject var envMeeting: MeetingModel
+    @AppStorage("meetId") var meetId: String = ""
+//    @State var meetingId: String
     
     var user: UserModel = .sharedExample
     
@@ -26,6 +29,7 @@ struct DetailView: View {
                    
             agendaSubTitle
             votingDateAndTimeSection
+            Text(envMeeting.id)
             AgendaList(proposedAgendas: presenter.meeting.proposedAgendas)
                 .padding(.horizontal, 32)
                 .padding(.top, 16)
@@ -86,6 +90,9 @@ struct DetailView: View {
         }
         .ignoresSafeArea()
         .navigationBarBackButtonHidden(true)
+        .onAppear{
+            presenter.getMeetingByID(id: meetId)
+        }
     }
 }
 

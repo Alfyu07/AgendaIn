@@ -36,8 +36,8 @@ final class Injection: NSObject {
     }
     
     func provideDetail(for meeting: MeetingModel) -> DetailUseCase {
-        let repository = provideDetailRepository()
-        return DetailInteractor(repository: repository, meeting: meeting)
+        let meetingRepository = provideMeetingRepository()
+        return DetailInteractor(meetingRepository: meetingRepository, meeting: meeting)
     }
     
     // meeting injection
@@ -58,6 +58,7 @@ final class Injection: NSObject {
         let userRepository = provideUserRepository()
         return MeetingInteractor(meetingRepository: meetingRepository, userRepository: userRepository)
     }
+    
     //review injection
     func provideReview(for meeting: MeetingModel) -> ReviewUsecase {
         let repository = provideMeetingRepository()

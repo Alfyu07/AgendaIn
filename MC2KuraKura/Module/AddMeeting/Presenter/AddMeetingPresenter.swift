@@ -25,19 +25,20 @@ class AddMeetingPresenter: ObservableObject {
     
     // meeting form state
     @Published var meeting: AddMeetingRequest?
-    var envMeeting: MeetingModel
+    @Published var meetingResponse: MeetingModel?
+    @AppStorage("meetId") var meetId: String = ""
+    
     @Published var agendas: [AgendaModel] = []
     
     // user state
     @Published var firstName: String = ""
     @Published var user: UserModel = UserModel(id: "", firstName: "", lastName: "", email: "'", role: .participant, imgUrl: "")
     
-    init(meetingUseCase: MeetingUseCase, envMeeting: MeetingModel) {
+    init(meetingUseCase: MeetingUseCase) {
         self.meetingUseCase = meetingUseCase
         self.stepIndex = 0
         self.stepNumber = 3
         self.steps = ["Meeting\nDetail", "Meeting\nItem", "Confirm"]
-        self.envMeeting = envMeeting
     }
     
     func updateMeeting(meeting: AddMeetingRequest) {
@@ -64,18 +65,26 @@ class AddMeetingPresenter: ObservableObject {
         }
     }
     
-    func addMeeting() {
+    func linkBuilder<Content: View>(
+        for meeting: MeetingModel,
+        ViewBuilder content: () -> Content
+    ) -> some View {
+        NavigationLink(destination: router.makeDetailView(for: meeting)) { content() }
+    }
+    
+    func addMeeting()  {
         loadingState = true
         meetingUseCase.addMeeting(request: self.meeting!) { result in
             switch result {
             case .success(let meeting):
                 DispatchQueue.main.async {
-                    self.envMeeting = meeting
-                    print(meeting)
+                    self.meetingResponse = meeting
+                    print("Add meeting response Data: \n \(meeting)")
+                    self.meetId = meeting.id
                     self.shouldRedirectToDetailView = true
                     self.loadingState = false
-                }
             
+                }
             case .failure(let error):
                 DispatchQueue.main.async {
                     print("add meeting error : \(error)")

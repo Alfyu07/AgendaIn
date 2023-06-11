@@ -40,14 +40,14 @@ struct NewDetailMeeting: View {
 extension NewDetailMeeting {
     
     var navigationToDetail: some View {
-        
-        NavigationLink(destination: presenter.detailView(meeting: presenter.envMeeting ?? MeetingModel()), isActive: $presenter.shouldRedirectToDetailView) {
+        NavigationLink(destination: presenter.detailView(meeting: presenter.meetingResponse ?? MeetingModel()), isActive: $presenter.shouldRedirectToDetailView) {
         }
     }
     
     var submitButton: some View {
         CustomButton(label: "Submit") {
             presenter.addMeeting()
+            
         }.padding(.horizontal, 32)
             .padding(.bottom, 32)
     }
@@ -146,7 +146,7 @@ extension NewDetailMeeting {
 struct NewDetailMeeting_Previews: PreviewProvider {
     static var previews: some View {
         NewDetailMeeting(
-            presenter: AddMeetingPresenter(meetingUseCase: Injection.init().provideMeeting(), envMeeting: .sharedExample)
+            presenter: AddMeetingPresenter(meetingUseCase: Injection.init().provideMeeting())
         )
     }
 }

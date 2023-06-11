@@ -15,7 +15,7 @@ protocol RemoteDataSourceProtocol: AnyObject {
     func shareMeeting(result: @escaping (Result<AuthResponse, URLError>) -> Void)
     func getProfile(result: @escaping (Result<GetUserResponse, URLError>) -> Void)
     func addMeeting(request: AddMeetingRequest, result: @escaping (Result<MeetingResponse, URLError>) -> Void)
-    func getMeetingById(id: String, result: @escaping (Result<MeetingResponse, URLError>) -> Void)
+    func getMeetingById(request: GetMeetingRequest, result: @escaping (Result<MeetingResponse, URLError>) -> Void)
 }
 
 final class RemoteDataSource: NSObject, URLSessionDelegate {
@@ -28,8 +28,35 @@ final class RemoteDataSource: NSObject, URLSessionDelegate {
 }
 
 extension RemoteDataSource: RemoteDataSourceProtocol {
-    func getMeetingById(id: String, result: @escaping (Result<MeetingResponse, URLError>) -> Void) {
+    
+    func getMeetingById(request: GetMeetingRequest, result: @escaping (Result<MeetingResponse, URLError>) -> Void) {
+        guard let meetingData = try? JSONEncoder().encode(request) else {return}
         
+        guard let url = URL(string: Endpoints.Gets.meetingId.url) else {return}
+        var urlRequest = URLRequest(url: url)
+        
+        urlRequest.httpMethod = "POST"
+        urlRequest.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let session = URLSession(configuration: URLSessionConfiguration.default, delegate: self, delegateQueue: OperationQueue.main)
+        
+        let task = session.uploadTask(with: urlRequest, from: meetingData) { maybeData, maybeResponse, error in
+            
+            if error != nil {
+                result(.failure(.addressUnreachable(url)))
+            } else if let data = maybeData, let response = maybeResponse as? HTTPURLResponse, response.statusCode == 200 {
+                let decoder = JSONDecoder()
+                
+                do {
+                    let data = try decoder.decode(MeetingResponse.self, from: data)
+                    result(.success(data))
+                } catch {
+                    result(.failure(.invalidResponse))
+                }
+            }
+        }
+        task.resume()
     }
     
     

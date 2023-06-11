@@ -79,6 +79,20 @@ class MeetingModel: Equatable, Identifiable, ObservableObject {
         self.status = .open
     }
     
+    func changeTheMeetingModel(id: String, picID: PICID, title: String, description: String, code: String, location: String, schedule: MeetingTime, voteTime: MeetingTime, participants: [UserModel], proposedAgendas: [AgendaModel], status: VoteStatus) {
+        self.id = id
+        self.picID = picID
+        self.title = title
+        self.description = description
+        self.code = code
+        self.location = location
+        self.schedule = schedule
+        self.voteTime = voteTime
+        self.participants = participants
+        self.proposedAgendas = proposedAgendas
+        self.status = status
+    }
+    
     
     static let sharedExample = MeetingModel(
         id: UUID().uuidString,

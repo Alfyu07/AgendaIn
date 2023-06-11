@@ -11,6 +11,8 @@ protocol MeetingRepositoryProtocol {
     func addMeeting(request: AddMeetingRequest,
                     result: @escaping (Result<MeetingModel, URLError>) -> Void)
     func shareMeeting( result: @escaping (Result<MeetingModel, URLError>) -> Void)
+    func getMeeting(requset: GetMeetingRequest,
+                    result: @escaping (Result<MeetingModel, URLError>) -> Void)
 }
 
 class MeetingRepository: NSObject {
@@ -29,6 +31,21 @@ class MeetingRepository: NSObject {
 
 extension MeetingRepository: MeetingRepositoryProtocol {
     
+    func getMeeting(requset: GetMeetingRequest, result: @escaping (Result<MeetingModel, URLError>) -> Void) {
+        self.remote.getMeetingById(request: requset) { remoteResponse in
+            switch remoteResponse {
+            case .success(let response):
+                let meeting = MeetingMapper.mapAddMeetingResponseToDomain(input: response)
+
+                result(.success(meeting))
+                
+            case .failure(let error):
+                result(.failure(error))
+            }
+        }
+    }
+    
+    
     func addMeeting(request: AddMeetingRequest, result: @escaping (Result<MeetingModel, URLError>) -> Void) {
         self.remote.addMeeting(request: request) { remoteResponse in
             switch remoteResponse {
@@ -42,6 +59,8 @@ extension MeetingRepository: MeetingRepositoryProtocol {
             }
         }
     }
+    
+    
     
     func shareMeeting(result: @escaping (Result<MeetingModel, URLError>) -> Void) {
         self.remote.shareMeeting { remoteResponse in
