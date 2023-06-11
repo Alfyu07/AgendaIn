@@ -13,6 +13,7 @@ struct AgendaForm: View {
     @State var agendas: [AgendaModel] = []
     @State var isAddingAgenda = false
     @State var isEditignAgenda = false
+    let width: Double
     
     var body: some View {
         VStack(alignment: .center, spacing: 0) {
@@ -36,7 +37,7 @@ struct AgendaForm: View {
                 }
             } else {
                 ForEach(agendas) { agenda in
-                    AgendaItem(agenda: agenda, isOnVote: false)
+                    AgendaItem(agenda: agenda, isOnVote: false, width: width)
                         .padding(.bottom, 12)
                 }
                 

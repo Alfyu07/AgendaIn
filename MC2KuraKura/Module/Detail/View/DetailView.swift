@@ -15,60 +15,63 @@ struct DetailView: View {
     @StateObject var presenter: DetailPresenter
     @EnvironmentObject var envMeeting: MeetingModel
     @AppStorage("meetId") var meetId: String = ""
-//    @State var meetingId: String
+    //    @State var meetingId: String
     
     var user: UserModel = .sharedExample
     
     var body: some View {
-        ScrollView {
-
-            if userId == presenter.meeting.picID.userID {
-                meetingCodeSection
-            }
-           
-            participantsInfo
-            meetingDetailSection
-                   
-            agendaSubTitle
-            votingDateAndTimeSection
-//            Text(envMeeting.id)
-            AgendaList(proposedAgendas: presenter.meeting.proposedAgendas)
-                .padding(.horizontal, 32)
-                .padding(.top, 16)
-            
-            if user.role == .pic {
-                ManageParticipantSection(presenter: presenter)
-            }
-            
-            if user.role == .participant {
-                Spacer().frame(height: 32)
-                
-                if Date.now < presenter.meeting.voteTime.startTime {
-                    presenter.linkBuilder {
-                        Text("Suggest meeting item")
-                            .font(.system(size: 20, weight: .bold))
-                            .foregroundColor(.white)
-                            .frame(maxWidth: .infinity)
-                            .padding(.vertical, 12)
-                            .background(Color("blue50"))
-                            .cornerRadius(30)
-                            .padding(.horizontal, 32)
+        GeometryReader{ geometry in
+            ScrollView {
+                VStack{
+                    if userId == presenter.meeting.picID.userID {
+                        meetingCodeSection
                     }
                     
-                } else if Date.now > presenter.meeting.voteTime.startTime
-                            && Date.now < presenter.meeting.voteTime.endTime {
-                    presenter.linkBuilder {
-                        Text("Vote")
-                            .font(.system(size: 20, weight: .bold))
-                            .foregroundColor(.white)
-                            .frame(maxWidth: .infinity)
-                            .padding(.vertical, 12)
-                            .background(Color("blue50"))
-                            .cornerRadius(30)
-                            .padding(.horizontal, 32)
+                    participantsInfo
+                    meetingDetailSection
+                    
+                    agendaSubTitle
+                    votingDateAndTimeSection
+                    AgendaList(proposedAgendas: presenter.meeting.proposedAgendas, width: geometry.size.width)
+                        .padding(.horizontal, 32)
+                        .padding(.top, 16)
+                    
+                    if userId == presenter.meeting.picID.userID {
+                        ManageParticipantSection(presenter: presenter)
+                    }
+                    
+                    if userId != presenter.meeting.picID.userID {
+                        Spacer().frame(height: 32)
+                        
+                        if Date.now < presenter.meeting.voteTime.startTime {
+                            presenter.linkBuilder {
+                                Text("Suggest meeting item")
+                                    .font(.system(size: 20, weight: .bold))
+                                    .foregroundColor(.white)
+                                    .frame(maxWidth: .infinity)
+                                    .padding(.vertical, 12)
+                                    .background(Color("blue50"))
+                                    .cornerRadius(30)
+                                    .padding(.horizontal, 32)
+                            }
+                            
+                        } else if Date.now > presenter.meeting.voteTime.startTime
+                                    && Date.now < presenter.meeting.voteTime.endTime {
+                            presenter.linkBuilder {
+                                Text("Vote")
+                                    .font(.system(size: 20, weight: .bold))
+                                    .foregroundColor(.white)
+                                    .frame(maxWidth: .infinity)
+                                    .padding(.vertical, 12)
+                                    .background(Color("blue50"))
+                                    .cornerRadius(30)
+                                    .padding(.horizontal, 32)
+                            }
+                        }
+                        
                     }
                 }
-                    
+                
             }
         }
         .background(Color("gray5"))
@@ -96,6 +99,11 @@ struct DetailView: View {
         .onAppear{
             presenter.getMeetingByID(id: presenter.meeting.id.isEmpty ? meetId: presenter.meeting.id)
         }
+        
+        
+        
+        
+        
     }
 }
 
@@ -127,7 +135,7 @@ extension DetailView {
         .padding(.top, 100)
     }
     var participantsInfo: some View {
-        HStack(spacing: 0) {            
+        HStack(spacing: 0) {
             if presenter.meeting.participants.isEmpty {
                 Text("No participants")
             } else {
@@ -146,7 +154,7 @@ extension DetailView {
             }
             
         }
-        .padding(.top, user.role == .pic ? 20 : 100)
+        .padding(.top, userId == presenter.meeting.picID.userID ? 20 : 100)
         .padding(.horizontal, 32)
     }
     var meetingDetailSection: some View {
@@ -207,8 +215,8 @@ extension DetailView {
                 .foregroundColor(Color("gray80"))
             Spacer()
         }
-            .padding(.horizontal, 32)
-            .padding(.top, 18)
+        .padding(.horizontal, 32)
+        .padding(.top, 18)
     }
     
     var votingDateAndTimeSection: some View {

@@ -9,19 +9,19 @@ import SwiftUI
 
 struct AgendaList: View {
     let proposedAgendas: [AgendaModel]
-
+    let width: Double
     var body: some View {
         VStack(spacing: 0) {
             ForEach(proposedAgendas) { agenda in
-                    AgendaItem(agenda: agenda, isOnVote: false)
+                    AgendaItem(agenda: agenda, isOnVote: false, width: width)
                     .padding(.bottom, 12)
             }
         }
     }
 }
 
-struct AgendaList_Previews: PreviewProvider {
-    static var previews: some View {
-        AgendaList(proposedAgendas: [.sharedExample, .sharedExample2])
-    }
-}
+//struct AgendaList_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AgendaList(proposedAgendas: [.sharedExample, .sharedExample2])
+//    }
+//}

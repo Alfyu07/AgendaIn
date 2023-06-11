@@ -10,9 +10,10 @@ import SwiftUI
 struct VoteForm: View {
     @ObservedObject var presenter: VotePresenter
     
-    @State var agendas: [AgendaModel] = []
+    @State var agendas: [AgendaModel] = [.sharedExample]
     @State var isAddingAgenda = false
     @State var isEditignAgenda = false
+    let width: Double
     var body: some View {
         VStack(alignment: .center, spacing: 0) {
             if agendas.isEmpty {
@@ -31,15 +32,15 @@ struct VoteForm: View {
                 }
             } else {
                 ForEach(agendas) { agenda in
-                    AgendaItem(agenda: agenda, isOnVote: true)
+                    AgendaItem(agenda: agenda, isOnVote: true, width: width)
                         .padding(.bottom, 12)
                 }
                 
             }
             
             CustomButton(label: "Submit") {
-                //add tambah agenda function here
-                presenter.stepIndex += 1
+                // submit functin here
+//                presenter.stepIndex += 1
             }.padding(.top, 80)
                 .padding(.bottom, 32)
             

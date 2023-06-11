@@ -11,6 +11,8 @@ struct NewDetailMeeting: View {
     @ObservedObject var presenter: AddMeetingPresenter
     @EnvironmentObject var envMeeting: MeetingModel
     
+    let width: Double
+    
     var body: some View {
         if presenter.loadingState {
             ProgressView()
@@ -22,7 +24,7 @@ struct NewDetailMeeting: View {
                 meetingDetailSection
                 agendaSubTitle
                 votingDateAndTimeSection
-                AgendaList(proposedAgendas: presenter.agendas)
+                AgendaList(proposedAgendas: presenter.agendas, width: width)
                     .padding(.horizontal, 32)
                     .padding(.top, 16)
                 submitButton
@@ -143,10 +145,10 @@ extension NewDetailMeeting {
     
 }
 
-struct NewDetailMeeting_Previews: PreviewProvider {
-    static var previews: some View {
-        NewDetailMeeting(
-            presenter: AddMeetingPresenter(meetingUseCase: Injection.init().provideMeeting())
-        )
-    }
-}
+//struct NewDetailMeeting_Previews: PreviewProvider {
+//    static var previews: some View {
+//        NewDetailMeeting(
+//            presenter: AddMeetingPresenter(meetingUseCase: Injection.init().provideMeeting())
+//        )
+//    }
+//}

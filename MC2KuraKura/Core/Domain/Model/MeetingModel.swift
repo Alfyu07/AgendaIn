@@ -94,6 +94,7 @@ class MeetingModel: Equatable, Identifiable, ObservableObject {
         self.proposedAgendas = []
         self.status = .open
     }
+    // swiftlint: disable function_parameter_count
     
     func changeTheMeetingModel(id: String, picID: PICID, title: String, description: String, code: String, location: String, schedule: MeetingTime, voteTime: MeetingTime, participants: [Participant], proposedAgendas: [AgendaModel], status: VoteStatus) {
         self.id = id
@@ -108,7 +109,7 @@ class MeetingModel: Equatable, Identifiable, ObservableObject {
         self.proposedAgendas = proposedAgendas
         self.status = status
     }
-    // swiftlint: disable function_parameter_count
+    // swiftlint: enable function_parameter_count
     
 //    static let sharedExample = MeetingModel(
 //        id: UUID().uuidString,

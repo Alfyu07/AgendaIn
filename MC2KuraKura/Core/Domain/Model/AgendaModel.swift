@@ -43,7 +43,7 @@ struct AgendaModel: Codable, Equatable, Identifiable {
         self.firstName = firstName
         self.title = title
         self.description = description
-        self.result = 0
+        self.result = 0.45
         self.voters = []
     }
     

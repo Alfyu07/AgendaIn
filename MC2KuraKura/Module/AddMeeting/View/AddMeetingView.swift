@@ -14,19 +14,24 @@ struct AddMeetingView: View {
     
     var body: some View {
         
-        ScrollView {
-            stepper
-            switch presenter.stepIndex {
-            case 0:
-                MeetingForm(presenter: presenter)
-            case 1:
-                AgendaForm(presenter: presenter)
-            case 2:
-                NewDetailMeeting(presenter: presenter)
-            default:
-                MeetingForm(presenter: presenter)
+        GeometryReader{ geometry in
+            ScrollView {
+                stepper
+                switch presenter.stepIndex {
+                case 0:
+                    MeetingForm(presenter: presenter)
+                case 1:
+                    AgendaForm(presenter: presenter, width: geometry.size.width)
+                case 2:
+                    NewDetailMeeting(presenter: presenter, width: geometry.size.width)
+                default:
+                    MeetingForm(presenter: presenter)
+                }
             }
-        }.fontDesign(.rounded)
+        }
+        
+        
+        .fontDesign(.rounded)
             .background(Color("gray5"))
             .navigationTitle(Text("Meeting Detail"))
             .toolbar {

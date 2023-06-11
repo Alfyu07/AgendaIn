@@ -11,21 +11,25 @@ struct VoteView: View {
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
     @StateObject var presenter = VotePresenter(meetingUseCase: Injection.init().provideMeeting())
     var body: some View {
-        
-        ScrollView {
-            CustomStepper(stepNumber: 2, steps: presenter.steps, stepIndex: $presenter.stepIndex)
-                .padding(.top, 120)
-                .padding(.horizontal, 32)
-            switch presenter.stepIndex {
-            case 0:
-                MeetingItemForm(presenter: presenter)
-            case 1:
-                MeetingItemForm(presenter: presenter)
-            default:
-                MeetingItemForm(presenter: presenter)
+        GeometryReader{ geometry in
+            ScrollView {
+                CustomStepper(stepNumber: 2, steps: presenter.steps, stepIndex: $presenter.stepIndex)
+                    .padding(.top, 120)
+                    .padding(.horizontal, 32)
+                switch presenter.stepIndex {
+                case 0:
+                    MeetingItemForm(presenter: presenter, width: geometry.size.width)
+                case 1:
+                    VoteForm(presenter: presenter, width: geometry.size.width)
+                default:
+                    MeetingItemForm(presenter: presenter, width: geometry.size.width)
+                }
+                
             }
             
         }
+        
+        
         .fontDesign(.rounded)
         .background(Color("gray5"))
         .navigationTitle(Text("Meeting Detail"))

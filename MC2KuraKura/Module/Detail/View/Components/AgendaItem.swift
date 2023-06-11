@@ -9,9 +9,20 @@ import SwiftUI
 
 struct AgendaItem: View {
     let agenda: AgendaModel
-    @State var isExpanding: Bool = true
     let isOnVote: Bool
+    let isOnResult: Bool
+    let width: Double
+    
+    @State var isExpanding: Bool = true
     @State var voteValue = 0
+    
+    init(agenda: AgendaModel, isOnVote: Bool = false, isOnResult: Bool = false, width: Double, voteValue: Int = 0) {
+        self.agenda = agenda
+        self.isOnVote = isOnVote
+        self.isOnResult = isOnResult
+        self.width = width
+        self.voteValue = voteValue
+    }
     
     var body: some View {
         VStack(spacing: 0) {
@@ -51,7 +62,52 @@ struct AgendaItem: View {
                         }.offset(CGSize(width: 0, height: 10))
                     }.frame(minHeight: 40)
                     
-                    if isOnVote {
+                    
+                    if isOnResult {
+                        Divider()
+                            .padding(.top, 8)
+                        VStack(alignment: .leading, spacing: 0) {
+                            HStack {
+                                Text("Engage")
+                                    .font(.system(size: 10))
+                                    .foregroundColor(Color("gray80"))
+                                Spacer()
+                                Text("\(String(format: "%.0f", 0.20132 * 100))%")
+                                    .font(.system(size: 10, weight: .bold))
+                                    .foregroundColor(Color("yellow50"))
+                            }
+                            ProgressBar(width: width, value: 0.45)
+                            HStack {
+                                HStack(spacing: 0) {
+                                    switch agenda.voters.count {
+                                    case 0:
+                                        Text("No one voted this agenda")
+                                            .font(.system(size: 10, weight: .light))
+                                            .foregroundColor(Color("gray80"))
+                                    case 1...4:
+                                        ForEach(0..<4) { index in
+                                            ProfileImage(firstName: agenda.voters[index].firstName ?? "", size: 24)
+                                        }
+                                        Text("+\(agenda.voters.count - 4)").font(.system(size: 8, weight: .light))
+                                    default:
+                                        ForEach(agenda.voters, id: \.userId) { user in
+                                            ProfileImage(firstName: user.firstName ?? "", size: 24)
+                                        }
+                                    }
+                                }
+                                Spacer()
+                                HStack(spacing: 0) {
+                                    Image(systemName: "checkmark.circle.fill")
+                                        .foregroundColor(Color("yellow50"))
+                                        .frame(width: 24, height: 24)
+                                    Text("\(agenda.voters.count)/10")
+                                        .font(.system(size: 10, weight: .medium))
+                                        .foregroundColor(Color("gray80"))
+                                }
+                            }
+                        }
+                        .padding(.top, 8)
+                    } else if isOnVote {
                         Divider()
                             .padding(.top, 8)
                         HStack(alignment: .center) {
@@ -80,8 +136,8 @@ struct AgendaItem: View {
     }
 }
 
-struct AgendaItem_Previews: PreviewProvider {
-    static var previews: some View {
-        AgendaItem(agenda: .sharedExample, isOnVote: false)
-    }
-}
+//struct AgendaItem_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AgendaItem(agenda: .sharedExample, isOnVote: false)
+//    }
+//}
