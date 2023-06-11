@@ -21,6 +21,9 @@ class OnboardingRouter {
         let meetingUseCase = Injection.init().provideMeeting()
         let meetingPresenter = MeetingPresenter(meetingUseCase: meetingUseCase)
         
-        return MainView(homePresenter: homePresenter, meetingPresenter: meetingPresenter)
+        let userUseCase = Injection.init().provideUser()
+        let profilePresenter = ProfilePresenter(userUsecase: userUseCase)
+        
+        return MainView(homePresenter: homePresenter, meetingPresenter: meetingPresenter, profilePresenter: profilePresenter)
     }
 }

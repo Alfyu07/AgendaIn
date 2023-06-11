@@ -11,15 +11,16 @@ struct ContentView: View {
     @EnvironmentObject var onboardingPresenter: OnboardingPresenter
     @EnvironmentObject var homePresenter: HomePresenter
     @EnvironmentObject var meetingPresenter: MeetingPresenter
-
+    @EnvironmentObject var profilePresenter: ProfilePresenter
+    
     @AppStorage("accessToken") var accessToken: String = ""
     @AppStorage("refreshToken") var refreshToken: String = ""
     
     var body: some View {
         NavigationStack {
             if !accessToken.isEmpty && !refreshToken.isEmpty {
-//                MainView(homePresenter: homePresenter, meetingPresenter: meetingPresenter)
-                VoteView()
+                MainView(homePresenter: homePresenter, meetingPresenter: meetingPresenter, profilePresenter: profilePresenter)
+//                VoteView()
                 
             } else {
                 OnboardingView(presenter: onboardingPresenter)

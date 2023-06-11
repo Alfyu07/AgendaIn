@@ -63,6 +63,8 @@
 		A1B474872A2B38DB005ABCB5 /* AddMeetingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B474862A2B38DB005ABCB5 /* AddMeetingPresenter.swift */; };
 		A1B474892A2B38EE005ABCB5 /* AddMeetingRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B474882A2B38EE005ABCB5 /* AddMeetingRouter.swift */; };
 		A1B4748E2A2B44BF005ABCB5 /* MeetingForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B4748D2A2B44BF005ABCB5 /* MeetingForm.swift */; };
+		A1CB34192A35CAF9005A4712 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CB34182A35CAF9005A4712 /* ProfilePresenter.swift */; };
+		A1CB341B2A35CB61005A4712 /* UserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CB341A2A35CB61005A4712 /* UserUseCase.swift */; };
 		A1CF00A12A2D8545003C82CD /* MeetingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CF00A02A2D8545003C82CD /* MeetingInteractor.swift */; };
 		A1CF00A32A2D8595003C82CD /* MeetingRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CF00A22A2D8595003C82CD /* MeetingRepository.swift */; };
 		A1CF00A52A2D8945003C82CD /* MeetingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CF00A42A2D8945003C82CD /* MeetingPresenter.swift */; };
@@ -73,7 +75,7 @@
 		A1CF00B12A2E0AD5003C82CD /* AuthCredential.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CF00B02A2E0AD4003C82CD /* AuthCredential.swift */; };
 		A1CF00B72A2FF1A5003C82CD /* ReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CF00B62A2FF1A5003C82CD /* ReviewView.swift */; };
 		A1CF00B92A2FF382003C82CD /* ReviewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CF00B82A2FF382003C82CD /* ReviewPresenter.swift */; };
-		A1CF00BD2A2FFB74003C82CD /* ReviesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CF00BC2A2FFB74003C82CD /* ReviesInteractor.swift */; };
+		A1CF00BD2A2FFB74003C82CD /* ReviewInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CF00BC2A2FFB74003C82CD /* ReviewInteractor.swift */; };
 		A1CF00BF2A30CA18003C82CD /* MeetingTIme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CF00BE2A30CA18003C82CD /* MeetingTIme.swift */; };
 		A1CF00C32A30CFD7003C82CD /* MeetingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CF00C22A30CFD7003C82CD /* MeetingRequest.swift */; };
 		A1CF00C52A30D9FE003C82CD /* ProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CF00C42A30D9FE003C82CD /* ProfileImage.swift */; };
@@ -148,6 +150,8 @@
 		A1B474862A2B38DB005ABCB5 /* AddMeetingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMeetingPresenter.swift; sourceTree = "<group>"; };
 		A1B474882A2B38EE005ABCB5 /* AddMeetingRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMeetingRouter.swift; sourceTree = "<group>"; };
 		A1B4748D2A2B44BF005ABCB5 /* MeetingForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingForm.swift; sourceTree = "<group>"; };
+		A1CB34182A35CAF9005A4712 /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
+		A1CB341A2A35CB61005A4712 /* UserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUseCase.swift; sourceTree = "<group>"; };
 		A1CF00A02A2D8545003C82CD /* MeetingInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingInteractor.swift; sourceTree = "<group>"; };
 		A1CF00A22A2D8595003C82CD /* MeetingRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingRepository.swift; sourceTree = "<group>"; };
 		A1CF00A42A2D8945003C82CD /* MeetingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingPresenter.swift; sourceTree = "<group>"; };
@@ -158,7 +162,7 @@
 		A1CF00B02A2E0AD4003C82CD /* AuthCredential.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCredential.swift; sourceTree = "<group>"; };
 		A1CF00B62A2FF1A5003C82CD /* ReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewView.swift; sourceTree = "<group>"; };
 		A1CF00B82A2FF382003C82CD /* ReviewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPresenter.swift; sourceTree = "<group>"; };
-		A1CF00BC2A2FFB74003C82CD /* ReviesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviesInteractor.swift; sourceTree = "<group>"; };
+		A1CF00BC2A2FFB74003C82CD /* ReviewInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewInteractor.swift; sourceTree = "<group>"; };
 		A1CF00BE2A30CA18003C82CD /* MeetingTIme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingTIme.swift; sourceTree = "<group>"; };
 		A1CF00C22A30CFD7003C82CD /* MeetingRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingRequest.swift; sourceTree = "<group>"; };
 		A1CF00C42A30D9FE003C82CD /* ProfileImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImage.swift; sourceTree = "<group>"; };
@@ -529,7 +533,8 @@
 				A1B4745F2A2AB04E005ABCB5 /* DetailInteractor.swift */,
 				A1B4747B2A2B2D24005ABCB5 /* VoteInteractor.swift */,
 				A1CF00A02A2D8545003C82CD /* MeetingInteractor.swift */,
-				A1CF00BC2A2FFB74003C82CD /* ReviesInteractor.swift */,
+				A1CF00BC2A2FFB74003C82CD /* ReviewInteractor.swift */,
+				A1CB341A2A35CB61005A4712 /* UserUseCase.swift */,
 			);
 			path = Usecase;
 			sourceTree = "<group>";
@@ -770,6 +775,7 @@
 		A1DFF5B52A2CA7AC00117D9F /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				A1CB34182A35CAF9005A4712 /* ProfilePresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -888,6 +894,7 @@
 				A18788152A358E23001A056F /* ItemFormCard.swift in Sources */,
 				A1F856E52A2C39980052760C /* NewMeetingDetail.swift in Sources */,
 				A1CF00A72A2D89A8003C82CD /* MeetingRouter.swift in Sources */,
+				A1CB34192A35CAF9005A4712 /* ProfilePresenter.swift in Sources */,
 				A1CF00A12A2D8545003C82CD /* MeetingInteractor.swift in Sources */,
 				A1B474622A2AB241005ABCB5 /* DetailPresenter.swift in Sources */,
 				A17B6DB92A2B69450097400C /* CustomButton.swift in Sources */,
@@ -907,7 +914,7 @@
 				A1B4746B2A2AD2F0005ABCB5 /* AgendaList.swift in Sources */,
 				A1CF00C32A30CFD7003C82CD /* MeetingRequest.swift in Sources */,
 				A11EF8D82A343CF200313D4A /* MeetingMapper.swift in Sources */,
-				A1CF00BD2A2FFB74003C82CD /* ReviesInteractor.swift in Sources */,
+				A1CF00BD2A2FFB74003C82CD /* ReviewInteractor.swift in Sources */,
 				A1B474872A2B38DB005ABCB5 /* AddMeetingPresenter.swift in Sources */,
 				A1B474732A2B23B0005ABCB5 /* DetailRouter.swift in Sources */,
 				A1DFF5AD2A2CA71400117D9F /* MeetingView.swift in Sources */,
@@ -915,6 +922,7 @@
 				A1CF00AD2A2DA99F003C82CD /* AuthRequest.swift in Sources */,
 				A1CF00AF2A2E0A6C003C82CD /* TokenMapper.swift in Sources */,
 				A1B474892A2B38EE005ABCB5 /* AddMeetingRouter.swift in Sources */,
+				A1CB341B2A35CB61005A4712 /* UserUseCase.swift in Sources */,
 				A1B474292A2572F8005ABCB5 /* OnboardingView.swift in Sources */,
 				A187880F2A3582A2001A056F /* MeetingItemForm.swift in Sources */,
 				A1B474122A242782005ABCB5 /* RemoteDataSource.swift in Sources */,
