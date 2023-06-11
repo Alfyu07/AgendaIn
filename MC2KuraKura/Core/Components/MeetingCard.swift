@@ -33,7 +33,7 @@ struct MeetingCard: View {
                             .scaledToFit()
                             .padding(.trailing, 4)
                         
-                        Text(Date.formatToDate(meeting.date))
+                        Text(Date.formatToDateString(from: meeting.schedule.date))
                             .font(.system(size: 12))
                     }.foregroundColor(Color("gray50"))
                     Spacer()
@@ -44,7 +44,7 @@ struct MeetingCard: View {
                             .scaledToFit()
                             .padding(.trailing, 4)
                         
-                        Text("\(Date.formatToTime(meeting.startTime)) - \(Date.formatToTime(meeting.endTime))")
+                        Text("\(Date.formatToTimeString(from: meeting.schedule.startTime)) - \(Date.formatToTimeString(from: meeting.schedule.endTime))")
                             .font(.system(size: 12))
                     }.foregroundColor(Color("gray50"))
                 }
@@ -90,20 +90,8 @@ struct MeetingCard: View {
                     if meeting.participants.count > 3 {
                         HStack(spacing: 0) {
                             ForEach(0..<3, id: \.self) { index in
-                                AsyncImage(url: URL(string: meeting.participants[index].imgUrl)) { image in
-                                    image
-                                        .resizable()
-                                        .frame(width: 24, height: 24)
-                                        .aspectRatio(contentMode: .fit)
-                                        .clipShape(Circle())
-                                        .padding(.leading, -8)
-                                } placeholder: {
-                                    Color.gray
-                                        .frame(width: 24, height: 24)
-                                        .aspectRatio(contentMode: .fit)
-                                        .clipShape(Circle())
-                                        .padding(.leading, -4)
-                                }
+                                ProfileImage(firstName: meeting.participants[index].firstName, size: 24)
+                                    .padding(.leading, -8)
                             }
                             
                             Text("+\(meeting.participants.count - 3)")
@@ -113,7 +101,7 @@ struct MeetingCard: View {
                     } else {
                         HStack(spacing: 0) {
                             ForEach(meeting.participants) { participant in
-                                ProfileImage(imgUrlString: participant.imgUrl, size: 24.0)
+                                ProfileImage(firstName: participant.firstName, size: 24)
                                     .padding(.leading, -8)
                             }.offset(CGSize(width: 0, height: -6))
                         }

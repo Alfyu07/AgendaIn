@@ -11,7 +11,7 @@ protocol UserRepositoryProtocol {
     func getProfile(result: @escaping (Result<UserModel, URLError>) -> Void)
 }
 
-final class UserRepository: NSObject{
+final class UserRepository: NSObject {
     
     typealias UserInstance = (RemoteDataSource) -> UserRepository
     

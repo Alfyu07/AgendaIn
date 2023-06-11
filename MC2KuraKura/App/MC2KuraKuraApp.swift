@@ -13,7 +13,7 @@ struct MC2KuraKuraApp: App {
     let homePresenter = HomePresenter(homeUseCase: Injection.init().provideHome())
     
     let meetingPresenter = MeetingPresenter(meetingUseCase: Injection.init().provideMeeting())
-    
+
     // insert profilePresenter here
     
     var body: some Scene {
@@ -22,6 +22,7 @@ struct MC2KuraKuraApp: App {
                 .environmentObject(onboardingPresenter)
                 .environmentObject(homePresenter)
                 .environmentObject(meetingPresenter)
+                
         }
     }
 }

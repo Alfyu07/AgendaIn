@@ -9,19 +9,27 @@ import Foundation
 
 protocol DetailUseCase {
     func getMeeting() -> MeetingModel
+    func getMeeting(request: GetMeetingRequest, completion: @escaping (Result<MeetingModel, URLError>) -> Void)
 }
 
 class DetailInteractor: DetailUseCase {
     
-    private let repository: DetailRepositoryProtocol
+    private let meetingRepository: MeetingRepositoryProtocol
     private let meeting: MeetingModel
     
-    init(repository: DetailRepositoryProtocol, meeting: MeetingModel) {
-        self.repository = repository
+    init(meetingRepository: MeetingRepositoryProtocol, meeting: MeetingModel) {
+        self.meetingRepository = meetingRepository
         self.meeting = meeting
     }
     
     func getMeeting() -> MeetingModel {
         return meeting
     }
+    
+    func getMeeting(request: GetMeetingRequest, completion: @escaping (Result<MeetingModel, URLError>) -> Void) {
+        meetingRepository.getMeeting(requset: request) { result in
+            completion(result)
+        }
+    }
 }
+

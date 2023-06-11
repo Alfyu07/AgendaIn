@@ -25,8 +25,9 @@ final class Injection: NSObject {
     }
     
     func provideHome() -> HomeUseCase {
-        let repository = provideHomeRepository()
-        return HomeInteractor(userRepository: repository)
+        let userRepository = provideHomeRepository()
+        let meetingRepository = provideMeetingRepository()
+        return HomeInteractor(userRepository: userRepository, meetingRepository: meetingRepository)
     }
     
     private func provideDetailRepository() -> DetailRepositoryProtocol {
@@ -36,8 +37,8 @@ final class Injection: NSObject {
     }
     
     func provideDetail(for meeting: MeetingModel) -> DetailUseCase {
-        let repository = provideDetailRepository()
-        return DetailInteractor(repository: repository, meeting: meeting)
+        let meetingRepository = provideMeetingRepository()
+        return DetailInteractor(meetingRepository: meetingRepository, meeting: meeting)
     }
     
     // meeting injection
@@ -47,9 +48,21 @@ final class Injection: NSObject {
         return MeetingRepository.sharedInstance(remote)
     }
     
-    func provideMeeting() -> MeetingUseCase {
-        let repository = provideMeetingRepository()
-        return MeetingInteractor(repository: repository)
+    private func provideUserRepository() -> UserRepositoryProtocol {
+        let remote: RemoteDataSource = RemoteDataSource.sharedInstance
+        
+        return UserRepository.sharedInstance(remote)
     }
     
+    func provideMeeting() -> MeetingUseCase {
+        let meetingRepository = provideMeetingRepository()
+        let userRepository = provideUserRepository()
+        return MeetingInteractor(meetingRepository: meetingRepository, userRepository: userRepository)
+    }
+    
+    //review injection
+    func provideReview(for meeting: MeetingModel) -> ReviewUsecase {
+        let repository = provideMeetingRepository()
+        return ReviewInteractor(repository: repository, meeting: meeting)
+    }
 }

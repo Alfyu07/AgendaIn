@@ -9,30 +9,41 @@ import SwiftUI
 
 struct AddMeetingView: View {
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
-    
+    @EnvironmentObject var envMeeting: MeetingModel
     @StateObject var presenter: AddMeetingPresenter
     
     var body: some View {
-        ScrollView {
-            stepper
-            
-            switch presenter.stepIndex {
-            case 0:
-                MeetingForm(presenter: presenter)
-            case 1:
-                AgendaForm(stepIndex: $presenter.stepIndex)
-            case 2:
-                NewDetailMeeting(meeting: .sharedExample)
-            default:
-                MeetingForm(presenter: presenter)
+        
+        GeometryReader{ geometry in
+            ScrollView {
+                stepper
+                switch presenter.stepIndex {
+                case 0:
+                    MeetingForm(presenter: presenter)
+                case 1:
+                    AgendaForm(presenter: presenter, width: geometry.size.width)
+                case 2:
+                    NewDetailMeeting(presenter: presenter, width: geometry.size.width)
+                default:
+                    MeetingForm(presenter: presenter)
+                }
             }
-        }.fontDesign(.rounded)
+        }
+        
+        
+        .fontDesign(.rounded)
             .background(Color("gray5"))
             .navigationTitle(Text("Meeting Detail"))
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
-                        presentationMode.wrappedValue.dismiss()
+                        if presenter.stepIndex == 0 {
+                            presentationMode.wrappedValue.dismiss()
+                            presenter.meeting = nil
+                        } else {
+                            presenter.stepIndex -= 1
+                        }
+                        
                     } label: {
                         Image(systemName: "chevron.backward")
                             .foregroundColor(Color("blue50"))
@@ -44,6 +55,10 @@ struct AddMeetingView: View {
             .navigationBarTitleDisplayMode(.inline)
             .ignoresSafeArea()
             .navigationBarBackButtonHidden(true)
+            .onAppear {
+                presenter.getProfile()
+            }
+        
     }
 }
 // 16 + 32
@@ -80,8 +95,8 @@ extension AddMeetingView {
     }
 }
 
-struct AddMeetingView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddMeetingView(presenter: AddMeetingPresenter(meetingUseCase: Injection.init().provideMeeting()))
-    }
-}
+//struct AddMeetingView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AddMeetingView(presenter: AddMeetingPresenter(meetingUseCase: Injection.init().provideMeeting()))
+//    }
+//}
