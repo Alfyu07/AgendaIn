@@ -10,10 +10,11 @@ import Foundation
 protocol HomeUseCase {
     func getProfile(completion: @escaping (Result<UserModel, URLError>) -> Void)
     func getMeetingCardByUserID(completion: @escaping (Result<[CardMeetingModel]?, URLError>) -> Void)
+    func joinMeetingByCode(request: JoinMeetingRequest, completion: @escaping (Result<MeetingModel, URLError>) -> Void)
 }
 
 class HomeInteractor: HomeUseCase {
-    
+  
     private let userRepository: UserRepositoryProtocol
     private let meetingRepository: MeetingRepositoryProtocol
      
@@ -30,6 +31,12 @@ class HomeInteractor: HomeUseCase {
     
     func getMeetingCardByUserID(completion: @escaping (Result<[CardMeetingModel]?, URLError>) -> Void) {
         meetingRepository.getMeetingByUserID { result in
+            completion(result)
+        }
+    }
+    
+    func joinMeetingByCode(request: JoinMeetingRequest, completion: @escaping (Result<MeetingModel, URLError>) -> Void) {
+        meetingRepository.joinMeetingByCode(request: request) { result in
             completion(result)
         }
     }

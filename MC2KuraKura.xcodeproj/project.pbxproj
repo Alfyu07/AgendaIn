@@ -611,8 +611,8 @@
 			isa = PBXGroup;
 			children = (
 				A1CF00A92A2DA81F003C82CD /* AuthResponse.swift */,
-				CB1478802A30CA7D002AC54A /* UserResponse.swift */,
 				A1D5CD142A317E5100B1D193 /* MeetingResponse.swift */,
+				CB1478802A30CA7D002AC54A /* UserResponse.swift */,
 			);
 			path = Responses;
 			sourceTree = "<group>";
