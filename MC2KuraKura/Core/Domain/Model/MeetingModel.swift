@@ -25,6 +25,11 @@ struct PICID: Codable, Equatable {
 }
 
 struct Participant: Codable, Identifiable, Equatable {
+    private enum CodingKeys: String, CodingKey {
+        case id = "userId"
+        case firstName = "firstName"
+    }
+    
     let id: String
     let firstName: String
 }
