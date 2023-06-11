@@ -51,7 +51,7 @@ struct AgendaItem: View {
                             .foregroundColor(Color("gray80"))
                             .padding(.top, 8)
                             .frame(width: 250, alignment: .leading)
-                            .fixedSize(horizontal: false, vertical: true)
+                            .fixedSize(horizontal: false, vertical: false)
                         
                         HStack(spacing: 0) {
                             ProfileImage(firstName: agenda.firstName, size: 24)
@@ -60,7 +60,7 @@ struct AgendaItem: View {
                                 .foregroundColor(Color("gray50"))
                                 .padding(.leading, 2)
                         }.offset(CGSize(width: 0, height: 10))
-                    }.frame(minHeight: 40)
+                    }.frame(minHeight: 40, maxHeight: 100)
                     
                     
                     if isOnResult {

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MeetingCard: View {
     var meeting: MeetingModel
+    @AppStorage("userId") var userId: String = ""
     var body: some View {
         HStack(spacing: 0) {
             Circle()
@@ -25,6 +26,18 @@ struct MeetingCard: View {
                     .foregroundColor(Color("blue90"))
                     .multilineTextAlignment(.leading)
                 
+                HStack(spacing: 0) {
+                    Image(systemName: "person.badge.key.fill")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 14)
+                        .padding(.trailing, 4)
+                    Text("Managed by \(meeting.picID.userID == userId ? "You" : meeting.picID.firstName)")
+                        .font(.system(size: 12))
+                }
+                .foregroundColor(Color("gray50"))
+                .padding(.top, 2)
+                   
                 HStack(spacing: 0) {
                     HStack(spacing: 0) {
                         Image(systemName: "calendar.badge.clock")
@@ -48,7 +61,7 @@ struct MeetingCard: View {
                             .font(.system(size: 12))
                     }.foregroundColor(Color("gray50"))
                 }
-                .padding(.top, 8)
+                .padding(.top, 12)
                 
                 HStack(spacing: 0) {
                     Image(systemName: "location.fill")

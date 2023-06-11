@@ -14,7 +14,7 @@ struct AddMeetingView: View {
     
     var body: some View {
         
-        GeometryReader{ geometry in
+        GeometryReader { geometry in
             ScrollView {
                 stepper
                 switch presenter.stepIndex {
@@ -29,7 +29,6 @@ struct AddMeetingView: View {
                 }
             }
         }
-        
         
         .fontDesign(.rounded)
             .background(Color("gray5"))

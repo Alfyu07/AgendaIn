@@ -19,6 +19,16 @@ struct MeetingForm: View {
     @State var votingStarts: Date = Date.now
     @State var votingEnds: Date = Date.now
     
+    func updateTanggal(day: Date, time: Date) -> Date {
+        let calendar = Calendar.current
+        let updatedDate = calendar.date(bySettingHour: calendar.component(.hour, from: time),
+                                        minute: calendar.component(.minute, from: time),
+                                        second: 0,
+                                        of: day)!
+        return updatedDate
+    }
+    
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             inputName
@@ -193,13 +203,21 @@ extension MeetingForm {
     
     var formButton: some View {
         CustomButton(label: "Next") {
+            
+            let updatedStart = updateTanggal(day: meetingDate, time: meetingStarts)
+            let updatedEnds = updateTanggal(day: meetingDate, time: meetingEnds)
+            
+            let updatedVoteStart = updateTanggal(day: votingDate, time: votingStarts)
+            let updatedVoteEnds = updateTanggal(day: votingDate, time: votingEnds)
+            print(updatedStart)
+            
             let newMeeting = AddMeetingRequest(
                 title: meetingName,
                 description: meetingDescription,
                 location: meetingLocation,
                 schedule: MeetingTimeRequest(date: Date.formatToISOString(meetingDate),
-                startTime: Date.formatToISOString(meetingStarts), endTime: Date.formatToISOString(meetingEnds)),
-                voteTime: MeetingTimeRequest(date: Date.formatToISOString(votingDate), startTime: Date.formatToISOString(votingStarts), endTime: Date.formatToISOString(votingEnds)),
+                startTime: Date.formatToISOString(updatedStart), endTime: Date.formatToISOString(updatedEnds)),
+                voteTime: MeetingTimeRequest(date: Date.formatToISOString(votingDate), startTime: Date.formatToISOString(updatedVoteStart), endTime: Date.formatToISOString(updatedVoteEnds)),
                 agenda: []
             )
             presenter.updateMeeting(meeting: newMeeting)
@@ -207,9 +225,3 @@ extension MeetingForm {
         }.padding(.vertical, 32)
     }
 }
-
-//struct MeetingForm_Previews: PreviewProvider {
-//    static var previews: some View {
-//        MeetingForm(presenter: AddMeetingPresenter(meetingUseCase: Injection.init().provideMeeting()))
-//    }
-//}

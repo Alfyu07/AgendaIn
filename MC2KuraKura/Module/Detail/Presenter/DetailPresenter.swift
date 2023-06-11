@@ -12,9 +12,7 @@ class DetailPresenter: ObservableObject {
     private let detailUseCase: DetailUseCase
     
     @Published var meeting: MeetingModel
-    
-    
-    
+
     init(detailUseCase: DetailUseCase) {
         self.detailUseCase = detailUseCase
         self.meeting = self.detailUseCase.getMeeting()
@@ -47,7 +45,9 @@ class DetailPresenter: ObservableObject {
       NavigationLink(destination: router.makeVoteView(for: meeting)) { content() }
     }
     
-    func getMeetingByID(id: String){
+    
+    
+    func getMeetingByID(id: String) {
         let request = GetMeetingRequest(id: id)
         detailUseCase.getMeeting(request: request) { result in
             switch result {
