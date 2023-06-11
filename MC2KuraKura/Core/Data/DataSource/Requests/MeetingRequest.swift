@@ -54,3 +54,12 @@ struct GetMeetingRequest: Codable {
     
     var id: String?
 }
+
+
+struct JoinMeetingRequest: Codable {
+    private enum CodingKeys: String, CodingKey {
+        case meetingCode = "meetingCode"
+    }
+    
+    var meetingCode: String?
+}

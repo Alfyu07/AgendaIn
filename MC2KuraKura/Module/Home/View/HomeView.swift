@@ -96,7 +96,7 @@ extension HomeView {
                 .cornerRadius(30)
                 .padding(.top, 6)
                 .onTapGesture {
-                    print("join")
+                    presenter.joinMeetingByCode()
                 }
             }
         }

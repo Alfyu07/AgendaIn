@@ -52,7 +52,7 @@ class HomePresenter: ObservableObject {
                 DispatchQueue.main.async {
                     self.firstName = user.firstName
                     self.userId = user.id
-                    print("Home_User: \n\(user.firstName)")
+//                    print("Home_User: \n\(user.firstName)")
                 }
             case .failure(let error):
                 DispatchQueue.main.async {
@@ -66,19 +66,39 @@ class HomePresenter: ObservableObject {
     
     
     func getMeetingCardById() {
-        print("Home_Meeting_Cards executed")
         homeUseCase.getMeetingCardByUserID { result in
             switch result {
             case .success(let cardMeetings):
                 DispatchQueue.main.async {
                     self.meetingCards = cardMeetings ?? []
-                    print("Home_Meeting Cards: \n\(String(describing: cardMeetings))")
+//                    print("Home_Meeting Cards: \n\(String(describing: cardMeetings))")
                 }
             case .failure(let error):
                 DispatchQueue.main.async {
                     self.errorMessage = error.localizedDescription
                     self.loadingState = false
                     print("Home_Meeting Cards_Error: \n\(error.localizedDescription)")
+                }
+            }
+        }
+    }
+    
+    func joinMeetingByCode() {
+        print("Home_Join Meeting_Execute")
+        let joinedCodeValue = codeValue.joined(separator: "")
+        let requestJoinMeeting = JoinMeetingRequest(meetingCode: joinedCodeValue)
+        homeUseCase.joinMeetingByCode(request: requestJoinMeeting) { result in
+            switch result {
+            case .success(let meeting):
+                DispatchQueue.main.async {
+                    self.meetId = meeting.id
+                    print("Home_Join Meeting: \n\(meeting.id)")
+                }
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self.errorMessage = error.localizedDescription
+                    self.loadingState = false
+                    print("Home_Join Meeting_Error: \n\(error.localizedDescription)")
                 }
             }
         }
