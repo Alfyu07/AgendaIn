@@ -83,6 +83,7 @@ struct ProfileView: View {
                     presenter.logout()
                 }
                 .padding(.horizontal, 24)
+                .padding(.bottom, 32)
             }
             .padding(.top, 50)
             .fontDesign(.rounded)
