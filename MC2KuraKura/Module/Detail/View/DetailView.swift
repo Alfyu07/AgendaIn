@@ -21,7 +21,6 @@ struct DetailView: View {
     
     var body: some View {
         ScrollView {
-
             if userId == presenter.meeting.picID.userID {
                 meetingCodeSection
             }
