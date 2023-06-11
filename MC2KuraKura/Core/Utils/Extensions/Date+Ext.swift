@@ -26,7 +26,6 @@ extension Date {
         if let date = ISO8601DateFormatter().date(from: dateString) {
             dateFormatter.dateFormat = "dd MMMM yyyy"
             let formattedDate = dateFormatter.string(from: date)
-            print(formattedDate)
             return formattedDate
         }
         return ""
@@ -39,6 +38,17 @@ extension Date {
         dateFormatter.locale = Locale(identifier: "id_ID")
         return dateFormatter.string(from: date)
       }
+    static func formatISOStringToDate(_ date : String) -> Date{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+        dateFormatter.timeZone = TimeZone.current
+        dateFormatter.locale = Locale(identifier: "id_ID")
+        
+        if let resultDate = ISO8601DateFormatter().date(from: date) {
+            return resultDate
+        }
+        return Date()
+    }
     
     static func formatToTimeString(from dateString: String) -> String {
         let dateFormatter = DateFormatter()

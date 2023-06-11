@@ -46,3 +46,11 @@ struct AddAgendaRequest: Codable {
     var title: String?
     var description: String?
 }
+
+struct GetMeetingRequest: Codable {
+    private enum CodingKeys: String, CodingKey {
+        case id = "meetId"
+    }
+    
+    var id: String?
+}

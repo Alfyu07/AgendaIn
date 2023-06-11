@@ -81,8 +81,8 @@ struct AgendaForm: View {
     }
 }
 
-struct AgendaForm_Previews: PreviewProvider {
-    static var previews: some View {
-        AgendaForm(presenter: AddMeetingPresenter(meetingUseCase: Injection.init().provideMeeting()))
-    }
-}
+//struct AgendaForm_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AgendaForm(presenter: AddMeetingPresenter(meetingUseCase: Injection.init().provideMeeting()))
+//    }
+//}

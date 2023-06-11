@@ -13,6 +13,7 @@ class DetailPresenter: ObservableObject {
     
     @Published var meeting: MeetingModel
     
+    
     init(detailUseCase: DetailUseCase) {
         self.detailUseCase = detailUseCase
         self.meeting = self.detailUseCase.getMeeting()
@@ -43,6 +44,28 @@ class DetailPresenter: ObservableObject {
       @ViewBuilder content: () -> Content
     ) -> some View {
       NavigationLink(destination: router.makeVoteView(for: meeting)) { content() }
+    }
+    
+    func getMeetingByID(id: String){
+        let request = GetMeetingRequest(id: id)
+        detailUseCase.getMeeting(request: request) { result in
+            switch result {
+            case .success(let meeting):
+                DispatchQueue.main.async {
+                    self.meeting = meeting
+                    print(meeting)
+//                    self.shouldRedirectToDetailView = true
+//                    self.loadingState = false
+                }
+            
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    print("add meeting error : \(error)")
+//                    self.errorMessage = error.localizedDescription
+//                    self.loadingState = false
+                }
+            }
+        }
     }
     
 }

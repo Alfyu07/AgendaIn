@@ -23,6 +23,7 @@ enum Endpoints {
         case user
         case meetings
         case meeting
+        case meetingId
         case share
         case vote
         case search
@@ -33,6 +34,7 @@ enum Endpoints {
             case .user: return "\(API.baseUrl)user"
             case .meetings: return "\(API.baseUrl)user/meetings"
             case .meeting: return "\(API.baseUrl)meeting"
+            case .meetingId: return "\(API.baseUrl)meeting/id"
             case .share: return "\(API.baseUrl)share"
             case .vote: return "\(API.baseUrl)lookup.php?i="
             case .search: return "\(API.baseUrl)search.php?s="

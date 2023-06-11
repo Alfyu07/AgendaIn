@@ -9,29 +9,45 @@ import SwiftUI
 
 struct NewDetailMeeting: View {
     @ObservedObject var presenter: AddMeetingPresenter
+    @EnvironmentObject var envMeeting: MeetingModel
     
     var body: some View {
-        ScrollView {
-            //            participantsInfo
-            meetingDetailSection
-            agendaSubTitle
-            votingDateAndTimeSection
-            AgendaList(proposedAgendas: presenter.agendas)
-                .padding(.horizontal, 32)
-                .padding(.top, 16)
-            submitButton
-        }.background(Color("gray5"))
-            .navigationTitle(Text("Meeting Detail"))
-            .ignoresSafeArea()
-            .navigationBarBackButtonHidden(true)
+        if presenter.loadingState {
+            ProgressView()
+                .ignoresSafeArea()
+                .navigationBarBackButtonHidden(true)
+        } else {
+            ScrollView {
+                //            participantsInfo
+                meetingDetailSection
+                agendaSubTitle
+                votingDateAndTimeSection
+                AgendaList(proposedAgendas: presenter.agendas)
+                    .padding(.horizontal, 32)
+                    .padding(.top, 16)
+                submitButton
+                navigationToDetail
+                
+            }.background(Color("gray5"))
+                .navigationTitle(Text("Meeting Detail"))
+                .ignoresSafeArea()
+                .navigationBarBackButtonHidden(true)
+        }
+        
     }
 }
 
 extension NewDetailMeeting {
     
+    var navigationToDetail: some View {
+        NavigationLink(destination: presenter.detailView(meeting: presenter.meetingResponse ?? MeetingModel()), isActive: $presenter.shouldRedirectToDetailView) {
+        }
+    }
+    
     var submitButton: some View {
         CustomButton(label: "Submit") {
             presenter.addMeeting()
+            
         }.padding(.horizontal, 32)
             .padding(.bottom, 32)
     }

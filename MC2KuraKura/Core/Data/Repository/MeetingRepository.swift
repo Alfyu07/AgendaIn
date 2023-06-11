@@ -11,6 +11,8 @@ protocol MeetingRepositoryProtocol {
     func addMeeting(request: AddMeetingRequest,
                     result: @escaping (Result<MeetingModel, URLError>) -> Void)
     func shareMeeting( result: @escaping (Result<MeetingModel, URLError>) -> Void)
+    func getMeeting(requset: GetMeetingRequest,
+                    result: @escaping (Result<MeetingModel, URLError>) -> Void)
 }
 
 class MeetingRepository: NSObject {
@@ -29,13 +31,12 @@ class MeetingRepository: NSObject {
 
 extension MeetingRepository: MeetingRepositoryProtocol {
     
-    func addMeeting(request: AddMeetingRequest, result: @escaping (Result<MeetingModel, URLError>) -> Void) {
-        self.remote.addMeeting(request: request) { remoteResponse in
+    func getMeeting(requset: GetMeetingRequest, result: @escaping (Result<MeetingModel, URLError>) -> Void) {
+        self.remote.getMeetingById(request: requset) { remoteResponse in
             switch remoteResponse {
             case .success(let response):
-                
-                let meeting = MeetingModel(id: response.id ?? "" , picID: response.PICID ?? PICID(userID: "", firstName: ""), title: response.title ?? "", description: response.description ?? "", code: response.code ?? "", location: response.location ?? "", schedule: response.schedule ?? MeetingTime(date: Date.now, startTime: Date.now, endTime: Date.now), voteTime: response.voteTime ?? MeetingTime(date: Date.now, startTime: Date.now, endTime: Date.now), participants: [], proposedAgendas: response.agenda, status: .open)
-                
+                let meeting = MeetingMapper.mapAddMeetingResponseToDomain(input: response)
+
                 result(.success(meeting))
                 
             case .failure(let error):
@@ -43,6 +44,23 @@ extension MeetingRepository: MeetingRepositoryProtocol {
             }
         }
     }
+    
+    
+    func addMeeting(request: AddMeetingRequest, result: @escaping (Result<MeetingModel, URLError>) -> Void) {
+        self.remote.addMeeting(request: request) { remoteResponse in
+            switch remoteResponse {
+            case .success(let response):
+                let meeting = MeetingMapper.mapAddMeetingResponseToDomain(input: response)
+
+                result(.success(meeting))
+                
+            case .failure(let error):
+                result(.failure(error))
+            }
+        }
+    }
+    
+    
     
     func shareMeeting(result: @escaping (Result<MeetingModel, URLError>) -> Void) {
         self.remote.shareMeeting { remoteResponse in

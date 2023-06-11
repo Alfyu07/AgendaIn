@@ -25,7 +25,9 @@ class AddMeetingPresenter: ObservableObject {
     
     // meeting form state
     @Published var meeting: AddMeetingRequest?
-    @Published var addMeetingResponse: MeetingModel?
+    @Published var meetingResponse: MeetingModel?
+    @AppStorage("meetId") var meetId: String = ""
+    
     @Published var agendas: [AgendaModel] = []
     
     // user state
@@ -63,20 +65,29 @@ class AddMeetingPresenter: ObservableObject {
         }
     }
     
-    func addMeeting() {
+    func linkBuilder<Content: View>(
+        for meeting: MeetingModel,
+        ViewBuilder content: () -> Content
+    ) -> some View {
+        NavigationLink(destination: router.makeDetailView(for: meeting)) { content() }
+    }
+    
+    func addMeeting()  {
         loadingState = true
         meetingUseCase.addMeeting(request: self.meeting!) { result in
             switch result {
             case .success(let meeting):
                 DispatchQueue.main.async {
-                    self.addMeetingResponse = meeting
+                    self.meetingResponse = meeting
+                    print("Add meeting response Data: \n \(meeting)")
+                    self.meetId = meeting.id
                     self.shouldRedirectToDetailView = true
                     self.loadingState = false
-                }
             
+                }
             case .failure(let error):
                 DispatchQueue.main.async {
-                    print(error)
+                    print("add meeting error : \(error)")
                     self.errorMessage = error.localizedDescription
                     self.loadingState = false
                 }
@@ -84,10 +95,8 @@ class AddMeetingPresenter: ObservableObject {
         }
     }
     
-    func linkBuilder<Content: View>(
-        for meeting: MeetingModel,
-        ViewBuilder content: () -> Content
-    ) -> some View {
-        NavigationLink(destination: router.makeDetailView(for: meeting)) { content() }
+    func detailView(meeting: MeetingModel) -> some View {
+        router.makeDetailView(for: meeting)
     }
+    
 }
