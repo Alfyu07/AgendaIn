@@ -127,7 +127,11 @@ extension HomeView {
                         .foregroundColor(Color("gray50"))
                     
                     TextField("Search", text: $presenter.searchText)
+                        .onChange(of: presenter.searchText) { newValue in
+                            presenter.filterSearch()
+                        }
                         .frame(width: 100)
+                        
                 }
                 .padding(.horizontal, 16)
                 .padding(.vertical, 8)

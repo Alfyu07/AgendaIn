@@ -63,3 +63,7 @@ struct JoinMeetingRequest: Codable {
     
     var meetingCode: String?
 }
+
+//struct AddAgendaRequest: Codable {
+//    
+//}
