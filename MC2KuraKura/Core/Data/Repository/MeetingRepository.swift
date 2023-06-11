@@ -13,6 +13,7 @@ protocol MeetingRepositoryProtocol {
     func shareMeeting( result: @escaping (Result<MeetingModel, URLError>) -> Void)
     func getMeeting(requset: GetMeetingRequest,
                     result: @escaping (Result<MeetingModel, URLError>) -> Void)
+    func getMeetingByUserID( result: @escaping (Result<[CardMeetingModel]?, URLError>) -> Void)
 }
 
 class MeetingRepository: NSObject {
@@ -36,7 +37,7 @@ extension MeetingRepository: MeetingRepositoryProtocol {
             switch remoteResponse {
             case .success(let response):
                 let meeting = MeetingMapper.mapAddMeetingResponseToDomain(input: response)
-
+                
                 result(.success(meeting))
                 
             case .failure(let error):
@@ -44,14 +45,13 @@ extension MeetingRepository: MeetingRepositoryProtocol {
             }
         }
     }
-    
     
     func addMeeting(request: AddMeetingRequest, result: @escaping (Result<MeetingModel, URLError>) -> Void) {
         self.remote.addMeeting(request: request) { remoteResponse in
             switch remoteResponse {
             case .success(let response):
                 let meeting = MeetingMapper.mapAddMeetingResponseToDomain(input: response)
-
+                
                 result(.success(meeting))
                 
             case .failure(let error):
@@ -59,9 +59,7 @@ extension MeetingRepository: MeetingRepositoryProtocol {
             }
         }
     }
-    
-    
-    
+
     func shareMeeting(result: @escaping (Result<MeetingModel, URLError>) -> Void) {
         self.remote.shareMeeting { remoteResponse in
             switch remoteResponse {
@@ -73,4 +71,17 @@ extension MeetingRepository: MeetingRepositoryProtocol {
             }
         }
     }
+    
+    func getMeetingByUserID(result: @escaping (Result<[CardMeetingModel]?, URLError>) -> Void) {
+        self.remote.getMeetingByUserId { remoteResponse in
+            switch remoteResponse {
+            case .success(let response):
+                let cardMeetings = MeetingMapper.mapGetMeetingByUserIDResponseToDomain(input: response)
+                result(.success(cardMeetings))
+            case .failure(let error):
+                result(.failure(error))
+            }
+        }
+    }
+    
 }

@@ -100,7 +100,7 @@ struct ManageParticipantSection_Previews: PreviewProvider {
     static var previews: some View {
         ManageParticipantSection(
             presenter: DetailPresenter(
-                detailUseCase: Injection.init().provideDetail(for: .sharedExample2)
+                detailUseCase: Injection.init().provideDetail(for: MeetingModel())
             )
         )
     }

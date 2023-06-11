@@ -25,8 +25,9 @@ final class Injection: NSObject {
     }
     
     func provideHome() -> HomeUseCase {
-        let repository = provideHomeRepository()
-        return HomeInteractor(userRepository: repository)
+        let userRepository = provideHomeRepository()
+        let meetingRepository = provideMeetingRepository()
+        return HomeInteractor(userRepository: userRepository, meetingRepository: meetingRepository)
     }
     
     private func provideDetailRepository() -> DetailRepositoryProtocol {

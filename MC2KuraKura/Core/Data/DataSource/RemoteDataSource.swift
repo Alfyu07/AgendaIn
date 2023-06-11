@@ -16,6 +16,7 @@ protocol RemoteDataSourceProtocol: AnyObject {
     func getProfile(result: @escaping (Result<GetUserResponse, URLError>) -> Void)
     func addMeeting(request: AddMeetingRequest, result: @escaping (Result<MeetingResponse, URLError>) -> Void)
     func getMeetingById(request: GetMeetingRequest, result: @escaping (Result<MeetingResponse, URLError>) -> Void)
+    func getMeetingByUserId(result: @escaping (Result<[GetMeetingByUserIDResponse]?, URLError>) -> Void)
 }
 
 final class RemoteDataSource: NSObject, URLSessionDelegate {
@@ -28,6 +29,34 @@ final class RemoteDataSource: NSObject, URLSessionDelegate {
 }
 
 extension RemoteDataSource: RemoteDataSourceProtocol {
+    func getMeetingByUserId(result: @escaping (Result<[GetMeetingByUserIDResponse]?, URLError>) -> Void) {
+        guard let url = URL(string: Endpoints.Gets.meetings.url) else {return}
+        var urlRequest = URLRequest(url: url)
+        
+        urlRequest.httpMethod = "GET"
+        urlRequest.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let session = URLSession(configuration: URLSessionConfiguration.default, delegate: self, delegateQueue: OperationQueue.main)
+        
+        let task = session.dataTask(with: urlRequest) { maybeData, maybeResponse, error in
+            
+            if error != nil {
+                result(.failure(.addressUnreachable(url)))
+            } else if let data = maybeData, let response = maybeResponse as? HTTPURLResponse, response.statusCode == 200 {
+                let decoder = JSONDecoder()
+                
+                do {
+                    let data = try decoder.decode([GetMeetingByUserIDResponse].self, from: data)
+                    result(.success(data))
+                } catch {
+                    result(.failure(.invalidResponse))
+                }
+            }
+        }
+        task.resume()
+    }
+    
     
     func getMeetingById(request: GetMeetingRequest, result: @escaping (Result<MeetingResponse, URLError>) -> Void) {
         guard let meetingData = try? JSONEncoder().encode(request) else {return}
