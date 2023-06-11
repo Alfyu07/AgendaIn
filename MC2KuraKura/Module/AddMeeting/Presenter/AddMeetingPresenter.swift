@@ -32,7 +32,7 @@ class AddMeetingPresenter: ObservableObject {
     
     // user state
     @Published var firstName: String = ""
-    @Published var user: UserModel = UserModel(id: "", firstName: "", lastName: "", email: "'", role: .participant, imgUrl: "")
+    @Published var user: UserModel = UserModel(id: "", firstName: "", lastName: "", email: "")
     
     init(meetingUseCase: MeetingUseCase) {
         self.meetingUseCase = meetingUseCase

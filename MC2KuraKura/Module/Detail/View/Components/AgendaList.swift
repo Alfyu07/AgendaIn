@@ -13,7 +13,7 @@ struct AgendaList: View {
     var body: some View {
         VStack(spacing: 0) {
             ForEach(proposedAgendas) { agenda in
-                    AgendaItem(agenda: agenda)
+                    AgendaItem(agenda: agenda, isOnVote: false)
                     .padding(.bottom, 12)
             }
         }

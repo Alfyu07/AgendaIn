@@ -65,7 +65,7 @@ class MeetingModel: Equatable, Identifiable, ObservableObject {
         self.status = status
     }
     
-    init(){
+    init() {
         self.id = ""
         self.picID = PICID(userID: "", firstName: "")
         self.title = ""
@@ -79,6 +79,7 @@ class MeetingModel: Equatable, Identifiable, ObservableObject {
         self.status = .open
     }
     
+    // swiftlint: disable function_parameter_count
     func changeTheMeetingModel(id: String, picID: PICID, title: String, description: String, code: String, location: String, schedule: MeetingTime, voteTime: MeetingTime, participants: [UserModel], proposedAgendas: [AgendaModel], status: VoteStatus) {
         self.id = id
         self.picID = picID
@@ -92,7 +93,7 @@ class MeetingModel: Equatable, Identifiable, ObservableObject {
         self.proposedAgendas = proposedAgendas
         self.status = status
     }
-    
+    // swiftlint: disable function_parameter_count
     
     static let sharedExample = MeetingModel(
         id: UUID().uuidString,

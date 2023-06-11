@@ -29,7 +29,7 @@ struct DetailView: View {
                    
             agendaSubTitle
             votingDateAndTimeSection
-            Text(envMeeting.id)
+//            Text(envMeeting.id)
             AgendaList(proposedAgendas: presenter.meeting.proposedAgendas)
                 .padding(.horizontal, 32)
                 .padding(.top, 16)

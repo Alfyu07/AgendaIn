@@ -1,14 +1,14 @@
 //
-//  AgendaFormCard.swift
+//  VoteAgendaFormCard.swift
 //  MC2KuraKura
 //
-//  Created by Wahyu Alfandi on 04/06/23.
+//  Created by Wahyu Alfandi on 11/06/23.
 //
 
 import SwiftUI
 
-struct AgendaFormCard: View {
-    @ObservedObject var presenter: AddMeetingPresenter
+struct ItemFormCard: View {
+    @ObservedObject var presenter: VotePresenter
     
     @State var agendaName: String = ""
     @State var agendaDescription: String = ""
@@ -17,8 +17,7 @@ struct AgendaFormCard: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            TextField("", text: $agendaName, prompt: Text("Enter your agenda name")
-            )
+            TextField("", text: $agendaName, prompt: Text("Enter your agenda name"))
             .font(.system(size: 16, weight: .semibold))
             .foregroundColor(Color("blue90"))
             
@@ -37,7 +36,6 @@ struct AgendaFormCard: View {
                             ToolbarItemGroup(placement: .keyboard) {
                                 Spacer()
                                 Button("Done") {
-                                    
                                     agendas.append(
                                         AgendaModel(
                                             id: UUID().uuidString,
@@ -74,13 +72,10 @@ struct AgendaFormCard: View {
     private func hideKeyboard() {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
-    
 }
 
-//struct AgendaFormCard_Previews: PreviewProvider {
+//struct VoteAgendaFormCard_Previews: PreviewProvider {
 //    static var previews: some View {
-//        AgendaFormCard(presenter: AddMeetingPresenter(meetingUseCase: Injection.init().provideMeeting()),
-//                       agendas: .constant([]), isAddingAgenda: .constant(false)
-//        )
+//        VoteAgendaFormCard(presenter: VotePresenter(meetingUseCase: Injection.init().provideMeeting()))
 //    }
 //}
