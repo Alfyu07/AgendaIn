@@ -138,7 +138,18 @@ extension DetailView {
         HStack(spacing: 0) {
             if presenter.meeting.participants.isEmpty {
                 Text("No participants")
-            } else {
+            } else if presenter.meeting.participants.count == 1{
+                    ProfileImage(firstName: presenter.meeting.participants[0].firstName, size: 70)
+                        .padding(.trailing, 10)
+                VStack(alignment: .leading, spacing: 0) {
+                    Text("\(presenter.meeting.participants.count) Participant")
+                        .foregroundColor(Color("blue90"))
+                    HStack {
+                        Text("Only \(presenter.meeting.participants[0].firstName) in this meeting")
+                            .font(.system(size: 16, weight: .semibold))
+                    }
+                }
+            } else{
                 ForEach(0...1, id: \.self) { index in
                     ProfileImage(firstName: presenter.meeting.participants[index].firstName, size: 70)
                         .padding(.leading, -30)
