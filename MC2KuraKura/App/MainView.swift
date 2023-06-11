@@ -12,11 +12,13 @@ struct MainView: View {
     
     let homePresenter: HomePresenter
     let meetingPresenter: MeetingPresenter
+    let profilePresenter: ProfilePresenter
     
-    init(homePresenter: HomePresenter, meetingPresenter: MeetingPresenter) {
+    init(homePresenter: HomePresenter, meetingPresenter: MeetingPresenter, profilePresenter: ProfilePresenter) {
         self.index = 0
         self.homePresenter = homePresenter
         self.meetingPresenter = meetingPresenter
+        self.profilePresenter = profilePresenter
         
         // Customize the appearance of the TabView
         let appearance = UITabBarAppearance()
@@ -41,25 +43,17 @@ struct MainView: View {
                     }
                 }
                 .tag(1)
-            ProfileView().tabItem {
+            ProfileView(presenter: profilePresenter).tabItem {
                 VStack {
                     Label("Profile", systemImage: "person.fill")
                     
                 }
-            }
+            }.tag(2)
             
-        }.accentColor(Color("blue50"))
-        
-            .navigationBarBackButtonHidden(true)
+        }
+        .accentColor(Color("blue50"))
+        .navigationBarBackButtonHidden(true)
     }
 }
 
-struct MainView_Previews: PreviewProvider {
-    static var previews: some View {
-        MainView(
-            homePresenter: HomePresenter(homeUseCase: Injection.init().provideHome()),
-            
-            meetingPresenter: MeetingPresenter(meetingUseCase: Injection.init().provideMeeting())
-        )
-    }
-}
+

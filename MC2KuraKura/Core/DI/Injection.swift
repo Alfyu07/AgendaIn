@@ -54,6 +54,11 @@ final class Injection: NSObject {
         return UserRepository.sharedInstance(remote)
     }
     
+    func provideUser() -> UserUseCase {
+        let repository = provideUserRepository()
+        return UserInteractor(userRepository: repository)
+    }
+    
     func provideMeeting() -> MeetingUseCase {
         let meetingRepository = provideMeetingRepository()
         let userRepository = provideUserRepository()

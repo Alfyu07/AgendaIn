@@ -11,8 +11,8 @@ import SwiftUI
 struct MC2KuraKuraApp: App {
     let onboardingPresenter = OnboardingPresenter(onBoardingUseCase: Injection.init().provideOnboarding())
     let homePresenter = HomePresenter(homeUseCase: Injection.init().provideHome())
-    
     let meetingPresenter = MeetingPresenter(meetingUseCase: Injection.init().provideMeeting())
+    let profilePresenter = ProfilePresenter(userUsecase: Injection.init().provideUser())
 
     // insert profilePresenter here
     
@@ -22,6 +22,7 @@ struct MC2KuraKuraApp: App {
                 .environmentObject(onboardingPresenter)
                 .environmentObject(homePresenter)
                 .environmentObject(meetingPresenter)
+                .environmentObject(profilePresenter)
                 
         }
     }
