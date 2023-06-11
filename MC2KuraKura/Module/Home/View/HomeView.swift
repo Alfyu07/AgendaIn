@@ -23,6 +23,7 @@ struct HomeView: View {
                 .padding(.horizontal, 32)
             
             meetingListSection
+            navigationToDetail
             
             Spacer().frame(height: 100)
         }
@@ -37,6 +38,11 @@ struct HomeView: View {
 }
 
 extension HomeView {
+    var navigationToDetail: some View {
+            NavigationLink(destination: presenter.detailView(meeting: presenter.meetingModel ?? MeetingModel()), isActive: $presenter.navigateToDetailFromJoinMeeting) {
+            }
+        }
+    
     var header: some View {
         HStack(alignment: .center, spacing: 0) {
             VStack(alignment: .leading, spacing: 0) {

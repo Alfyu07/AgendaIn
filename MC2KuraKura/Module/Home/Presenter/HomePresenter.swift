@@ -23,9 +23,15 @@ class HomePresenter: ObservableObject {
     @Published var meetingCards: [CardMeetingModel] = []
     @AppStorage("meetId") var meetId: String = ""
     @AppStorage("userId") var userId: String = ""
+    
+    @Published var meetingModel: MeetingModel = MeetingModel()
     @Published var errorMessage: String = ""
     @Published var isError: Bool = false
     @Published var loadingState: Bool = false
+    
+    // state to navigate
+    @Published var navigateToDetailFromJoinMeeting : Bool = false
+    
     
     init(homeUseCase: HomeUseCase) {
         self.homeUseCase = homeUseCase
@@ -37,6 +43,10 @@ class HomePresenter: ObservableObject {
     
     func detailView(meeting: MeetingModel) -> some View {
         router.makeDetailView(for: meeting)
+    }
+    
+    func navigateFromJoinToDetail() -> some View {
+        return  router.makeDetailView(for: meetingModel)
     }
     
     func linkBuilder<Content: View>(
@@ -93,7 +103,9 @@ class HomePresenter: ObservableObject {
             case .success(let meeting):
                 DispatchQueue.main.async {
                     self.meetId = meeting.id
+                    self.meetingModel = meeting
                     print("Home_Join Meeting: \n\(meeting.id)")
+                    self.navigateToDetailFromJoinMeeting = true
                 }
             case .failure(let error):
                 DispatchQueue.main.async {
