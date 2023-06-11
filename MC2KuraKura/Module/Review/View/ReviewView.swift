@@ -175,7 +175,7 @@ extension ReviewView {
 struct ReviewView_Previews: PreviewProvider {
     static var previews: some View {
         ReviewView(presenter: ReviewPresenter(
-            useCase: Injection.init().provideReview(for: .sharedExample))
+            useCase: Injection.init().provideReview(for: MeetingModel()))
         )
     }
 }

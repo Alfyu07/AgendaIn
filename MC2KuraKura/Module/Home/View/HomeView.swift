@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     @ObservedObject var presenter: HomePresenter
+    @AppStorage("meetId") var meetId: String = ""
     
     var body: some View {
         ScrollView {
@@ -27,6 +28,9 @@ struct HomeView: View {
         }
             .ignoresSafeArea()
             .navigationBarBackButtonHidden(true)
+            .onAppear {
+                presenter.getMeetingCardById()
+            }
             
     }
     
@@ -124,10 +128,17 @@ extension HomeView {
                 )
             }
             
-            ForEach(presenter.meetings) { meeting in
-                presenter.linkBuilder(for: meeting) {
-                    MeetingCard(meeting: meeting)
+            ForEach(presenter.meetingCards) { meeting in
+                
+                let meetingModel = MeetingModel(id: meeting.id, picID: meeting.picID, title: meeting.title, description: "", code: "", location: meeting.location, schedule: meeting.schedule, voteTime: meeting.voteTime, participants: meeting.participants, proposedAgendas: [], status: meeting.status)
+                
+                
+                presenter.linkBuilder(for: meetingModel) {
+                    MeetingCard(meeting: meetingModel)
                         .padding(.top, 12)
+//                        .onTapGesture {
+//                            self.meetId = meeting.id
+//                        }
                 }
             }
         }.padding(.horizontal, 32)

@@ -14,6 +14,7 @@ class DetailPresenter: ObservableObject {
     @Published var meeting: MeetingModel
     
     
+    
     init(detailUseCase: DetailUseCase) {
         self.detailUseCase = detailUseCase
         self.meeting = self.detailUseCase.getMeeting()

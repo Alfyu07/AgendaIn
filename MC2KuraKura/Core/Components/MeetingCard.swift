@@ -90,20 +90,24 @@ struct MeetingCard: View {
                     if meeting.participants.count > 3 {
                         HStack(spacing: 0) {
                             ForEach(0..<3, id: \.self) { index in
-                                AsyncImage(url: URL(string: meeting.participants[index].imgUrl)) { image in
-                                    image
-                                        .resizable()
-                                        .frame(width: 24, height: 24)
-                                        .aspectRatio(contentMode: .fit)
-                                        .clipShape(Circle())
-                                        .padding(.leading, -8)
-                                } placeholder: {
-                                    Color.gray
-                                        .frame(width: 24, height: 24)
-                                        .aspectRatio(contentMode: .fit)
-                                        .clipShape(Circle())
-                                        .padding(.leading, -4)
-                                }
+                                ProfileImage(firstName: meeting.participants[index].firstName, size: 24)
+                                    .padding(.leading, -8)
+                                
+                                
+//                                AsyncImage(url: URL(string: meeting.participants[index].imgUrl)) { image in
+//                                    image
+//                                        .resizable()
+//                                        .frame(width: 24, height: 24)
+//                                        .aspectRatio(contentMode: .fit)
+//                                        .clipShape(Circle())
+//                                        
+//                                } placeholder: {
+//                                    Color.gray
+//                                        .frame(width: 24, height: 24)
+//                                        .aspectRatio(contentMode: .fit)
+//                                        .clipShape(Circle())
+//                                        .padding(.leading, -4)
+//                                }
                             }
                             
                             Text("+\(meeting.participants.count - 3)")

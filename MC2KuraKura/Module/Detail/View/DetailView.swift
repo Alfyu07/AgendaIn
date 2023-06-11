@@ -10,6 +10,8 @@ import SwiftUI
 struct DetailView: View {
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
     
+    @AppStorage("userId") var userId: String = ""
+    
     @StateObject var presenter: DetailPresenter
     @EnvironmentObject var envMeeting: MeetingModel
     @AppStorage("meetId") var meetId: String = ""
@@ -20,7 +22,7 @@ struct DetailView: View {
     var body: some View {
         ScrollView {
 
-            if user.role == .pic {
+            if userId == presenter.meeting.picID.userID {
                 meetingCodeSection
             }
            
@@ -29,7 +31,7 @@ struct DetailView: View {
                    
             agendaSubTitle
             votingDateAndTimeSection
-            Text(envMeeting.id)
+//            Text(envMeeting.id)
             AgendaList(proposedAgendas: presenter.meeting.proposedAgendas)
                 .padding(.horizontal, 32)
                 .padding(.top, 16)
@@ -68,7 +70,8 @@ struct DetailView: View {
                 }
                     
             }
-        }.background(Color("gray5"))
+        }
+        .background(Color("gray5"))
         .navigationTitle(Text("Meeting Detail"))
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
@@ -91,7 +94,7 @@ struct DetailView: View {
         .ignoresSafeArea()
         .navigationBarBackButtonHidden(true)
         .onAppear{
-            presenter.getMeetingByID(id: meetId)
+            presenter.getMeetingByID(id: presenter.meeting.id.isEmpty ? meetId: presenter.meeting.id)
         }
     }
 }
@@ -238,6 +241,6 @@ extension DetailView {
 
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailView(presenter: DetailPresenter(detailUseCase: Injection.init().provideDetail(for: .sharedExample2)))
+        DetailView(presenter: DetailPresenter(detailUseCase: Injection.init().provideDetail(for: MeetingModel())))
     }
 }

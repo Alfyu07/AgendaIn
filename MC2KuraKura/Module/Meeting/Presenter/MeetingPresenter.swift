@@ -35,9 +35,9 @@ class MeetingPresenter: ObservableObject {
 //        }
 //      }
         
-        DispatchQueue.main.async {
-            self.meetings = [.sharedExample, .sharedExample2]
-        }
+//        DispatchQueue.main.async {
+//            self.meetings = [.sharedExample, .sharedExample2]
+//        }
     }
     
     func linkBuilder<Content: View>(
