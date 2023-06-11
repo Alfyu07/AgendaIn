@@ -8,7 +8,8 @@
 import Foundation
 
 protocol VoteRepositoryProtocol {
-//    func suggestAgenda()
+    func addAndEditAgenda(request: AddAgendaRequest, result: @escaping (Result<MeetingModel, URLError>) -> Void)
+    func addVoteAgendas(request: AddVoteAgendas, result: @escaping (Result<MeetingModel, URLError>) -> Void)
 }
 
 final class VoteRepository: NSObject {
@@ -26,6 +27,30 @@ final class VoteRepository: NSObject {
 }
 
 extension VoteRepository: VoteRepositoryProtocol {
+    func addVoteAgendas(request: AddVoteAgendas, result: @escaping (Result<MeetingModel, URLError>) -> Void) {
+        self.remote.addVotesAgenda(request: request) { remoteResponse in
+            switch remoteResponse {
+            case .success(let response):
+                let meeting = MeetingMapper.mapAddMeetingResponseToDomain(input: response)
+                result(.success(meeting))
+            case .failure(let error):
+                result(.failure(error))
+            }
+        }
+    }
+    
+    func addAndEditAgenda(request: AddAgendaRequest, result: @escaping (Result<MeetingModel, URLError>) -> Void) {
+        self.remote.addMeetingAgenda (request: request) { remoteResponse in
+            switch remoteResponse {
+            case .success(let response):
+                let meeting = MeetingMapper.mapAddMeetingResponseToDomain(input: response)
+                result(.success(meeting))
+            case .failure(let error):
+                result(.failure(error))
+            }
+        }
+    }
+    
     
 //    func suggestAgenda() {
 //

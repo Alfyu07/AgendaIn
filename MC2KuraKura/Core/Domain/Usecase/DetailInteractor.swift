@@ -27,7 +27,7 @@ class DetailInteractor: DetailUseCase {
     }
     
     func getMeeting(request: GetMeetingRequest, completion: @escaping (Result<MeetingModel, URLError>) -> Void) {
-        meetingRepository.getMeeting(requset: request) { result in
+        meetingRepository.getMeeting(request: request) { result in
             completion(result)
         }
     }

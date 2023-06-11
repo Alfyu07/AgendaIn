@@ -63,3 +63,36 @@ struct JoinMeetingRequest: Codable {
     
     var meetingCode: String?
 }
+
+// MARK: Agendas
+struct AddAgendaRequests: Codable {
+    private enum CodingKeys: String, CodingKey {
+        case meetingId = "meetId"
+        case agendas = "agendas"
+    }
+    
+    var meetingId: String?
+    var agendas: AgendaRequest?
+}
+
+struct AgendaRequest: Codable {
+    private enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case title = "title"
+        case description = "description"
+    }
+    
+    var id: String?
+    var title: String?
+    var description: String?
+}
+
+struct AddVoteAgendas: Codable {
+    private enum CodingKeys: String, CodingKey {
+        case meetId = "meetId"
+        case voteValue = "voteValue"
+    }
+    
+    var meetId: String?
+    var voteValue: [Int]?
+}

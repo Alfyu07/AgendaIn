@@ -25,6 +25,7 @@ class HomePresenter: ObservableObject {
     @AppStorage("userId") var userId: String = ""
     
     @Published var meetingModel: MeetingModel = MeetingModel()
+    @Published var tempMeetingCards: [CardMeetingModel] = []
     @Published var errorMessage: String = ""
     @Published var isError: Bool = false
     @Published var loadingState: Bool = false
@@ -81,7 +82,10 @@ class HomePresenter: ObservableObject {
             switch result {
             case .success(let cardMeetings):
                 DispatchQueue.main.async {
-                    self.meetingCards = cardMeetings ?? []
+                    let sortedCardsByDate = cardMeetings?.sorted{$0.schedule.startTime > $1.schedule.startTime} ?? []
+                    self.meetingCards = sortedCardsByDate
+                    
+                    self.tempMeetingCards = sortedCardsByDate
 //                    print("Home_Meeting Cards: \n\(String(describing: cardMeetings))")
                 }
             case .failure(let error):
@@ -118,4 +122,12 @@ class HomePresenter: ObservableObject {
         }
     }
     
+    func filterSearch() {
+        self.meetingCards = tempMeetingCards
+        if searchText != "" {
+            self.meetingCards = meetingCards
+                .filter{$0.title.lowercased()
+                    .contains(searchText.lowercased())}
+        }
+    }
 }

@@ -8,12 +8,11 @@
 import Foundation
 
 protocol VoteUseCase {
-    func submitVote()
-    func addNewAgenda()
+    func submitVoteAgendas(request: AddVoteAgendas, completion: @escaping (Result<MeetingModel, URLError>) -> Void)
+    func addAndEditAgenda(request: AddAgendaRequest, completion: @escaping (Result<MeetingModel, URLError>) -> Void)
 }
 
 class VoteInteractor: VoteUseCase {
-    
     private let repository: VoteRepositoryProtocol
     private let meeting: MeetingModel
     
@@ -26,7 +25,16 @@ class VoteInteractor: VoteUseCase {
         
     }
     
-    func addNewAgenda() {
-        
+    func addAndEditAgenda(request: AddAgendaRequest, completion: @escaping (Result<MeetingModel, URLError>) -> Void) {
+        repository.addAndEditAgenda(request: request) { result in
+            completion(result)
+        }
     }
+    
+    func submitVoteAgendas(request: AddVoteAgendas, completion: @escaping (Result<MeetingModel, URLError>) -> Void) {
+        repository.addVoteAgendas(request: request) { result in
+            completion(result)
+        }
+    }
+    
 }
