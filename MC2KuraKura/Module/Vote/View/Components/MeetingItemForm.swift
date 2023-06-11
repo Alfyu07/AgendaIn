@@ -1,25 +1,24 @@
 //
-//  AgendaForm.swift
+//  VoteAgendaForm.swift
 //  MC2KuraKura
 //
-//  Created by Wahyu Alfandi on 04/06/23.
+//  Created by Wahyu Alfandi on 11/06/23.
 //
 
 import SwiftUI
 
-struct AgendaForm: View {
-    @ObservedObject var presenter: AddMeetingPresenter
-
+struct MeetingItemForm: View {
+    @ObservedObject var presenter: VotePresenter
+    
     @State var agendas: [AgendaModel] = []
     @State var isAddingAgenda = false
     @State var isEditignAgenda = false
     let width: Double
-    
     var body: some View {
         VStack(alignment: .center, spacing: 0) {
             if agendas.isEmpty {
                 if isAddingAgenda {
-                    AgendaFormCard(
+                    ItemFormCard(
                         presenter: presenter,
                         agendas: $agendas, isAddingAgenda: $isAddingAgenda)
                 } else {
@@ -42,7 +41,7 @@ struct AgendaForm: View {
                 }
                 
                 if isAddingAgenda {
-                    AgendaFormCard( presenter: presenter,
+                    ItemFormCard( presenter: presenter,
                         agendas: $agendas, isAddingAgenda: $isAddingAgenda)
                         .padding(.top, 12)
                 }
@@ -64,12 +63,12 @@ struct AgendaForm: View {
                 
             }.padding(.top, 12)
 
-            CustomButton(label: "Next") {
-                presenter.agendas = agendas
-                let agendaRequests = agendas.map { agenda in
-                    AddAgendaRequest(title: agenda.title, description: agenda.description)
-                }
-                presenter.meeting?.agenda = agendaRequests
+            CustomButton(label: "Submit") {
+//                presenter.agendas = agendas
+//                let agendaRequests = agendas.map { agenda in
+//                    AddAgendaRequest(title: agenda.title, description: agenda.description)
+//                }
+//                presenter.meeting?.agenda = agendaRequests
                 presenter.stepIndex += 1
             }.padding(.top, 80)
                 .padding(.bottom, 32)
@@ -82,8 +81,3 @@ struct AgendaForm: View {
     }
 }
 
-//struct AgendaForm_Previews: PreviewProvider {
-//    static var previews: some View {
-//        AgendaForm(presenter: AddMeetingPresenter(meetingUseCase: Injection.init().provideMeeting()))
-//    }
-//}

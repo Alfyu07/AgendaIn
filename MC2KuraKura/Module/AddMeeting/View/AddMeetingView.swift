@@ -9,53 +9,56 @@ import SwiftUI
 
 struct AddMeetingView: View {
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
-    
+    @EnvironmentObject var envMeeting: MeetingModel
     @StateObject var presenter: AddMeetingPresenter
     
     var body: some View {
-        if presenter.shouldRedirectToDetailView {
-            DetailView(presenter: DetailPresenter(detailUseCase: Injection.init().provideDetail(for: presenter.addMeetingResponse!)))
-        } else {
+        
+        GeometryReader{ geometry in
             ScrollView {
                 stepper
                 switch presenter.stepIndex {
                 case 0:
                     MeetingForm(presenter: presenter)
                 case 1:
-                    AgendaForm(presenter: presenter)
+                    AgendaForm(presenter: presenter, width: geometry.size.width)
                 case 2:
-                    NewDetailMeeting(presenter: presenter)
+                    NewDetailMeeting(presenter: presenter, width: geometry.size.width)
                 default:
                     MeetingForm(presenter: presenter)
                 }
-            }.fontDesign(.rounded)
-                .background(Color("gray5"))
-                .navigationTitle(Text("Meeting Detail"))
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarLeading) {
-                        Button {
-                            if presenter.stepIndex == 0 {
-                                presentationMode.wrappedValue.dismiss()
-                                presenter.meeting = nil
-                            } else {
-                                presenter.stepIndex -= 1
-                            }
-                            
-                        } label: {
-                            Image(systemName: "chevron.backward")
-                                .foregroundColor(Color("blue50"))
+            }
+        }
+        
+        
+        .fontDesign(.rounded)
+            .background(Color("gray5"))
+            .navigationTitle(Text("Meeting Detail"))
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                        if presenter.stepIndex == 0 {
+                            presentationMode.wrappedValue.dismiss()
+                            presenter.meeting = nil
+                        } else {
+                            presenter.stepIndex -= 1
                         }
+                        
+                    } label: {
+                        Image(systemName: "chevron.backward")
+                            .foregroundColor(Color("blue50"))
                     }
                 }
-                .navigationTitle("Add New Meeting")
-                .navigationBarBackButtonHidden(false)
-                .navigationBarTitleDisplayMode(.inline)
-                .ignoresSafeArea()
-                .navigationBarBackButtonHidden(true)
-                .onAppear {
-                    presenter.getProfile()
-                }
-        }
+            }
+            .navigationTitle("Add New Meeting")
+            .navigationBarBackButtonHidden(false)
+            .navigationBarTitleDisplayMode(.inline)
+            .ignoresSafeArea()
+            .navigationBarBackButtonHidden(true)
+            .onAppear {
+                presenter.getProfile()
+            }
+        
     }
 }
 // 16 + 32
@@ -92,8 +95,8 @@ extension AddMeetingView {
     }
 }
 
-struct AddMeetingView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddMeetingView(presenter: AddMeetingPresenter(meetingUseCase: Injection.init().provideMeeting()))
-    }
-}
+//struct AddMeetingView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AddMeetingView(presenter: AddMeetingPresenter(meetingUseCase: Injection.init().provideMeeting()))
+//    }
+//}

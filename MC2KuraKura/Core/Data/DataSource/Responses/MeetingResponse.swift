@@ -7,10 +7,10 @@
 
 import Foundation
 
-struct AddMeetingResponse: Decodable {
+struct MeetingResponse: Decodable, Identifiable {
     private enum CodingKeys: String, CodingKey {
         case id = "id"
-        case PICID = "PICID"
+        case PICID = "picid"
         case title =  "title"
         case description = "description"
         case code = "code"
@@ -18,6 +18,7 @@ struct AddMeetingResponse: Decodable {
         case schedule = "schedule"
         case voteTime = "voteTime"
         case agenda = "agenda"
+        case participants = "participants"
     }
     var id: String?
     var PICID: PICID?
@@ -25,8 +26,28 @@ struct AddMeetingResponse: Decodable {
     var description: String?
     var code: String?
     var location: String?
-    var schedule: MeetingTime?
-    var voteTime: MeetingTime?
+    var schedule: MeetingTimeRequest?
+    var voteTime: MeetingTimeRequest?
     var agenda: [AgendaModel]
+    var participants: [Participant]
 }
 
+struct GetMeetingByUserIDResponse: Decodable, Identifiable {
+    private enum CodingKeys: String, CodingKey {
+        case id = "meetId"
+        case PICID = "picid"
+        case title =  "title"
+        case location = "location"
+        case schedule = "schedule"
+        case voteTime = "voteTime"
+        case participants = "participants"
+    }
+    
+    var id: String?
+    var PICID: PICID?
+    var title: String?
+    var location: String?
+    var schedule: MeetingTimeRequest?
+    var voteTime: MeetingTimeRequest?
+    var participants: [Participant]
+}

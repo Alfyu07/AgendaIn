@@ -17,6 +17,7 @@ protocol MeetingUseCase {
 class MeetingInteractor: MeetingUseCase {
     private let meetingRepository: MeetingRepositoryProtocol
     private let userRepository: UserRepositoryProtocol
+    
     init(meetingRepository: MeetingRepositoryProtocol, userRepository: UserRepositoryProtocol) {
         self.meetingRepository = meetingRepository
         self.userRepository = userRepository
