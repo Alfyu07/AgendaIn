@@ -24,6 +24,7 @@ class HomePresenter: ObservableObject {
     @AppStorage("meetId") var meetId: String = ""
     @AppStorage("userId") var userId: String = ""
     @Published var errorMessage: String = ""
+    @Published var isError: Bool = false
     @Published var loadingState: Bool = false
     
     init(homeUseCase: HomeUseCase) {
@@ -97,6 +98,7 @@ class HomePresenter: ObservableObject {
             case .failure(let error):
                 DispatchQueue.main.async {
                     self.errorMessage = error.localizedDescription
+                    self.isError = true
                     self.loadingState = false
                     print("Home_Join Meeting_Error: \n\(error.localizedDescription)")
                 }

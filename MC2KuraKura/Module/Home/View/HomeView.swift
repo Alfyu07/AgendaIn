@@ -104,6 +104,9 @@ extension HomeView {
         .padding(.horizontal, 22)
         .background(Color(hex: 0xFFD7E4F7))
         .cornerRadius(30)
+        .alert(isPresented: $presenter.isError) {
+            Alert(title: Text("Error"), message: Text(presenter.errorMessage), dismissButton: .default(Text("OK")))
+                }
     }
     
     var meetingListSection: some View {
