@@ -22,7 +22,7 @@ struct CodeTextField: View {
                             oldValue = codeValue[index]
                         }
                     })
-                        .keyboardType(.numberPad)
+                        .keyboardType(.asciiCapable)
                         .frame(width: 30, height: 40)
 
                         .multilineTextAlignment(.center)
