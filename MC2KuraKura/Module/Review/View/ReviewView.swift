@@ -27,12 +27,17 @@ struct ReviewView: View {
                         .padding(.horizontal, 32)
                         .foregroundColor(Color("gray50"))
                     
-                    ForEach(presenter.meeting.proposedAgendas) { agenda in
+                    ForEach(0..<presenter.meeting.proposedAgendas.count, id: \.self) { index in
+                        let agenda = presenter.meeting.proposedAgendas[index]
+                        
                         MeetingReviewCard(
-                            index: 1,
+                            index: index+1,
                             width: geometry.size.width,
                             agenda: agenda
                         )
+                        .onAppear {
+                            print("Tes \(index)")
+                        }
                         .background(draggedItem == agenda ? Color.gray.opacity(0.2) : Color.clear)
                         .offset(x: dragOffset.width, y: dragOffset.height)
                         .gesture(
@@ -55,6 +60,7 @@ struct ReviewView: View {
 //
 //                                }
                         )
+                       
                         .padding(.top, 8)
                         
                     }.padding(.horizontal, 24)

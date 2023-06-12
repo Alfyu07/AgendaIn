@@ -19,6 +19,7 @@ class VotePresenter: ObservableObject {
     @Published var stepIndex: Int
     let stepNumber: Int
     let steps: [String]
+    let participantsCount: Int
     @Published var loadingState: Bool = false
     @Published var errorMessage: String = ""
     
@@ -43,6 +44,7 @@ class VotePresenter: ObservableObject {
         self.meeting = meeting
         self.agendaRequests = []
         self.values = Array(repeating: 0, count: meeting.proposedAgendas.count)
+        self.participantsCount = meeting.participants.count
     }
     
     func submitAgenda() {

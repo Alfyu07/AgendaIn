@@ -10,6 +10,7 @@ import Foundation
 protocol DetailUseCase {
     func getMeeting() -> MeetingModel
     func getMeeting(request: GetMeetingRequest, completion: @escaping (Result<MeetingModel, URLError>) -> Void)
+    func saveResultAgendasChange(request: SaveResultAgendasChangesRequest, completion: @escaping (Result<MeetingModel, URLError>) -> Void)
 }
 
 class DetailInteractor: DetailUseCase {
@@ -24,6 +25,12 @@ class DetailInteractor: DetailUseCase {
     
     func getMeeting() -> MeetingModel {
         return meeting
+    }
+    
+    func saveResultAgendasChange(request: SaveResultAgendasChangesRequest, completion: @escaping (Result<MeetingModel, URLError>) -> Void) {
+        meetingRepository.saveResultAgendaChanges(request: request) { result in
+            completion(result)
+        }
     }
     
     func getMeeting(request: GetMeetingRequest, completion: @escaping (Result<MeetingModel, URLError>) -> Void) {

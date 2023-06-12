@@ -96,6 +96,10 @@ class AddMeetingPresenter: ObservableObject {
         }
     }
     
+    func saveResultAgendasChange() {
+        meetingUseCase
+    }
+    
     func detailView(meeting: MeetingModel) -> some View {
         router.makeDetailView(for: meeting)
     }

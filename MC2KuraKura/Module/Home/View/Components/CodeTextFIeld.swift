@@ -17,14 +17,14 @@ struct CodeTextField: View {
         HStack(spacing: 10) {
             ForEach(0..<numberOfFields, id: \.self) { index in
                 VStack(spacing: 0) {
-                    TextField("", text: $codeValue[index], onEditingChanged: { editing in
+                    TextField(codeValue[index], text: $codeValue[index], onEditingChanged: { editing in
                         if editing {
                             oldValue = codeValue[index]
                         }
                     })
                         .keyboardType(.asciiCapable)
                         .frame(width: 30, height: 40)
-
+                        .autocapitalization(.none)
                         .multilineTextAlignment(.center)
                         .focused($fieldFocus, equals: index)
                         .tag(index)
@@ -33,7 +33,7 @@ struct CodeTextField: View {
                                 // Update to new value if there is already an value.
                                 if codeValue[index].count > 1 {
                                     let currentValue = Array(codeValue[index])
-                                    
+                                    // Fix this kinda error when paste in text field
                                     if currentValue[0] == Character(oldValue) {
                                         codeValue[index] = String(codeValue[index].suffix(1))
                                     } else {

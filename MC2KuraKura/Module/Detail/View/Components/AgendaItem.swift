@@ -9,10 +9,12 @@ import SwiftUI
 
 struct AgendaItem: View {
     
-    let agenda: AgendaModel
+    // Fix this beacuse its statis
+    var agenda: AgendaModel
     let isOnVote: Bool
     let isOnResult: Bool
     let width: Double
+    let participants: Int
     
     @State var isExpanding: Bool = true
     @Binding var voteValue: Int
@@ -21,12 +23,14 @@ struct AgendaItem: View {
          isOnVote: Bool = false,
          isOnResult: Bool = false,
          width: Double,
+         participants: Int = 0,
          voteValue: Binding<Int> = .constant(0)
     ) {
         self.agenda = agenda
         self.isOnVote = isOnVote
         self.isOnResult = isOnResult
         self.width = width
+        self.participants = participants
         _voteValue = voteValue
     }
     
@@ -106,7 +110,7 @@ struct AgendaItem: View {
                                     Image(systemName: "checkmark.circle.fill")
                                         .foregroundColor(Color("yellow50"))
                                         .frame(width: 24, height: 24)
-                                    Text("\(agenda.voters.count)/10")
+                                    Text("\(agenda.voters.count)/\(participants)")
                                         .font(.system(size: 10, weight: .medium))
                                         .foregroundColor(Color("gray80"))
                                 }

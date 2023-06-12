@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AddMeetingView: View {
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
-    @EnvironmentObject var envMeeting: MeetingModel
+//    @EnvironmentObject var envMeeting: MeetingModel
     @StateObject var presenter: AddMeetingPresenter
     
     var body: some View {

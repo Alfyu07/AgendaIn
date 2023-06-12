@@ -10,9 +10,13 @@ import SwiftUI
 struct ResultDetailView: View {
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
     @ObservedObject var presenter: DetailPresenter
-   
+    
+    @State private var draggedAgenda: AgendaModel?
+    @AppStorage("userId") var userId: String = ""
+    
+    
     var body: some View {
-        GeometryReader { geometry in
+        return GeometryReader { geometry in
             ScrollView {
                 VStack(alignment: .leading, spacing: 0) {
                     participantsInfo
@@ -22,58 +26,109 @@ struct ResultDetailView: View {
                     
                     Text("Meeting Agenda").padding(.vertical, 16)
                         .padding(.horizontal, 24)
-                    ForEach(presenter.meeting.proposedAgendas) { agenda in
-                        MeetingReviewCard(
-                            index: 1,
-                            width: geometry.size.width,
-                            agenda: agenda
-                        )
-                        .padding(.top, 8)
+                    
+                    if userId == presenter.meeting.picID.userID {
+                        LazyVStack(spacing : 15) {
+                            ForEach(0..<presenter.meeting.proposedAgendas.count, id:\.self) { index in
+                                let agenda = presenter.meeting.proposedAgendas[index]
+                                MeetingReviewCard(
+                                    index: index+1,
+                                    width: geometry.size.width,
+                                    agenda: agenda
+                                )
+                                .padding(.top, 8)
+                                .padding(.horizontal, 24)
+                                .onDrag {
+                                    self.draggedAgenda = agenda
+                                    return NSItemProvider(item: nil, typeIdentifier: agenda.id)
+                                }
+                                .onDrop(of: [.text], delegate: DropMeetingViewCardDelegate(agenda: agenda, agendas: $presenter.meeting.proposedAgendas, draggedAgenda: $draggedAgenda))
+                            }
+                        }
+                        CustomButton(label: "Save Result") {
+                            presenter.saveResultAgendasChange()
+                            
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                                presentationMode.wrappedValue.dismiss()
+                            }
+                            
+                        }
+                        .padding(.vertical, 24)
                         .padding(.horizontal, 24)
-                        
+                    } else {
+                        ForEach(0..<presenter.meeting.proposedAgendas.count, id:\.self) { index in
+                            let agenda = presenter.meeting.proposedAgendas[index]
+                            MeetingReviewCard(
+                                index: index+1,
+                                width: geometry.size.width,
+                                agenda: agenda
+                            )
+                            .padding(.top, 8)
+                            .padding(.horizontal, 24)
+                        }
+                        // Remove this, this just to indicates if the user is PIC or not
+                        Text("Remove This In Production: Only PIC can Drag And Drop List")
+                            .padding(.vertical, 24)
+                            .padding(.horizontal, 24)
+                    }
+                }
+            }
+            .ignoresSafeArea()
+            .background(Color("blue5"))
+            .navigationBarBackButtonHidden(true)
+            .navigationTitle(Text("Result"))
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                        presentationMode.wrappedValue.dismiss()
+                    } label: {
+                        Image(systemName: "chevron.backward")
+                            .foregroundColor(Color("blue50"))
+                    }
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        print("Settings")
+                    } label: {
+                        Image(systemName: "gearshape.fill")
+                            .foregroundColor(Color("blue50"))
                     }
                 }
             }
         }
-        .ignoresSafeArea()
-        .background(Color("blue5"))
-        .navigationBarBackButtonHidden(true)
-        .navigationTitle(Text("Result"))
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button {
-                    presentationMode.wrappedValue.dismiss()
-                } label: {
-                    Image(systemName: "chevron.backward")
-                        .foregroundColor(Color("blue50"))
-                }
+    }
+    
+    struct  DropMeetingViewCardDelegate: DropDelegate {
+        
+        let agenda : AgendaModel
+        @Binding var agendas : [AgendaModel]
+        @Binding var draggedAgenda : AgendaModel?
+        
+        func performDrop(info: DropInfo) -> Bool {
+            return true
+        }
+        
+        func dropEntered(info: DropInfo) {
+            guard let draggedAgenda = self.draggedAgenda else {
+                return
             }
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Button {
-                    print("Settings")
-                } label: {
-                    Image(systemName: "gearshape.fill")
-                        .foregroundColor(Color("blue50"))
+            
+            if draggedAgenda != agenda {
+                let from = agendas.firstIndex(of: draggedAgenda)!
+                let to = agendas.firstIndex(of: agenda)!
+                withAnimation(.default) {
+                    self.agendas.move(fromOffsets: IndexSet(integer: from), toOffset: to > from ? to + 1 : to)
                 }
             }
         }
     }
-    func newIndex(value: DragGesture.Value) -> Int {
-        let offsetY = value.location.y
-        let itemHeight = UIScreen.main.bounds.size.height / CGFloat(presenter.meeting.proposedAgendas.count)
-        let newIndex = min(max(Int(offsetY / itemHeight), 0), presenter.meeting.proposedAgendas.count - 1)
-        return newIndex
-    }
-    
-    func reorderItems(from sourceIndex: Int?, to destinationIndex: Int) {
-        guard let sourceIndex = sourceIndex else { return }
-        let item = presenter.meeting.proposedAgendas.remove(at: sourceIndex)
-        presenter.meeting.proposedAgendas.insert(item, at: destinationIndex)
-    }
-    
 }
 
 extension ResultDetailView {
+    
+    
+    
+    
     var participantsInfo: some View {
         HStack(spacing: 0) {
             if presenter.meeting.participants.count == 0 {
@@ -156,6 +211,7 @@ extension ResultDetailView {
         .padding(.horizontal, 32)
     }
 }
+
 
 //struct ResultDetailView_Previews: PreviewProvider {
 //    static var previews: some View {

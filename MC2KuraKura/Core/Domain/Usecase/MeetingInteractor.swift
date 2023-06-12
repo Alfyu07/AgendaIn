@@ -34,6 +34,7 @@ class MeetingInteractor: MeetingUseCase {
     func getAllMeetings() {
         
     }
+    
     func getProfile(completion: @escaping (Result<UserModel, URLError>) -> Void) {
         userRepository.getProfile { result in
             completion(result)

@@ -15,6 +15,7 @@ protocol MeetingRepositoryProtocol {
                     result: @escaping (Result<MeetingModel, URLError>) -> Void)
     func getMeetingByUserID( result: @escaping (Result<[CardMeetingModel]?, URLError>) -> Void)
     func joinMeetingByCode(request: JoinMeetingRequest, result: @escaping (Result<MeetingModel, URLError>) -> Void)
+    func saveResultAgendaChanges(request: SaveResultAgendasChangesRequest, result: @escaping (Result<MeetingModel, URLError>) -> Void)
 }
 
 class MeetingRepository: NSObject {
@@ -32,6 +33,20 @@ class MeetingRepository: NSObject {
 }
 
 extension MeetingRepository: MeetingRepositoryProtocol {
+    func saveResultAgendaChanges(request: SaveResultAgendasChangesRequest, result: @escaping (Result<MeetingModel, URLError>) -> Void) {
+        self.remote.saveResultAgendaChanges(request: request) { remoteResponse in
+            switch remoteResponse {
+            case .success(let response):
+                let meeting = MeetingMapper.mapAddMeetingResponseToDomain(input: response)
+                
+                result(.success(meeting))
+                
+            case .failure(let error):
+                result(.failure(error))
+            }
+        }
+    }
+    
     func getMeeting(request: GetMeetingRequest, result: @escaping (Result<MeetingModel, URLError>) -> Void) {
         self.remote.getMeetingById(request: request) { remoteResponse in
             switch remoteResponse {
