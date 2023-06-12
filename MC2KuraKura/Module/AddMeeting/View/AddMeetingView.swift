@@ -93,9 +93,3 @@ extension AddMeetingView {
             .padding(.horizontal, 32)
     }
 }
-
-//struct AddMeetingView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        AddMeetingView(presenter: AddMeetingPresenter(meetingUseCase: Injection.init().provideMeeting()))
-//    }
-//}

@@ -76,11 +76,3 @@ struct AgendaFormCard: View {
     }
     
 }
-
-//struct AgendaFormCard_Previews: PreviewProvider {
-//    static var previews: some View {
-//        AgendaFormCard(presenter: AddMeetingPresenter(meetingUseCase: Injection.init().provideMeeting()),
-//                       agendas: .constant([]), isAddingAgenda: .constant(false)
-//        )
-//    }
-//}

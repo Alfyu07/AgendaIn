@@ -51,7 +51,7 @@ struct AgendaItem: View {
                             .foregroundColor(Color("gray80"))
                             .padding(.top, 8)
                             .frame(width: 250, alignment: .leading)
-                            .fixedSize(horizontal: false, vertical: false)
+                            .fixedSize(horizontal: false, vertical: true)
                         
                         HStack(spacing: 0) {
                             ProfileImage(firstName: agenda.firstName, size: 24)
@@ -60,9 +60,8 @@ struct AgendaItem: View {
                                 .foregroundColor(Color("gray50"))
                                 .padding(.leading, 2)
                         }.offset(CGSize(width: 0, height: 10))
-                    }.frame(minHeight: 40, maxHeight: 100)
-                    
-                    
+                    }.frame(maxHeight: agenda.description.count < 100 ? 40 : 80)
+                         
                     if isOnResult {
                         Divider()
                             .padding(.top, 8)
@@ -135,9 +134,3 @@ struct AgendaItem: View {
           
     }
 }
-
-//struct AgendaItem_Previews: PreviewProvider {
-//    static var previews: some View {
-//        AgendaItem(agenda: .sharedExample, isOnVote: false)
-//    }
-//}

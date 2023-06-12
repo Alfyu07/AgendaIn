@@ -45,8 +45,6 @@ class DetailPresenter: ObservableObject {
       NavigationLink(destination: router.makeVoteView(for: meeting)) { content() }
     }
     
-    
-    
     func getMeetingByID(id: String) {
         let request = GetMeetingRequest(id: id)
         detailUseCase.getMeeting(request: request) { result in

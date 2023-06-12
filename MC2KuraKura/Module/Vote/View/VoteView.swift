@@ -9,9 +9,10 @@ import SwiftUI
 
 struct VoteView: View {
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
-    @StateObject var presenter = VotePresenter(meetingUseCase: Injection.init().provideMeeting())
+    @ObservedObject var presenter: VotePresenter
+    
     var body: some View {
-        GeometryReader{ geometry in
+        GeometryReader { geometry in
             ScrollView {
                 CustomStepper(stepNumber: 2, steps: presenter.steps, stepIndex: $presenter.stepIndex)
                     .padding(.top, 120)
@@ -28,8 +29,6 @@ struct VoteView: View {
             }
             
         }
-        
-        
         .fontDesign(.rounded)
         .background(Color("gray5"))
         .navigationTitle(Text("Meeting Detail"))
@@ -54,14 +53,14 @@ struct VoteView: View {
         .navigationBarTitleDisplayMode(.inline)
         .ignoresSafeArea()
         .navigationBarBackButtonHidden(true)
-        .onAppear {
-            presenter.getProfile()
-        }
+//        .onAppear {
+//            presenter.getProfile()
+//        }
     }
 }
 
-struct VoteView_Previews: PreviewProvider {
-    static var previews: some View {
-        VoteView()
-    }
-}
+//struct VoteView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        VoteView()
+//    }
+//}

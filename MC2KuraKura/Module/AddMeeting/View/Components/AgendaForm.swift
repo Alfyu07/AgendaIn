@@ -81,9 +81,3 @@ struct AgendaForm: View {
             .background(Color("gray5"))
     }
 }
-
-//struct AgendaForm_Previews: PreviewProvider {
-//    static var previews: some View {
-//        AgendaForm(presenter: AddMeetingPresenter(meetingUseCase: Injection.init().provideMeeting()))
-//    }
-//}

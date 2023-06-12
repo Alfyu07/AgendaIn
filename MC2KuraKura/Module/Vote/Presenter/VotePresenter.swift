@@ -9,7 +9,7 @@ import SwiftUI
 
 class VotePresenter: ObservableObject {
     //    private let router = AddMeetingRouter()
-    private let meetingUseCase: MeetingUseCase
+    private let voteUseCase: VoteUseCase
     @AppStorage("accessToken") var accessToken: String = ""
     @AppStorage("refreshToken") var refreshToken: String = ""
     
@@ -29,32 +29,10 @@ class VotePresenter: ObservableObject {
     @Published var firstName: String = ""
     @Published var user: UserModel = UserModel(id: "", firstName: "", lastName: "", email: "'")
     
-    init(meetingUseCase: MeetingUseCase) {
-        self.meetingUseCase = meetingUseCase
+    init(voteUsecase: VoteUseCase) {
+        self.voteUseCase = voteUsecase
         self.stepIndex = 0
         self.stepNumber = 2
         self.steps = ["Meeting Item", "Vote"]
-    }
-    
-    
-    func getProfile() {
-        loadingState = true
-        meetingUseCase.getProfile { result in
-            switch result {
-            case .success(let user):
-                DispatchQueue.main.async {
-                    print("user ID : \(user.id)")
-                    print("access token : \(self.accessToken)")
-                    self.firstName = user.firstName
-                    self.loadingState = false
-                }
-            case .failure(let error):
-                DispatchQueue.main.async {
-                    self.errorMessage = error.localizedDescription
-                    self.loadingState = false
-                }
-            }
-        }
-        
     }
 }

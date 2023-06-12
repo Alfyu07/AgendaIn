@@ -181,7 +181,7 @@ extension DetailView {
                 Image(systemName: "person.badge.key.fill")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 14)
+                    .frame(height: 14)
                     .padding(.trailing, 4)
                 Text("Managed by \(presenter.meeting.picID.userID == userId ? "You" : presenter.meeting.picID.firstName)")
                     .font(.system(size: 12))
@@ -264,6 +264,7 @@ extension DetailView {
                     .font(.system(size: 12))
             }.foregroundColor(Color("gray50"))
         }.padding(.horizontal, 32)
+            .padding(.top, 10)
     }
     
 }

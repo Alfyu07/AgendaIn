@@ -65,9 +65,20 @@ final class Injection: NSObject {
         return MeetingInteractor(meetingRepository: meetingRepository, userRepository: userRepository)
     }
     
-    //review injection
+    // review injection
     func provideReview(for meeting: MeetingModel) -> ReviewUsecase {
         let repository = provideMeetingRepository()
         return ReviewInteractor(repository: repository, meeting: meeting)
+    }
+    
+    // vote injection
+    func provideVoteRepository() -> VoteRepositoryProtocol {
+        let remote: RemoteDataSource = RemoteDataSource.sharedInstance
+        return VoteRepository.sharedInstance(remote)
+    }
+    
+    func provideVote(for meeting: MeetingModel) -> VoteUseCase {
+        let repository = provideVoteRepository()
+        return VoteInteractor(repository: repository, meeting: meeting)
     }
 }

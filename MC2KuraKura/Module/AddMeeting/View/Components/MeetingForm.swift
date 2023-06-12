@@ -13,11 +13,11 @@ struct MeetingForm: View {
     @State var meetingDescription: String = ""
     @State var meetingLocation: String = ""
     @State var meetingDate: Date = Date.now
-    @State var meetingStarts: Date = Date.now
-    @State var meetingEnds: Date = Date.now
+    @State var meetingTimeStarts: Date = Date.now
+    @State var meetingTimeEnds: Date = Date.now
     @State var votingDate: Date = Date.now
-    @State var votingStarts: Date = Date.now
-    @State var votingEnds: Date = Date.now
+    @State var votingTimeStarts: Date = Date.now
+    @State var votingTimeEnds: Date = Date.now
     
     func updateTanggal(day: Date, time: Date) -> Date {
         let calendar = Calendar.current
@@ -28,6 +28,36 @@ struct MeetingForm: View {
         return updatedDate
     }
     
+    func calculateRemainingTimeInDay(from lowerBound: Date) -> ClosedRange<Date> {
+        let calendar = Calendar.current
+        let startOfDay = calendar.startOfDay(for: lowerBound)
+        let endOfDay = calendar.date(bySettingHour: 23, minute: 59, second: 59, of: startOfDay)!
+        let currentTime = calendar.dateComponents([.hour, .minute], from: lowerBound)
+        
+        let remainingStart = calendar.date(bySettingHour: currentTime.hour!, minute: currentTime.minute!, second: 0, of: startOfDay)!
+        let remainingEnd = endOfDay
+        
+        return remainingStart...remainingEnd
+    }
+    
+    private func calculateFullDayRange() -> ClosedRange<Date> {
+        let startDate = Calendar.current.startOfDay(for: votingDate)
+        let endDate = Calendar.current.date(byAdding: .hour, value: 23, to: startDate)!
+        return startDate...endDate
+    }
+    
+    private func calculateMeetingStartTimeRange() -> ClosedRange<Date> {
+        if Calendar.current.isDate(meetingDate, inSameDayAs: Date()) {
+            let currentTime = Calendar.current.dateComponents([.hour, .minute], from: Date())
+            return Calendar.current.date(bySettingHour: currentTime.hour!, minute: currentTime.minute!, second: 0, of: meetingDate)!...Calendar.current.date(bySettingHour: 23, minute: 59, second: 0, of: meetingDate)!
+        } else {
+            return Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: meetingDate)!...Calendar.current.date(bySettingHour: 23, minute: 59, second: 0, of: meetingDate)!
+        }
+    }
+    
+    private func calculateVotingStartTimeRange() -> ClosedRange<Date> {
+        return Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: votingDate)!...meetingTimeStarts
+    }
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -39,17 +69,17 @@ struct MeetingForm: View {
             formButton
         }
         .onAppear {
-//            if presenter.meeting != nil {
-//                self.meetingName = presenter.meeting?.title ?? ""
-//                self.meetingDescription = presenter.meeting?.description ?? ""
-//                self.meetingLocation = presenter.meeting?.location ?? ""
-//                self.meetingDate = presenter.meeting?.schedule?.date ?? Date.now
-//                self.meetingStarts = presenter.meeting?.schedule?.startTime ?? Date.now
-//                self.meetingEnds = presenter.meeting?.schedule?.endTime ?? Date.now
-//                self.votingDate = presenter.meeting?.voteTime?.date ?? Date.now
-//                self.votingStarts = presenter.meeting?.voteTime?.startTime ?? Date.now
-//                self.votingEnds = presenter.meeting?.voteTime?.endTime ?? Date.now
-//            }
+            //            if presenter.meeting != nil {
+            //                self.meetingName = presenter.meeting?.title ?? ""
+            //                self.meetingDescription = presenter.meeting?.description ?? ""
+            //                self.meetingLocation = presenter.meeting?.location ?? ""
+            //                self.meetingDate = presenter.meeting?.schedule?.date ?? Date.now
+            //                self.meetingTimeStarts = presenter.meeting?.schedule?.startTime ?? Date.now
+            //                self.meetingTimeEnds = presenter.meeting?.schedule?.endTime ?? Date.now
+            //                self.votingDate = presenter.meeting?.voteTime?.date ?? Date.now
+            //                self.votingTimeStarts = presenter.meeting?.voteTime?.startTime ?? Date.now
+            //                self.votingTimeEnds = presenter.meeting?.voteTime?.endTime ?? Date.now
+            //            }
         }
         .background(Color("gray5"))
         .padding(.horizontal, 32)
@@ -122,7 +152,7 @@ extension MeetingForm {
                 .padding(.top, 16)
             
             VStack(alignment: .leading, spacing: 0) {
-                DatePicker(selection: $meetingDate, displayedComponents: .date) {
+                DatePicker(selection: $meetingDate, in: Date()..., displayedComponents: .date) {
                     Text("Date")
                         .font(.system(size: 16))
                         .foregroundColor(Color("gray80"))
@@ -131,17 +161,19 @@ extension MeetingForm {
                 Divider()
                     .padding(.top, 8)
                 
-                DatePicker(selection: $meetingStarts, displayedComponents: .hourAndMinute) {
+                DatePicker(selection: $meetingTimeStarts, in: calculateMeetingStartTimeRange(), displayedComponents: .hourAndMinute) {
                     Text("Starts")
                         .font(.system(size: 16))
                         .foregroundColor(Color("gray80"))
-                }.padding(.horizontal, 20)
-                    .padding(.top, 8)
+                }
+                
+                .padding(.horizontal, 20)
+                .padding(.top, 8)
                 
                 Divider()
                     .padding(.top, 8)
                 
-                DatePicker(selection: $meetingEnds, displayedComponents: .hourAndMinute) {
+                DatePicker(selection: $meetingTimeEnds, in: meetingTimeStarts..., displayedComponents: .hourAndMinute) {
                     Text("Ends")
                         .font(.system(size: 16))
                         .foregroundColor(Color("gray80"))
@@ -151,6 +183,7 @@ extension MeetingForm {
                 Divider()
                     .padding(.top, 8)
             }
+            
             .padding(.top, 8)
             .background(.white)
             .cornerRadius(15)
@@ -165,16 +198,16 @@ extension MeetingForm {
                 .padding(.top, 16)
             
             VStack(alignment: .leading, spacing: 0) {
-                DatePicker(selection: $votingDate, displayedComponents: .date) {
+                DatePicker(selection: $votingDate, in: Date()-3600...meetingDate, displayedComponents: .date) {
                     Text("Date")
                         .font(.system(size: 16))
                         .foregroundColor(Color("gray80"))
-                }.padding(.horizontal, 20)
-                
+                }
+                .padding(.horizontal, 20)
                 Divider()
                     .padding(.top, 8)
                 
-                DatePicker(selection: $votingStarts, displayedComponents: .hourAndMinute) {
+                DatePicker(selection: $votingTimeStarts, in: votingDate < meetingDate ? calculateFullDayRange() : calculateVotingStartTimeRange(), displayedComponents: .hourAndMinute) {
                     Text("Starts")
                         .font(.system(size: 16))
                         .foregroundColor(Color("gray80"))
@@ -184,7 +217,7 @@ extension MeetingForm {
                 Divider()
                     .padding(.top, 8)
                 
-                DatePicker(selection: $votingEnds, displayedComponents: .hourAndMinute) {
+                DatePicker(selection: $votingTimeEnds, in: votingDate < meetingDate ? calculateRemainingTimeInDay(from: votingTimeStarts) : votingTimeStarts...meetingTimeStarts, displayedComponents: .hourAndMinute) {
                     Text("Ends")
                         .font(.system(size: 16))
                         .foregroundColor(Color("gray80"))
@@ -204,19 +237,19 @@ extension MeetingForm {
     var formButton: some View {
         CustomButton(label: "Next") {
             
-            let updatedStart = updateTanggal(day: meetingDate, time: meetingStarts)
-            let updatedEnds = updateTanggal(day: meetingDate, time: meetingEnds)
+            let updatedStart = updateTanggal(day: meetingDate, time: meetingTimeStarts)
+            let updatedEnds = updateTanggal(day: meetingDate, time: meetingTimeEnds)
             
-            let updatedVoteStart = updateTanggal(day: votingDate, time: votingStarts)
-            let updatedVoteEnds = updateTanggal(day: votingDate, time: votingEnds)
-            print(updatedStart)
+            let updatedVoteStart = updateTanggal(day: votingDate, time: votingTimeStarts)
+            let updatedVoteEnds = updateTanggal(day: votingDate, time: votingTimeEnds)
+            //            print(updatedStart)
             
             let newMeeting = AddMeetingRequest(
                 title: meetingName,
                 description: meetingDescription,
                 location: meetingLocation,
                 schedule: MeetingTimeRequest(date: Date.formatToISOString(meetingDate),
-                startTime: Date.formatToISOString(updatedStart), endTime: Date.formatToISOString(updatedEnds)),
+                                             startTime: Date.formatToISOString(updatedStart), endTime: Date.formatToISOString(updatedEnds)),
                 voteTime: MeetingTimeRequest(date: Date.formatToISOString(votingDate), startTime: Date.formatToISOString(updatedVoteStart), endTime: Date.formatToISOString(updatedVoteEnds)),
                 agenda: []
             )

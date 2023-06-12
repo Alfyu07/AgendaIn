@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Voter: Codable, Equatable{
+struct Voter: Codable, Equatable {
     private enum CodingKeys: String, CodingKey {
         case userId = "userId"
         case firstName = "firstName"
@@ -19,7 +19,7 @@ struct Voter: Codable, Equatable{
 }
 
 struct AgendaModel: Codable, Equatable, Identifiable {
-    private enum CodingKeys: String, CodingKey{
+    private enum CodingKeys: String, CodingKey {
         case id = "id"
         case proposerID = "proposerID"
         case firstName = "firstName"

@@ -72,7 +72,7 @@ class AddMeetingPresenter: ObservableObject {
         NavigationLink(destination: router.makeDetailView(for: meeting)) { content() }
     }
     
-    func addMeeting()  {
+    func addMeeting() {
         loadingState = true
         meetingUseCase.addMeeting(request: self.meeting!) { result in
             switch result {
