@@ -9,10 +9,11 @@ import SwiftUI
 
 struct VoteForm: View {
     @ObservedObject var presenter: VotePresenter
-    
+   
     @State var agendas: [AgendaModel] = []
     @State var isAddingAgenda = false
     @State var isEditignAgenda = false
+    
     let width: Double
     var body: some View {
         VStack(alignment: .center, spacing: 0) {
@@ -30,21 +31,28 @@ struct VoteForm: View {
                     
                 }
             } else {
-                ForEach(agendas) { agenda in
-                    AgendaItem(agenda: agenda, isOnVote: true, width: width)
-                        .padding(.bottom, 12)
+                if presenter.checkAlreadyVote() {
+                    ForEach(0..<(presenter.meeting?.proposedAgendas.count ?? 0), id: \.self ) { index in
+                        AgendaItem(agenda: agendas[index], isOnVote: false, isOnResult: true,  width: width, voteValue: $presenter.values[index])
+                            .padding(.bottom, 12)
+                    }
+                } else {
+                    ForEach(0..<(presenter.meeting?.proposedAgendas.count ?? 0), id: \.self ) { index in
+                        AgendaItem(agenda: agendas[index], isOnVote: true, width: width, voteValue: $presenter.values[index])
+                            .padding(.bottom, 12)
+                    }
+                    CustomButton(label: "Submit") {
+                        presenter.submitVote()
+                        
+                    }.padding(.top, 80)
+                        .padding(.bottom, 32)
                 }
-                
             }
             
-            CustomButton(label: "Submit") {
-                // submit functin here
-//                presenter.stepIndex += 1
-            }.padding(.top, 80)
-                .padding(.bottom, 32)
+           
             
         }
-        .frame(maxWidth: .infinity, maxHeight: 600)
+        .frame(maxWidth: .infinity)
         .padding(.top, 40)
         .padding(.horizontal, 32)
         .background(Color("gray5"))

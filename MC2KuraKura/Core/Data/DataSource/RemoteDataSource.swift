@@ -18,7 +18,7 @@ protocol RemoteDataSourceProtocol: AnyObject {
     func getMeetingById(request: GetMeetingRequest, result: @escaping (Result<MeetingResponse, URLError>) -> Void)
     func getMeetingByUserId(result: @escaping (Result<[GetMeetingByUserIDResponse]?, URLError>) -> Void)
     func joinMeetingByCode(request: JoinMeetingRequest, result: @escaping (Result<MeetingResponse, URLError>) -> Void)
-    func addMeetingAgenda(request: AddAgendaRequest, result: @escaping (Result<MeetingResponse, URLError>) -> Void)
+    func addMeetingAgenda(request: AddAgendaRequests, result: @escaping (Result<MeetingResponse, URLError>) -> Void)
     func addVotesAgenda(request: AddVoteAgendas, result: @escaping (Result<MeetingResponse, URLError>) -> Void)
 }
 
@@ -64,7 +64,7 @@ extension RemoteDataSource: RemoteDataSourceProtocol {
         task.resume()
     }
     
-    func addMeetingAgenda(request: AddAgendaRequest, result: @escaping (Result<MeetingResponse, URLError>) -> Void) {
+    func addMeetingAgenda(request: AddAgendaRequests, result: @escaping (Result<MeetingResponse, URLError>) -> Void) {
         guard let meetingCode = try? JSONEncoder().encode(request) else {return}
         
         guard let url = URL(string: Endpoints.Gets.agenda.url) else {return}

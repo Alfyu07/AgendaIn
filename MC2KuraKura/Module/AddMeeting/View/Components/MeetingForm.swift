@@ -207,7 +207,7 @@ extension MeetingForm {
                 Divider()
                     .padding(.top, 8)
                 
-                DatePicker(selection: $votingTimeStarts, in: votingDate < meetingDate ? calculateFullDayRange() : calculateVotingStartTimeRange(), displayedComponents: .hourAndMinute) {
+                DatePicker(selection: $votingTimeStarts, in: votingDate <= meetingDate ? calculateFullDayRange() : calculateVotingStartTimeRange(), displayedComponents: .hourAndMinute) {
                     Text("Starts")
                         .font(.system(size: 16))
                         .foregroundColor(Color("gray80"))
@@ -217,7 +217,7 @@ extension MeetingForm {
                 Divider()
                     .padding(.top, 8)
                 
-                DatePicker(selection: $votingTimeEnds, in: votingDate < meetingDate ? calculateRemainingTimeInDay(from: votingTimeStarts) : votingTimeStarts...meetingTimeStarts, displayedComponents: .hourAndMinute) {
+                DatePicker(selection: $votingTimeEnds, in: votingDate <= meetingDate ? calculateRemainingTimeInDay(from: votingTimeStarts) : votingTimeStarts...meetingTimeStarts, displayedComponents: .hourAndMinute) {
                     Text("Ends")
                         .font(.system(size: 16))
                         .foregroundColor(Color("gray80"))

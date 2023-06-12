@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct MeetingView: View {
-    @StateObject var presenter: MeetingPresenter
+    @ObservedObject var presenter: MeetingPresenter
+    @Binding var index: Int
     var body: some View {
-        presenter.linkBuilder {
+        
+        NavigationLink(destination: presenter.addMeetingView()) {
             Text("Add Meeting")
         }
     }

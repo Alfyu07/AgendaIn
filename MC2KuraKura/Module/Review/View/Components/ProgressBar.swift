@@ -19,7 +19,7 @@ struct ProgressBar: View {
             Rectangle()
                 .fill(Color("yellow50"))
                 .frame(maxWidth: width * value)
-        }.frame(maxHeight: 32)
+        }.frame(height: 20)
             .cornerRadius(30)
             .padding(.top, 4)
     }

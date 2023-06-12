@@ -8,25 +8,26 @@
 import SwiftUI
 
 struct VoteView: View {
+    
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
     @ObservedObject var presenter: VotePresenter
-    
-    
     var body: some View {
         GeometryReader { geometry in
             ScrollView {
-                CustomStepper(stepNumber: 2, steps: presenter.steps, stepIndex: $presenter.stepIndex)
-                    .padding(.top, 120)
-                    .padding(.horizontal, 32)
-                switch presenter.stepIndex {
-                case 0:
-                    MeetingItemForm(presenter: presenter, width: geometry.size.width)
-                case 1:
-                    VoteForm(presenter: presenter, width: geometry.size.width)
-                default:
-                    MeetingItemForm(presenter: presenter, width: geometry.size.width)
+                VStack{
+                    CustomStepper(stepNumber: 2, steps: presenter.steps, stepIndex: $presenter.stepIndex)
+                        .padding(.top, 120)
+                        .padding(.horizontal, 32)
+                    
+                    switch presenter.stepIndex {
+                    case 0:
+                        MeetingItemForm(presenter: presenter, width: geometry.size.width)
+                    case 1:
+                        VoteForm(presenter: presenter, width: geometry.size.width)
+                    default:
+                        MeetingItemForm(presenter: presenter, width: geometry.size.width)
+                    }
                 }
-                
             }
             
         }
@@ -36,13 +37,7 @@ struct VoteView: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Button {
-                    if presenter.stepIndex == 0 {
-                        presentationMode.wrappedValue.dismiss()
-                        presenter.meeting = nil
-                    } else {
-                        presenter.stepIndex -= 1
-                    }
-                    
+                    presentationMode.wrappedValue.dismiss()
                 } label: {
                     Image(systemName: "chevron.backward")
                         .foregroundColor(Color("blue50"))

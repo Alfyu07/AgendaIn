@@ -72,7 +72,7 @@ struct AddAgendaRequests: Codable {
     }
     
     var meetingId: String?
-    var agendas: AgendaRequest?
+    var agendas: [AgendaRequest]?
 }
 
 struct AgendaRequest: Codable {

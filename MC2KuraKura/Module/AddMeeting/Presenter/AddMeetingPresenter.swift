@@ -81,6 +81,7 @@ class AddMeetingPresenter: ObservableObject {
                     self.meetingResponse = meeting
                     print("Add meeting response Data: \n \(meeting)")
                     self.meetId = meeting.id
+                    
                     self.shouldRedirectToDetailView = true
                     self.loadingState = false
             

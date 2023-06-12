@@ -9,8 +9,7 @@ import SwiftUI
 
 struct DetailView: View {
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
-    
-    @StateObject var presenter: DetailPresenter
+    @ObservedObject var presenter: DetailPresenter
     @EnvironmentObject var envMeeting: MeetingModel
     @AppStorage("meetId") var meetId: String = ""
     @AppStorage("userId") var userId: String = ""
@@ -39,9 +38,9 @@ struct DetailView: View {
                     Spacer()
 
                     if userId != presenter.meeting.picID.userID {
-                        
-                        if Date.now < presenter.meeting.voteTime.startTime {
-                            presenter.linkToVote(for: presenter.meeting) {
+                        if false {
+//                        if Date.now < presenter.meeting.voteTime.startTime {
+                            presenter.linkToVote(for: presenter.meeting, isVote: false) {
                                 Text("Suggest meeting item")
                                     .font(.system(size: 20, weight: .bold))
                                     .foregroundColor(.white)
@@ -51,10 +50,10 @@ struct DetailView: View {
                                     .cornerRadius(30)
                                     .padding(.horizontal, 32)
                             }
-                            
-                        } else if Date.now > presenter.meeting.voteTime.startTime
-                                    && Date.now < presenter.meeting.voteTime.endTime {
-                            presenter.linkToVote(for: presenter.meeting) {
+                        } else if true {
+//                        } else if Date.now > presenter.meeting.voteTime.startTime
+//                                    && Date.now < presenter.meeting.voteTime.endTime {
+                            presenter.linkToVote(for: presenter.meeting, isVote: true) {
                                 Text("Vote")
                                     .font(.system(size: 20, weight: .bold))
                                     .foregroundColor(.white)
@@ -90,7 +89,9 @@ struct DetailView: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Button {
-                    presentationMode.wrappedValue.dismiss()
+                    // Fix me : navigate back to home after adding meeting
+                    NavigationUtil.popToRootView()
+//                    presentationMode.wrappedValue.dismiss()
                 } label: {
                     Image(systemName: "chevron.backward")
                         .foregroundColor(Color("blue50"))
@@ -279,8 +280,3 @@ extension DetailView {
     
 }
 
-struct DetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        DetailView(presenter: DetailPresenter(detailUseCase: Injection.init().provideDetail(for: MeetingModel())))
-    }
-}

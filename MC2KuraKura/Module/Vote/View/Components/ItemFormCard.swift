@@ -36,6 +36,16 @@ struct ItemFormCard: View {
                             ToolbarItemGroup(placement: .keyboard) {
                                 Spacer()
                                 Button("Done") {
+                                    let agendaRequest = AgendaRequest(
+                                        id: "",
+                                        title: agendaName,
+                                        description: agendaDescription
+                                        
+                                    )
+                                    presenter.agendaRequests.append(agendaRequest)
+                                    
+                                    print("\nVotePresenter Add New Agenda :\n\(presenter.agendaRequests)")
+                                    
                                     agendas.append(
                                         AgendaModel(
                                             id: UUID().uuidString,

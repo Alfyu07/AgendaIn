@@ -8,7 +8,7 @@
 import Foundation
 
 protocol VoteRepositoryProtocol {
-    func addAndEditAgenda(request: AddAgendaRequest, result: @escaping (Result<MeetingModel, URLError>) -> Void)
+    func addAndEditAgenda(request: AddAgendaRequests, result: @escaping (Result<MeetingModel, URLError>) -> Void)
     func addVoteAgendas(request: AddVoteAgendas, result: @escaping (Result<MeetingModel, URLError>) -> Void)
 }
 
@@ -39,7 +39,7 @@ extension VoteRepository: VoteRepositoryProtocol {
         }
     }
     
-    func addAndEditAgenda(request: AddAgendaRequest, result: @escaping (Result<MeetingModel, URLError>) -> Void) {
+    func addAndEditAgenda(request: AddAgendaRequests, result: @escaping (Result<MeetingModel, URLError>) -> Void) {
         self.remote.addMeetingAgenda (request: request) { remoteResponse in
             switch remoteResponse {
             case .success(let response):

@@ -14,8 +14,10 @@ struct MeetingItemForm: View {
     @State var agendas: [AgendaModel] = []
     @State var isAddingAgenda = false
     @State var isEditignAgenda = false
+    
     let width: Double
     var body: some View {
+    
         VStack(alignment: .center, spacing: 0) {
             if agendas.isEmpty {
                 if isAddingAgenda {
@@ -36,8 +38,8 @@ struct MeetingItemForm: View {
                     }
                 }
             } else {
-                ForEach(agendas) { agenda in
-                    AgendaItem(agenda: agenda, isOnVote: false, width: width)
+                ForEach(0..<agendas.count, id: \.self) { index in
+                    AgendaItem(agenda: agendas[index], width: width)
                         .padding(.bottom, 12)
                 }
                 
@@ -64,9 +66,9 @@ struct MeetingItemForm: View {
                 
             }.padding(.top, 12)
 
-            
             CustomButton(label: "Submit") {
                 // balik ke detail view & implementasi add agenda
+                presenter.submitAgenda()
                 presentationMode.wrappedValue.dismiss()
             }.padding(.top, 80)
                 .padding(.bottom, 32)
@@ -77,7 +79,7 @@ struct MeetingItemForm: View {
             agendas = presenter.meeting?.proposedAgendas ?? []
             print(presenter.meeting?.proposedAgendas ?? [])
         }
-        .frame(maxWidth: .infinity, maxHeight: 600)
+        .frame(maxWidth: .infinity)
         .padding(.top, 40)
         .padding(.horizontal, 32)
             .background(Color("gray5"))

@@ -18,31 +18,14 @@ class MeetingPresenter: ObservableObject {
         self.meetingUseCase = meetingUseCase
     }
     
-    func getAllMeetings() {
-//      loadingState = true
-//      homeUseCase.getCategories { result in
-//        switch result {
-//        case .success(let categories):
-//          DispatchQueue.main.async {
-//            self.loadingState = false
-//            self.categories = categories
-//          }
-//        case .failure(let error):
-//          DispatchQueue.main.async {
-//            self.loadingState = false
-//            self.errorMessage = error.localizedDescription
-//          }
-//        }
-//      }
+    func addMeetingView() -> some View {
         
-//        DispatchQueue.main.async {
-//            self.meetings = [.sharedExample, .sharedExample2]
-//        }
+        router.makeAddMeetingView()
     }
     
     func linkBuilder<Content: View>(
       @ViewBuilder content: () -> Content
     ) -> some View {
-      NavigationLink(destination: router.makeAddMeetingView()) { content() }
+        NavigationLink(destination: router.makeAddMeetingView()) { content() }
     }
 }

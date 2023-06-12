@@ -8,20 +8,26 @@
 import SwiftUI
 
 struct AgendaItem: View {
+    
     let agenda: AgendaModel
     let isOnVote: Bool
     let isOnResult: Bool
     let width: Double
     
     @State var isExpanding: Bool = true
-    @State var voteValue = 0
+    @Binding var voteValue: Int
     
-    init(agenda: AgendaModel, isOnVote: Bool = false, isOnResult: Bool = false, width: Double, voteValue: Int = 0) {
+    init(agenda: AgendaModel,
+         isOnVote: Bool = false,
+         isOnResult: Bool = false,
+         width: Double,
+         voteValue: Binding<Int> = .constant(0)
+    ) {
         self.agenda = agenda
         self.isOnVote = isOnVote
         self.isOnResult = isOnResult
         self.width = width
-        self.voteValue = voteValue
+        _voteValue = voteValue
     }
     
     var body: some View {
@@ -60,7 +66,8 @@ struct AgendaItem: View {
                                 .foregroundColor(Color("gray50"))
                                 .padding(.leading, 2)
                         }.offset(CGSize(width: 0, height: 10))
-                    }.frame(maxHeight: agenda.description.count < 100 ? 40 : 80)
+                    }
+                    .frame(maxHeight: agenda.description.count < 100 ? 40 : 80)
                          
                     if isOnResult {
                         Divider()
@@ -71,28 +78,28 @@ struct AgendaItem: View {
                                     .font(.system(size: 10))
                                     .foregroundColor(Color("gray80"))
                                 Spacer()
-                                Text("\(String(format: "%.0f", 0.20132 * 100))%")
+                                Text("\(String(format: "%.0f", agenda.result * 100))%")
                                     .font(.system(size: 10, weight: .bold))
                                     .foregroundColor(Color("yellow50"))
                             }
                             ProgressBar(width: width, value: 0.45)
                             HStack {
                                 HStack(spacing: 0) {
-                                    switch agenda.voters.count {
-                                    case 0:
+                                    if agenda.voters.count == 0 {
                                         Text("No one voted this agenda")
                                             .font(.system(size: 10, weight: .light))
                                             .foregroundColor(Color("gray80"))
-                                    case 1...4:
-                                        ForEach(0..<4) { index in
+                                    } else if agenda.voters.count > 4 {
+                                        ForEach(0..<agenda.voters.count) { index in
                                             ProfileImage(firstName: agenda.voters[index].firstName ?? "", size: 24)
                                         }
                                         Text("+\(agenda.voters.count - 4)").font(.system(size: 8, weight: .light))
-                                    default:
-                                        ForEach(agenda.voters, id: \.userId) { user in
-                                            ProfileImage(firstName: user.firstName ?? "", size: 24)
+                                    } else {
+                                        ForEach(0..<agenda.voters.count) { index in
+                                            ProfileImage(firstName: agenda.voters[index].firstName ?? "", size: 24)
                                         }
                                     }
+                                    
                                 }
                                 Spacer()
                                 HStack(spacing: 0) {
@@ -103,7 +110,7 @@ struct AgendaItem: View {
                                         .font(.system(size: 10, weight: .medium))
                                         .foregroundColor(Color("gray80"))
                                 }
-                            }
+                            }.padding(.top, 4)
                         }
                         .padding(.top, 8)
                     } else if isOnVote {
@@ -112,8 +119,8 @@ struct AgendaItem: View {
                         HStack(alignment: .center) {
                             ForEach(0..<4, id: \.self) { index in
                                 Button {
-                                    print("VoteView agendaItem Value : \(voteValue)")
                                     voteValue = index+1
+                                    print("VoteView agendaItem Value for \(index): \(voteValue)")
                                 } label: {
                                     Image(systemName: "star.fill")
                                         .resizable()

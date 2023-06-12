@@ -36,6 +36,14 @@ struct AddMeetingView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
+//                        switch presenter.stepIndex {
+//                        case 0, 2:
+//                            presentationMode.wrappedValue.dismiss()
+//                        case 1:
+//                            presenter.stepIndex -= 1
+//                        default:
+//                            presenter.stepIndex -= 1
+//                        }
                         if presenter.stepIndex == 0 {
                             presentationMode.wrappedValue.dismiss()
                             presenter.meeting = nil

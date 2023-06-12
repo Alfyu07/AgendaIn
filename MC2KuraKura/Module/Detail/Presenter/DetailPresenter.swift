@@ -12,7 +12,7 @@ class DetailPresenter: ObservableObject {
     private let detailUseCase: DetailUseCase
     
     @Published var meeting: MeetingModel
-
+    
     init(detailUseCase: DetailUseCase) {
         self.detailUseCase = detailUseCase
         self.meeting = self.detailUseCase.getMeeting()
@@ -41,16 +41,18 @@ class DetailPresenter: ObservableObject {
     
     func linkToVote<Content: View>(
         for meeting: MeetingModel,
-      @ViewBuilder content: () -> Content
+        isVote: Bool,
+        @ViewBuilder content: () -> Content
     ) -> some View {
-      NavigationLink(destination: router.makeVoteView(for: meeting)) { content() }
+        return NavigationLink(destination: router.makeVoteView(for: meeting, isVote: isVote)) { content() }
+        
     }
     
     func linkToResult<Content: View>(
         for meeting: MeetingModel,
-      @ViewBuilder content: () -> Content
+        @ViewBuilder content: () -> Content
     ) -> some View {
-      NavigationLink(destination: router.makeDetailView(for: meeting)) { content() }
+        NavigationLink(destination: router.makeResultView(for: meeting)) { content() }
     }
     
     func getMeetingByID(id: String) {
@@ -61,15 +63,15 @@ class DetailPresenter: ObservableObject {
                 DispatchQueue.main.async {
                     self.meeting = meeting
                     print(meeting)
-//                    self.shouldRedirectToDetailView = true
-//                    self.loadingState = false
+                    //                    self.shouldRedirectToDetailView = true
+                    //                    self.loadingState = false
                 }
-            
+                
             case .failure(let error):
                 DispatchQueue.main.async {
                     print("add meeting error : \(error)")
-//                    self.errorMessage = error.localizedDescription
-//                    self.loadingState = false
+                    //                    self.errorMessage = error.localizedDescription
+                    //                    self.loadingState = false
                 }
             }
         }
