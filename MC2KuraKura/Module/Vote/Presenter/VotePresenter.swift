@@ -34,5 +34,8 @@ class VotePresenter: ObservableObject {
         self.stepIndex = 0
         self.stepNumber = 2
         self.steps = ["Meeting Item", "Vote"]
+        self.meeting = voteUsecase.getMeeting()
     }
+    
+    
 }

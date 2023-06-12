@@ -10,6 +10,7 @@ import Foundation
 protocol VoteUseCase {
     func submitVoteAgendas(request: AddVoteAgendas, completion: @escaping (Result<MeetingModel, URLError>) -> Void)
     func addAndEditAgenda(request: AddAgendaRequest, completion: @escaping (Result<MeetingModel, URLError>) -> Void)
+    func getMeeting() -> MeetingModel
 }
 
 class VoteInteractor: VoteUseCase {
@@ -35,6 +36,10 @@ class VoteInteractor: VoteUseCase {
         repository.addVoteAgendas(request: request) { result in
             completion(result)
         }
+    }
+    
+    func getMeeting() -> MeetingModel{
+        return meeting
     }
     
 }

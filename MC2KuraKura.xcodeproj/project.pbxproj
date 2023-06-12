@@ -65,6 +65,7 @@
 		A1B4748E2A2B44BF005ABCB5 /* MeetingForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B4748D2A2B44BF005ABCB5 /* MeetingForm.swift */; };
 		A1CB34192A35CAF9005A4712 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CB34182A35CAF9005A4712 /* ProfilePresenter.swift */; };
 		A1CB341B2A35CB61005A4712 /* UserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CB341A2A35CB61005A4712 /* UserUseCase.swift */; };
+		A1CB341D2A36D43C005A4712 /* ResultDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CB341C2A36D43C005A4712 /* ResultDetailView.swift */; };
 		A1CF00A12A2D8545003C82CD /* MeetingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CF00A02A2D8545003C82CD /* MeetingInteractor.swift */; };
 		A1CF00A32A2D8595003C82CD /* MeetingRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CF00A22A2D8595003C82CD /* MeetingRepository.swift */; };
 		A1CF00A52A2D8945003C82CD /* MeetingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CF00A42A2D8945003C82CD /* MeetingPresenter.swift */; };
@@ -152,6 +153,7 @@
 		A1B4748D2A2B44BF005ABCB5 /* MeetingForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingForm.swift; sourceTree = "<group>"; };
 		A1CB34182A35CAF9005A4712 /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
 		A1CB341A2A35CB61005A4712 /* UserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUseCase.swift; sourceTree = "<group>"; };
+		A1CB341C2A36D43C005A4712 /* ResultDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultDetailView.swift; sourceTree = "<group>"; };
 		A1CF00A02A2D8545003C82CD /* MeetingInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingInteractor.swift; sourceTree = "<group>"; };
 		A1CF00A22A2D8595003C82CD /* MeetingRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingRepository.swift; sourceTree = "<group>"; };
 		A1CF00A42A2D8945003C82CD /* MeetingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingPresenter.swift; sourceTree = "<group>"; };
@@ -553,6 +555,7 @@
 				A1B4746A2A2AD2F0005ABCB5 /* AgendaList.swift */,
 				A1B4746E2A2AD369005ABCB5 /* AgendaItem.swift */,
 				A1B474702A2ADD0A005ABCB5 /* ManageParticipantSection.swift */,
+				A1CB341C2A36D43C005A4712 /* ResultDetailView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -947,6 +950,7 @@
 				A1B474602A2AB04E005ABCB5 /* DetailInteractor.swift in Sources */,
 				A1D5CD182A32C23F00B1D193 /* MeetingReviewCard.swift in Sources */,
 				A136BE1E2A241ECD00B2805F /* ContentView.swift in Sources */,
+				A1CB341D2A36D43C005A4712 /* ResultDetailView.swift in Sources */,
 				A18788132A358D02001A056F /* VoteRouter.swift in Sources */,
 				A136BE1C2A241ECD00B2805F /* MC2KuraKuraApp.swift in Sources */,
 				A1B4748E2A2B44BF005ABCB5 /* MeetingForm.swift in Sources */,

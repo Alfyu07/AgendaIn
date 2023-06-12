@@ -13,4 +13,10 @@ class DetailRouter {
         let presenter = VotePresenter(voteUsecase: voteUseCase)
         return VoteView(presenter: presenter)
     }
+    
+    func makeDetailView(for meeting: MeetingModel) -> some View {
+        let detailUseCase = Injection.init().provideDetail(for: meeting)
+        let presenter = DetailPresenter(detailUseCase: detailUseCase)
+        return ResultDetailView(presenter: presenter)
+    }
 }

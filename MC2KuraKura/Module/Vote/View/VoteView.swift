@@ -11,6 +11,7 @@ struct VoteView: View {
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
     @ObservedObject var presenter: VotePresenter
     
+    
     var body: some View {
         GeometryReader { geometry in
             ScrollView {

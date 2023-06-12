@@ -10,14 +10,13 @@ import SwiftUI
 struct VoteForm: View {
     @ObservedObject var presenter: VotePresenter
     
-    @State var agendas: [AgendaModel] = [.sharedExample]
+    @State var agendas: [AgendaModel] = []
     @State var isAddingAgenda = false
     @State var isEditignAgenda = false
     let width: Double
     var body: some View {
         VStack(alignment: .center, spacing: 0) {
             if agendas.isEmpty {
-                
                 VStack(spacing: 0) {
                     Text("You dont have meeting item")
                         .font(.system(size: 20, weight: .medium))
@@ -49,5 +48,8 @@ struct VoteForm: View {
         .padding(.top, 40)
         .padding(.horizontal, 32)
         .background(Color("gray5"))
+        .onAppear {
+            agendas = presenter.meeting?.proposedAgendas ?? []
+        }
     }
 }

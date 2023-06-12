@@ -1,59 +1,31 @@
 //
-//  ReviewView.swift
+//  ResultDetailView.swift
 //  MC2KuraKura
 //
-//  Created by Wahyu Alfandi on 07/06/23.
+//  Created by Wahyu Alfandi on 12/06/23.
 //
 
 import SwiftUI
 
-struct ReviewView: View {
+struct ResultDetailView: View {
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
-    
-    @StateObject var presenter: ReviewPresenter
-    @State var draggedItem: AgendaModel?
-    @GestureState var dragOffset: CGSize = .zero
+    @ObservedObject var presenter: DetailPresenter
    
     var body: some View {
         GeometryReader { geometry in
             ScrollView {
-                VStack {
+                VStack(alignment: .leading, spacing: 0) {
                     participantsInfo
                     meetingDetailSection
                     Divider().padding(.top, 30)
                     
-                    Text("Here are the voting results that have been collected. You can rearrange the order by dragging and dropping the meeting items before sharing them with all meeting participants.")
-                        .multilineTextAlignment(.center)
-                        .padding(.horizontal, 32)
-                        .foregroundColor(Color("gray50"))
                     
+                    Text("Meeting Agenda").padding(.vertical, 16)
                     ForEach(presenter.meeting.proposedAgendas) { agenda in
                         MeetingReviewCard(
                             index: 1,
                             width: geometry.size.width,
                             agenda: agenda
-                        )
-                        .background(draggedItem == agenda ? Color.gray.opacity(0.2) : Color.clear)
-                        .offset(x: dragOffset.width, y: dragOffset.height)
-                        .gesture(
-                            DragGesture()
-                                .updating($dragOffset, body: { value, state, _ in
-                                    state = value.translation
-                                })
-                                .onChanged { value in
-                                    withAnimation {
-                                        draggedItem = nil
-                                        reorderItems(from: presenter.meeting.proposedAgendas.firstIndex(of: agenda), to: newIndex(value: value))
-                                    }
-                                }
-//                                .onEnded { value in
-//
-//                                    withAnimation {
-//                                        draggedItem = nil
-//                                        reorderItems(from: presenter.meeting.proposedAgendas.firstIndex(of: agenda), to: newIndex(value: value))
-//                                    }
-//
-//                                }
                         )
                         .padding(.top, 8)
                         
@@ -99,7 +71,7 @@ struct ReviewView: View {
     
 }
 
-extension ReviewView {
+extension ResultDetailView {
     var participantsInfo: some View {
         HStack(spacing: 0) {
             ForEach(0...1, id: \.self) { index in
@@ -172,10 +144,8 @@ extension ReviewView {
     }
 }
 
-struct ReviewView_Previews: PreviewProvider {
-    static var previews: some View {
-        ReviewView(presenter: ReviewPresenter(
-            useCase: Injection.init().provideReview(for: MeetingModel()))
-        )
-    }
-}
+//struct ResultDetailView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ResultDetailView()
+//    }
+//}

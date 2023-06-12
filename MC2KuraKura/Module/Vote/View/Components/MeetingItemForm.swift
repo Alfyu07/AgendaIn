@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MeetingItemForm: View {
+    @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
     @ObservedObject var presenter: VotePresenter
     
     @State var agendas: [AgendaModel] = []
@@ -63,16 +64,18 @@ struct MeetingItemForm: View {
                 
             }.padding(.top, 12)
 
+            
             CustomButton(label: "Submit") {
-//                presenter.agendas = agendas
-//                let agendaRequests = agendas.map { agenda in
-//                    AddAgendaRequest(title: agenda.title, description: agenda.description)
-//                }
-//                presenter.meeting?.agenda = agendaRequests
-                presenter.stepIndex += 1
+                // balik ke detail view & implementasi add agenda
+                presentationMode.wrappedValue.dismiss()
             }.padding(.top, 80)
                 .padding(.bottom, 32)
             
+        }
+        .onAppear {
+            print("on appear meeting item form")
+            agendas = presenter.meeting?.proposedAgendas ?? []
+            print(presenter.meeting?.proposedAgendas ?? [])
         }
         .frame(maxWidth: .infinity, maxHeight: 600)
         .padding(.top, 40)
@@ -80,4 +83,3 @@ struct MeetingItemForm: View {
             .background(Color("gray5"))
     }
 }
-

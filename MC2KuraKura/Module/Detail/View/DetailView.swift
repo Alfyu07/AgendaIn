@@ -41,7 +41,7 @@ struct DetailView: View {
                     if userId != presenter.meeting.picID.userID {
                         
                         if Date.now < presenter.meeting.voteTime.startTime {
-                            presenter.linkBuilder {
+                            presenter.linkToVote(for: presenter.meeting) {
                                 Text("Suggest meeting item")
                                     .font(.system(size: 20, weight: .bold))
                                     .foregroundColor(.white)
@@ -54,7 +54,7 @@ struct DetailView: View {
                             
                         } else if Date.now > presenter.meeting.voteTime.startTime
                                     && Date.now < presenter.meeting.voteTime.endTime {
-                            presenter.linkBuilder {
+                            presenter.linkToVote(for: presenter.meeting) {
                                 Text("Vote")
                                     .font(.system(size: 20, weight: .bold))
                                     .foregroundColor(.white)
@@ -65,7 +65,17 @@ struct DetailView: View {
                                     .padding(.horizontal, 32)
                                     
                             }
-                            
+                        } else if Date.now > presenter.meeting.voteTime.endTime {
+                            presenter.linkToResult(for: presenter.meeting) {
+                                Text("Show Result")
+                                    .font(.system(size: 20, weight: .bold))
+                                    .foregroundColor(.white)
+                                    .frame(maxWidth: .infinity)
+                                    .padding(.vertical, 12)
+                                    .background(Color("blue50"))
+                                    .cornerRadius(30)
+                                    .padding(.horizontal, 32)
+                            }
                         }
                         
                     }

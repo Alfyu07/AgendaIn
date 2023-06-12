@@ -39,10 +39,18 @@ class DetailPresenter: ObservableObject {
         return hasil
     }
     
-    func linkBuilder<Content: View>(
+    func linkToVote<Content: View>(
+        for meeting: MeetingModel,
       @ViewBuilder content: () -> Content
     ) -> some View {
       NavigationLink(destination: router.makeVoteView(for: meeting)) { content() }
+    }
+    
+    func linkToResult<Content: View>(
+        for meeting: MeetingModel,
+      @ViewBuilder content: () -> Content
+    ) -> some View {
+      NavigationLink(destination: router.makeDetailView(for: meeting)) { content() }
     }
     
     func getMeetingByID(id: String) {
