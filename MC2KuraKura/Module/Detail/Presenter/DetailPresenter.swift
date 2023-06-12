@@ -15,7 +15,7 @@ class DetailPresenter: ObservableObject {
     
     init(detailUseCase: DetailUseCase) {
         self.detailUseCase = detailUseCase
-        self.meeting = self.detailUseCase.getMeeting()
+        self.meeting = detailUseCase.getMeeting()
     }
     
     func getParticipantsName() -> String {

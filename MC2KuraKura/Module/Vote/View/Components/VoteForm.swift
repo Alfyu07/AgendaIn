@@ -33,7 +33,7 @@ struct VoteForm: View {
             } else {
                 if presenter.checkAlreadyVote() {
                     ForEach(0..<(presenter.meeting?.proposedAgendas.count ?? 0), id: \.self ) { index in
-                        AgendaItem(agenda: agendas[index], isOnVote: false, isOnResult: true,  width: width, voteValue: $presenter.values[index])
+                        AgendaItem(agenda: agendas[index], isOnVote: false, isOnResult: true,  width: width, participants: presenter.participantsCount, voteValue: $presenter.values[index])
                             .padding(.bottom, 12)
                     }
                 } else {
