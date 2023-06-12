@@ -9,8 +9,8 @@ import SwiftUI
 
 struct DetailView: View {
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
-    @ObservedObject var presenter: DetailPresenter
-    @EnvironmentObject var envMeeting: MeetingModel
+    @StateObject var presenter: DetailPresenter
+    //    @EnvironmentObject var envMeeting: MeetingModel
     @AppStorage("meetId") var meetId: String = ""
     @AppStorage("userId") var userId: String = ""
     
@@ -36,9 +36,9 @@ struct DetailView: View {
                     }
                     
                     Spacer()
-
+                    
                     if userId != presenter.meeting.picID.userID {
-//                        if false {
+                        //                        if false {
                         if Date.now < presenter.meeting.voteTime.startTime {
                             presenter.linkToVote(for: presenter.meeting, isVote: false) {
                                 Text("Suggest meeting item")
@@ -50,7 +50,7 @@ struct DetailView: View {
                                     .cornerRadius(30)
                                     .padding(.horizontal, 32)
                             }
-//                        } else if true {
+                            //                        } else if true {
                         } else if Date.now > presenter.meeting.voteTime.startTime
                                     && Date.now < presenter.meeting.voteTime.endTime {
                             presenter.linkToVote(for: presenter.meeting, isVote: true) {
@@ -62,19 +62,19 @@ struct DetailView: View {
                                     .background(Color("blue50"))
                                     .cornerRadius(30)
                                     .padding(.horizontal, 32)
-                                    
+                                
                             }
-                        } else if Date.now > presenter.meeting.voteTime.endTime {
-                            presenter.linkToResult(for: presenter.meeting) {
-                                Text("Show Result")
-                                    .font(.system(size: 20, weight: .bold))
-                                    .foregroundColor(.white)
-                                    .frame(maxWidth: .infinity)
-                                    .padding(.vertical, 12)
-                                    .background(Color("blue50"))
-                                    .cornerRadius(30)
-                                    .padding(.horizontal, 32)
-                            }
+                        }
+                    }else if Date.now > presenter.meeting.voteTime.endTime {
+                        presenter.linkToResult(for: presenter.meeting) {
+                            Text("Show Result")
+                                .font(.system(size: 20, weight: .bold))
+                                .foregroundColor(.white)
+                                .frame(maxWidth: .infinity)
+                                .padding(.vertical, 12)
+                                .background(Color("blue50"))
+                                .cornerRadius(30)
+                                .padding(.horizontal, 32)
                         }
                         
                     }
@@ -91,7 +91,7 @@ struct DetailView: View {
                 Button {
                     // Fix me : navigate back to home after adding meeting
                     NavigationUtil.popToRootView()
-//                    presentationMode.wrappedValue.dismiss()
+                    //                    presentationMode.wrappedValue.dismiss()
                 } label: {
                     Image(systemName: "chevron.backward")
                         .foregroundColor(Color("blue50"))
@@ -109,7 +109,7 @@ struct DetailView: View {
         .ignoresSafeArea()
         .navigationBarBackButtonHidden(true)
         .onAppear {
-            presenter.getMeetingByID(id: presenter.meeting.id.isEmpty ? meetId: presenter.meeting.id)
+            presenter.getMeetingByID(id: presenter.meeting.id.isEmpty ? meetId : presenter.meeting.id)
         }
     }
 }
@@ -146,8 +146,8 @@ extension DetailView {
             if presenter.meeting.participants.isEmpty {
                 Text("No participants")
             } else if presenter.meeting.participants.count == 1 {
-                    ProfileImage(firstName: presenter.meeting.participants[0].firstName, size: 70)
-                        .padding(.trailing, 10)
+                ProfileImage(firstName: presenter.meeting.participants[0].firstName, size: 70)
+                    .padding(.trailing, 10)
                 VStack(alignment: .leading, spacing: 0) {
                     Text("\(presenter.meeting.participants.count) Participant")
                         .foregroundColor(Color("blue90"))
@@ -155,7 +155,7 @@ extension DetailView {
                         Text(
                             "Only \(presenter.meeting.participants[0].id == userId ? "You" : presenter.meeting.participants[0].firstName) in this meeting"
                         )
-                            .font(.system(size: 16, weight: .semibold))
+                        .font(.system(size: 16, weight: .semibold))
                     }
                 }
             } else {

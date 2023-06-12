@@ -36,11 +36,11 @@ struct MeetingReviewCard: View {
                             .font(.system(size: 10))
                             .foregroundColor(Color("gray80"))
                         Spacer()
-                        Text("\(String(format: "%.0f", 0.20132 * 100))%")
+                        Text("\(String(format: "%.0f", agenda.result * 100))%")
                             .font(.system(size: 10, weight: .bold))
                             .foregroundColor(Color("yellow50"))
                     }
-                    ProgressBar(width: width, value: 0.45)
+                    ProgressBar(width: width, value: agenda.result)
                     HStack {
                         HStack(spacing: 0) {
                             if agenda.voters.count == 0 {
@@ -50,6 +50,7 @@ struct MeetingReviewCard: View {
                             } else if agenda.voters.count > 4 {
                                 ForEach(0..<agenda.voters.count) { index in
                                     ProfileImage(firstName: agenda.voters[index].firstName ?? "", size: 24)
+                                       
                                 }
                                 Text("+\(agenda.voters.count - 4)").font(.system(size: 8, weight: .light))
                             } else {
@@ -59,6 +60,7 @@ struct MeetingReviewCard: View {
                             }
                             
                         }
+                        .padding(.top, 8)
                         Spacer()
                         HStack(spacing: 0) {
                             Image(systemName: "checkmark.circle.fill")
@@ -68,6 +70,7 @@ struct MeetingReviewCard: View {
                                 .font(.system(size: 10, weight: .medium))
                                 .foregroundColor(Color("gray80"))
                         }
+                        .padding(.top, 8)
                     }
                 }
                 .padding(.top, 8)

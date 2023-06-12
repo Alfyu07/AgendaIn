@@ -22,6 +22,9 @@ struct ProgressBar: View {
         }.frame(height: 20)
             .cornerRadius(30)
             .padding(.top, 4)
+            .onAppear{
+                print(value)
+            }
     }
 }
 

@@ -9,7 +9,8 @@ import SwiftUI
 
 struct AgendaItem: View {
     
-    let agenda: AgendaModel
+    // Fix this beacuse its statis
+    var agenda: AgendaModel
     let isOnVote: Bool
     let isOnResult: Bool
     let width: Double

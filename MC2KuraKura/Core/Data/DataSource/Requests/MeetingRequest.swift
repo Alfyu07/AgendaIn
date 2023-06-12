@@ -96,3 +96,13 @@ struct AddVoteAgendas: Codable {
     var meetId: String?
     var voteValue: [Int]?
 }
+
+struct SaveResultAgendasChangesRequest: Codable {
+    private enum CodingKeys: String, CodingKey {
+        case meetId = "meetId"
+        case agendasId = "agendasId"
+    }
+    
+    var meetId: String?
+    var agendasId: [String]?
+}

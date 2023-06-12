@@ -27,21 +27,23 @@ struct HomeView: View {
             
             Spacer().frame(height: 100)
         }
-            .ignoresSafeArea()
-            .navigationBarBackButtonHidden(true)
-            .onAppear {
-                presenter.getMeetingCardById()
-            }
-            
+        .ignoresSafeArea()
+        .navigationBarBackButtonHidden(true)
+        .onAppear {
+            presenter.getMeetingCardById()
+        }
+        
     }
     
 }
 
 extension HomeView {
+    
     var navigationToDetail: some View {
-            NavigationLink(destination: presenter.detailView(meeting: presenter.meetingModel ?? MeetingModel()), isActive: $presenter.navigateToDetailFromJoinMeeting) {
-            }
+        
+        return NavigationLink(destination: presenter.detailView(meeting: presenter.meetingModel ?? MeetingModel()), isActive: $presenter.navigateToDetailFromJoinMeeting) {
         }
+    }
     
     var header: some View {
         HStack(alignment: .center, spacing: 0) {
@@ -90,19 +92,38 @@ extension HomeView {
                     .frame(width: 200, height: 44)
                     .cornerRadius(30)
                     .padding(.top, 42)
-                
-                ZStack {
-                    Text("Join")
-                        .font(.system(size: 12, weight: .bold))
-                        .foregroundColor(.white)
-                        .padding(.horizontal, 24)
-                        .padding(.vertical, 6)
-                }
-                .background(Color("blue50"))
-                .cornerRadius(30)
-                .padding(.top, 6)
-                .onTapGesture {
-                    presenter.joinMeetingByCode()
+                HStack{
+                    // Fix this later
+                    PasteButton(payloadType: String.self) { strings in
+                        guard let first = strings.first else { return }
+                        DispatchQueue.main.async {
+                            let arrPasteString = first.map { String($0) }
+                            for i in 0..<4 {
+                                if i >= arrPasteString.count  {
+                                    presenter.codeValue[i] = ""
+                                    continue
+                                }
+                                presenter.codeValue[i] = arrPasteString[i]
+                            }
+                            print("\(arrPasteString)")
+                        }
+                    }
+                    .labelStyle(.iconOnly)
+                    .buttonBorderShape(.roundedRectangle(radius: 100))
+                    .padding(.top, 6)
+                    ZStack {
+                        Text("Join")
+                            .font(.system(size: 12, weight: .bold))
+                            .foregroundColor(.white)
+                            .padding(.horizontal, 24)
+                            .padding(.vertical, 6)
+                    }
+                    .background(Color("blue50"))
+                    .cornerRadius(30)
+                    .padding(.top, 6)
+                    .onTapGesture {
+                        presenter.joinMeetingByCode()
+                    }
                 }
             }
         }
@@ -112,7 +133,7 @@ extension HomeView {
         .cornerRadius(30)
         .alert(isPresented: $presenter.isError) {
             Alert(title: Text("Error"), message: Text(presenter.errorMessage), dismissButton: .default(Text("OK")))
-                }
+        }
     }
     
     var meetingListSection: some View {
@@ -131,13 +152,13 @@ extension HomeView {
                             presenter.filterSearch()
                         }
                         .frame(width: 100)
-                        
+                    
                 }
                 .padding(.horizontal, 16)
                 .padding(.vertical, 8)
                 .background(
                     RoundedRectangle(cornerRadius: 30)
-                            .fill(Color("blue5"))
+                        .fill(Color("blue5"))
                 )
             }
             
