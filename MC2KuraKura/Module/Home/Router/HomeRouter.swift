@@ -13,4 +13,10 @@ class HomeRouter {
         let presenter = DetailPresenter(detailUseCase: detailUseCase)
         return DetailView(presenter: presenter)
     }
+    
+    func makeReviewView(for meeting: MeetingModel) -> some View {
+        let reviewUseCase = Injection.init().provideReview(for: meeting)
+        let presenter = ReviewPresenter(useCase: reviewUseCase)
+        return ReviewView(presenter: presenter)
+    }
 }
