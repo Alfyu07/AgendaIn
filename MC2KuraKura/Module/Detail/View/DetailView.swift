@@ -38,8 +38,8 @@ struct DetailView: View {
                     Spacer()
 
                     if userId != presenter.meeting.picID.userID {
-                        if false {
-//                        if Date.now < presenter.meeting.voteTime.startTime {
+//                        if false {
+                        if Date.now < presenter.meeting.voteTime.startTime {
                             presenter.linkToVote(for: presenter.meeting, isVote: false) {
                                 Text("Suggest meeting item")
                                     .font(.system(size: 20, weight: .bold))
@@ -50,9 +50,9 @@ struct DetailView: View {
                                     .cornerRadius(30)
                                     .padding(.horizontal, 32)
                             }
-                        } else if true {
-//                        } else if Date.now > presenter.meeting.voteTime.startTime
-//                                    && Date.now < presenter.meeting.voteTime.endTime {
+//                        } else if true {
+                        } else if Date.now > presenter.meeting.voteTime.startTime
+                                    && Date.now < presenter.meeting.voteTime.endTime {
                             presenter.linkToVote(for: presenter.meeting, isVote: true) {
                                 Text("Vote")
                                     .font(.system(size: 20, weight: .bold))

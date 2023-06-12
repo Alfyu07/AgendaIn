@@ -16,11 +16,12 @@ struct ResultDetailView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 0) {
                     participantsInfo
+                        .padding(.horizontal, 24)
                     meetingDetailSection
                     Divider().padding(.top, 30)
                     
-                    
                     Text("Meeting Agenda").padding(.vertical, 16)
+                        .padding(.horizontal, 24)
                     ForEach(presenter.meeting.proposedAgendas) { agenda in
                         MeetingReviewCard(
                             index: 1,
@@ -28,15 +29,16 @@ struct ResultDetailView: View {
                             agenda: agenda
                         )
                         .padding(.top, 8)
+                        .padding(.horizontal, 24)
                         
-                    }.padding(.horizontal, 24)
+                    }
                 }
             }
         }
         .ignoresSafeArea()
         .background(Color("blue5"))
         .navigationBarBackButtonHidden(true)
-        .navigationTitle(Text("Meeting Detail"))
+        .navigationTitle(Text("Result"))
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Button {
@@ -74,19 +76,30 @@ struct ResultDetailView: View {
 extension ResultDetailView {
     var participantsInfo: some View {
         HStack(spacing: 0) {
-            ForEach(0...1, id: \.self) { index in
-                ProfileImage(firstName: presenter.meeting.participants[index]
-                    .firstName, size: 80)
-                .padding(.leading, -30)
-            }.padding(.trailing, 10)
-            VStack(alignment: .leading, spacing: 0) {
-                Text("\(presenter.meeting.participants.count) Participant")
+            if presenter.meeting.participants.count == 0 {
+                Text("There are no participants in this meeting")
+                    .font(.system(size: 16, weight: .semibold))
                     .foregroundColor(Color("blue90"))
-                HStack {
-                    Text(presenter.getParticipantsName())
-                        .font(.system(size: 16, weight: .semibold))
+            } else {
+                ForEach(0..<presenter.meeting.participants.count, id: \.self) { index in
+                    if index <= 1 {
+                        ProfileImage(firstName: presenter.meeting.participants[index]
+                            .firstName, size: 80)
+                        .padding(.leading, -30)
+                    }
+                    
+                }.padding(.trailing, 10)
+                VStack(alignment: .leading, spacing: 0) {
+                    Text("\(presenter.meeting.participants.count) Participant")
+                        .foregroundColor(Color("blue90"))
+                    HStack {
+                        Text(presenter.getParticipantsName())
+                            .font(.system(size: 16, weight: .semibold))
+                    }
                 }
             }
+            
+            
         }
         .padding(.top, 100)
         .padding(.horizontal, 32)

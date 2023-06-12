@@ -146,12 +146,16 @@ extension HomeView {
                 let meetingModel = MeetingModel(id: meeting.id, picID: meeting.picID, title: meeting.title, description: "", code: "", location: meeting.location, schedule: meeting.schedule, voteTime: meeting.voteTime, participants: meeting.participants, proposedAgendas: [], status: meeting.status)
                 
                 
-                presenter.linkBuilder(for: meetingModel) {
-                    MeetingCard(meeting: meetingModel)
-                        .padding(.top, 12)
-//                        .onTapGesture {
-//                            self.meetId = meeting.id
-//                        }
+                if Date.now > meeting.voteTime.endTime {
+                    presenter.linkToReview(for: meetingModel) {
+                        MeetingCard(meeting: meetingModel)
+                            .padding(.top, 12)
+                    }
+                } else {
+                    presenter.linkToDetail(for: meetingModel) {
+                        MeetingCard(meeting: meetingModel)
+                            .padding(.top, 12)
+                    }
                 }
             }
         }.padding(.horizontal, 32)

@@ -43,21 +43,21 @@ struct MeetingReviewCard: View {
                     ProgressBar(width: width, value: 0.45)
                     HStack {
                         HStack(spacing: 0) {
-                            switch agenda.voters.count {
-                            case 0:
+                            if agenda.voters.count == 0 {
                                 Text("No one voted this agenda")
                                     .font(.system(size: 10, weight: .light))
                                     .foregroundColor(Color("gray80"))
-                            case 1...4:
-                                ForEach(0..<4) { index in
+                            } else if agenda.voters.count > 4 {
+                                ForEach(0..<agenda.voters.count) { index in
                                     ProfileImage(firstName: agenda.voters[index].firstName ?? "", size: 24)
                                 }
                                 Text("+\(agenda.voters.count - 4)").font(.system(size: 8, weight: .light))
-                            default:
-                                ForEach(agenda.voters, id: \.userId) { user in
-                                    ProfileImage(firstName: user.firstName ?? "", size: 24)
+                            } else {
+                                ForEach(0..<agenda.voters.count) { index in
+                                    ProfileImage(firstName: agenda.voters[index].firstName ?? "", size: 24)
                                 }
                             }
+                            
                         }
                         Spacer()
                         HStack(spacing: 0) {
