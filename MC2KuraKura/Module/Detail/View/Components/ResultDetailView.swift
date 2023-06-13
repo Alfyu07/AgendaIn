@@ -14,7 +14,6 @@ struct ResultDetailView: View {
     @State private var draggedAgenda: AgendaModel?
     @AppStorage("userId") var userId: String = ""
     
-    
     var body: some View {
         return GeometryReader { geometry in
             ScrollView {
@@ -28,12 +27,12 @@ struct ResultDetailView: View {
                         .padding(.horizontal, 24)
                     
                     if userId == presenter.meeting.picID.userID {
-                        LazyVStack(spacing : 15) {
+                        LazyVStack(spacing: 15) {
                             ForEach(0..<presenter.meeting.proposedAgendas.count, id:\.self) { index in
                                 let agenda = presenter.meeting.proposedAgendas[index]
                                 MeetingReviewCard(
                                     index: index+1,
-                                    width: geometry.size.width,
+                                    meeting: presenter.meeting,
                                     agenda: agenda
                                 )
                                 .padding(.top, 8)
@@ -60,7 +59,7 @@ struct ResultDetailView: View {
                             let agenda = presenter.meeting.proposedAgendas[index]
                             MeetingReviewCard(
                                 index: index+1,
-                                width: geometry.size.width,
+                                meeting: presenter.meeting,
                                 agenda: agenda
                             )
                             .padding(.top, 8)
@@ -125,9 +124,6 @@ struct ResultDetailView: View {
 }
 
 extension ResultDetailView {
-    
-    
-    
     
     var participantsInfo: some View {
         HStack(spacing: 0) {

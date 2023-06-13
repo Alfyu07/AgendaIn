@@ -8,28 +8,24 @@
 import SwiftUI
 
 struct ProgressBar: View {
-    let width: Double
-    let value: Double
-  
+    var value: Double
+    
     var body: some View {
-        ZStack(alignment: .leading) {
-            Rectangle()
-                .fill(Color("gray5"))
-                .frame(maxWidth: width)
-            Rectangle()
-                .fill(Color("yellow50"))
-                .frame(maxWidth: width * value)
-        }.frame(height: 20)
-            .cornerRadius(30)
-            .padding(.top, 4)
-            .onAppear{
-                print(value)
-            }
+        GeometryReader { geometry in
+            ZStack(alignment: .leading) {
+                Rectangle().frame(width: geometry.size.width, height: 20)
+                    .foregroundColor(Color("gray5"))
+
+                Rectangle().frame(width: min(CGFloat(self.value)*geometry.size.width, geometry.size.width), height: 20)
+                        .foregroundColor(Color("yellow50"))
+            }.cornerRadius(30)
+                .padding(.top, 4)
+        }
     }
 }
 
 struct ProgressBar_Previews: PreviewProvider {
     static var previews: some View {
-        ProgressBar(width: 240, value: 0.3)
+        ProgressBar(value: 0.3)
     }
 }

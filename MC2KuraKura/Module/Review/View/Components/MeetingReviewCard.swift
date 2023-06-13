@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MeetingReviewCard: View {
     let index: Int
-    let width: Double
+    let meeting: MeetingModel
     let agenda: AgendaModel
     var body: some View {
         HStack(alignment: .top, spacing: 0) {
@@ -32,7 +32,7 @@ struct MeetingReviewCard: View {
                 
                 VStack(alignment: .leading, spacing: 0) {
                     HStack {
-                        Text("Engage")
+                        Text("Engagement")
                             .font(.system(size: 10))
                             .foregroundColor(Color("gray80"))
                         Spacer()
@@ -40,7 +40,7 @@ struct MeetingReviewCard: View {
                             .font(.system(size: 10, weight: .bold))
                             .foregroundColor(Color("yellow50"))
                     }
-                    ProgressBar(width: width, value: agenda.result)
+                    ProgressBar(value: agenda.result).padding(.top, 4)
                     HStack {
                         HStack(spacing: 0) {
                             if agenda.voters.count == 0 {
@@ -66,12 +66,12 @@ struct MeetingReviewCard: View {
                             Image(systemName: "checkmark.circle.fill")
                                 .foregroundColor(Color("yellow50"))
                                 .frame(width: 24, height: 24)
-                            Text("\(agenda.voters.count)/10")
+                            Text("\(agenda.voters.count)/\(meeting.participants.count)")
                                 .font(.system(size: 10, weight: .medium))
                                 .foregroundColor(Color("gray80"))
                         }
                         .padding(.top, 8)
-                    }
+                    }.padding(.top, 8)
                 }
                 .padding(.top, 8)
             }
@@ -100,8 +100,4 @@ struct MeetingReviewCard: View {
     }
 }
 
-struct MeetingReviewCard_Previews: PreviewProvider {
-    static var previews: some View {
-        MeetingReviewCard(index: 32, width: 320, agenda: .sharedExample)
-    }
-}
+

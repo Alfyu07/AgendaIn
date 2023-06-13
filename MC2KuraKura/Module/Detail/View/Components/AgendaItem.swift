@@ -86,7 +86,7 @@ struct AgendaItem: View {
                                     .font(.system(size: 10, weight: .bold))
                                     .foregroundColor(Color("yellow50"))
                             }
-                            ProgressBar(width: width, value: 0.45)
+                            ProgressBar(value: 0.45)
                             HStack {
                                 HStack(spacing: 0) {
                                     if agenda.voters.count == 0 {

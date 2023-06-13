@@ -32,7 +32,7 @@ struct ReviewView: View {
                         
                         MeetingReviewCard(
                             index: index+1,
-                            width: geometry.size.width,
+                            meeting: presenter.meeting,
                             agenda: agenda
                         )
                         .onAppear {
@@ -108,19 +108,30 @@ struct ReviewView: View {
 extension ReviewView {
     var participantsInfo: some View {
         HStack(spacing: 0) {
-            ForEach(0...1, id: \.self) { index in
-                ProfileImage(firstName: presenter.meeting.participants[index]
-                    .firstName, size: 80)
-                .padding(.leading, -30)
-            }.padding(.trailing, 10)
-            VStack(alignment: .leading, spacing: 0) {
-                Text("\(presenter.meeting.participants.count) Participant")
+            if presenter.meeting.participants.count == 0 {
+                Text("There are no participants in this meeting")
+                    .font(.system(size: 16, weight: .semibold))
                     .foregroundColor(Color("blue90"))
-                HStack {
-                    Text(presenter.getParticipantsName())
-                        .font(.system(size: 16, weight: .semibold))
+            } else {
+                ForEach(0..<presenter.meeting.participants.count, id: \.self) { index in
+                    if index <= 1 {
+                        ProfileImage(firstName: presenter.meeting.participants[index]
+                            .firstName, size: 80)
+                        .padding(.leading, -30)
+                    }
+                    
+                }.padding(.trailing, 10)
+                VStack(alignment: .leading, spacing: 0) {
+                    Text("\(presenter.meeting.participants.count) Participant")
+                        .foregroundColor(Color("blue90"))
+                    HStack {
+                        Text(presenter.getParticipantsName())
+                            .font(.system(size: 16, weight: .semibold))
+                    }
                 }
             }
+            
+            
         }
         .padding(.top, 100)
         .padding(.horizontal, 32)

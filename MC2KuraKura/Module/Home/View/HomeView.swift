@@ -92,8 +92,10 @@ extension HomeView {
                     .frame(width: 200, height: 44)
                     .cornerRadius(30)
                     .padding(.top, 42)
-                HStack{
+                HStack {
+                    
                     // Fix this later
+                    // swiftlint: disable identifier_name
                     PasteButton(payloadType: String.self) { strings in
                         guard let first = strings.first else { return }
                         DispatchQueue.main.async {
@@ -108,6 +110,7 @@ extension HomeView {
                             print("\(arrPasteString)")
                         }
                     }
+                    // swiftlint: disable identifier_name
                     .labelStyle(.iconOnly)
                     .buttonBorderShape(.roundedRectangle(radius: 100))
                     .padding(.top, 6)
