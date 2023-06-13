@@ -10,6 +10,8 @@ import Foundation
 protocol ReviewUsecase {
     func shareMeeting(completion: @escaping (Result<MeetingModel, URLError>) -> Void)
     func getMeeting() -> MeetingModel
+    func getMeeting(request: GetMeetingRequest, completion: @escaping (Result<MeetingModel, URLError>) -> Void)
+    func saveResultAgendasChange(request: SaveResultAgendasChangesRequest, completion: @escaping (Result<MeetingModel, URLError>) -> Void)
 }
 
 class ReviewInteractor: ReviewUsecase {
@@ -30,5 +32,17 @@ class ReviewInteractor: ReviewUsecase {
     }
     func getMeeting() -> MeetingModel {
         return meeting
+    }
+    
+    func getMeeting(request: GetMeetingRequest, completion: @escaping (Result<MeetingModel, URLError>) -> Void) {
+        repository.getMeeting(request: request) { result in
+            completion(result)
+        }
+    }
+    
+    func saveResultAgendasChange(request: SaveResultAgendasChangesRequest, completion: @escaping (Result<MeetingModel, URLError>) -> Void) {
+        repository.saveResultAgendaChanges(request: request) { result in
+            completion(result)
+        }
     }
 }

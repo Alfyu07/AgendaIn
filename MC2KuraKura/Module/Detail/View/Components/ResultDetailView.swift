@@ -23,10 +23,14 @@ struct ResultDetailView: View {
                     meetingDetailSection
                     Divider().padding(.top, 30)
                     
-                    Text("Meeting Agenda").padding(.vertical, 16)
-                        .padding(.horizontal, 24)
+                    
                     
                     if userId == presenter.meeting.picID.userID {
+                        Text("Here are the voting results that have been collected. You can rearrange the order by dragging and dropping the meeting items before sharing them with all meeting participants.")
+                            .multilineTextAlignment(.center)
+                            .padding(.horizontal, 32)
+                            .foregroundColor(Color("gray50"))
+                        
                         LazyVStack(spacing: 15) {
                             ForEach(0..<presenter.meeting.proposedAgendas.count, id:\.self) { index in
                                 let agenda = presenter.meeting.proposedAgendas[index]
@@ -43,7 +47,7 @@ struct ResultDetailView: View {
                                 }
                                 .onDrop(of: [.text], delegate: DropMeetingViewCardDelegate(agenda: agenda, agendas: $presenter.meeting.proposedAgendas, draggedAgenda: $draggedAgenda))
                             }
-                        }
+                        }.padding(.top, 24)
                         CustomButton(label: "Save Result") {
                             presenter.saveResultAgendasChange()
                             
@@ -55,6 +59,9 @@ struct ResultDetailView: View {
                         .padding(.vertical, 24)
                         .padding(.horizontal, 24)
                     } else {
+                        Text("Meeting Agenda").padding(.vertical, 16)
+                            .padding(.horizontal, 24)
+                        
                         ForEach(0..<presenter.meeting.proposedAgendas.count, id:\.self) { index in
                             let agenda = presenter.meeting.proposedAgendas[index]
                             MeetingReviewCard(
@@ -97,7 +104,7 @@ struct ResultDetailView: View {
         }
     }
     
-    struct  DropMeetingViewCardDelegate: DropDelegate {
+    struct DropMeetingViewCardDelegate: DropDelegate {
         
         let agenda : AgendaModel
         @Binding var agendas : [AgendaModel]

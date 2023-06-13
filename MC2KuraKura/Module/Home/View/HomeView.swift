@@ -170,10 +170,15 @@ extension HomeView {
                 let meetingModel = MeetingModel(id: meeting.id, picID: meeting.picID, title: meeting.title, description: "", code: "", location: meeting.location, schedule: meeting.schedule, voteTime: meeting.voteTime, participants: meeting.participants, proposedAgendas: [], status: meeting.status)
                 
                 
+                //Fix this : entah kenapa selalu ke review
+//                if false {
                 if Date.now > meeting.voteTime.endTime {
                     presenter.linkToReview(for: meetingModel) {
                         MeetingCard(meeting: meetingModel)
                             .padding(.top, 12)
+                    }.onAppear{
+                        print(meeting.title)
+                        print(meeting.voteTime.endTime)
                     }
                 } else {
                     presenter.linkToDetail(for: meetingModel) {

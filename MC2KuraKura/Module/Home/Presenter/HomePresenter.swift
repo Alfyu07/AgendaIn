@@ -31,7 +31,7 @@ class HomePresenter: ObservableObject {
     @Published var loadingState: Bool = false
     
     // state to navigate
-    @Published var navigateToDetailFromJoinMeeting : Bool = false
+    @Published var navigateToDetailFromJoinMeeting: Bool = false
     
     
     init(homeUseCase: HomeUseCase) {
