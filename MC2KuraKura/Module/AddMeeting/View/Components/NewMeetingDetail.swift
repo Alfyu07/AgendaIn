@@ -50,7 +50,6 @@ extension NewDetailMeeting {
         CustomButton(label: "Submit") {
             presenter.addMeeting()
             
-            
         }.padding(.horizontal, 32)
             .padding(.bottom, 32)
     }

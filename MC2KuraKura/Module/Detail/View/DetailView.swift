@@ -17,7 +17,10 @@ struct DetailView: View {
     var body: some View {
         GeometryReader { geometry in
             ScrollView {
+                
                 VStack(alignment: .leading, spacing: 0) {
+                    
+                    
                     if userId == presenter.meeting.picID.userID {
                         meetingCodeSection
                     }
@@ -27,6 +30,7 @@ struct DetailView: View {
                     
                     agendaSubTitle
                     votingDateAndTimeSection
+                    
                     AgendaList(proposedAgendas: presenter.meeting.proposedAgendas, width: geometry.size.width)
                         .padding(.horizontal, 32)
                         .padding(.top, 16)
@@ -123,7 +127,8 @@ extension DetailView {
                     .foregroundColor(.white)
                 
                 Button {
-                    print("copy")
+                    let pasteboard = UIPasteboard.general
+                    pasteboard.string = presenter.meeting.code
                 } label: {
                     Image(systemName: "doc.on.doc.fill")
                         .foregroundColor(.white)

@@ -54,7 +54,7 @@ class HomePresenter: ObservableObject {
         for meeting: MeetingModel,
         ViewBuilder content: () -> Content
     ) -> some View {
-        return NavigationLink(destination: router.makeDetailView(for: meeting)) { content() }
+        return NavigationLink(destination: router.makeReviewView(for: meeting)) { content() }
     }
     
     func linkToDetail<Content: View>(

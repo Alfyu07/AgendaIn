@@ -14,6 +14,9 @@ class DetailPresenter: ObservableObject {
     @Published var meeting: MeetingModel
     @AppStorage("meetId") var meetId: String = ""
     
+    @Published var loadingState: Bool = false
+    @Published var errorMessage: String = ""
+    
     init(detailUseCase: DetailUseCase) {
         self.detailUseCase = detailUseCase
         self.meeting = detailUseCase.getMeeting()
@@ -57,6 +60,7 @@ class DetailPresenter: ObservableObject {
     }
     
     func getMeetingByID(id: String) {
+        loadingState = true
         let request = GetMeetingRequest(id: id)
         detailUseCase.getMeeting(request: request) { result in
             switch result {
@@ -64,14 +68,14 @@ class DetailPresenter: ObservableObject {
                 DispatchQueue.main.async {
                     self.meeting = meeting
                     //                    self.shouldRedirectToDetailView = true
-                    //                    self.loadingState = false
+                    self.loadingState = false
                 }
                 
             case .failure(let error):
                 DispatchQueue.main.async {
                     print("add meeting error : \(error)")
-                    //                    self.errorMessage = error.localizedDescription
-                    //                    self.loadingState = false
+                    self.errorMessage = error.localizedDescription
+                    self.loadingState = false
                 }
             }
         }
